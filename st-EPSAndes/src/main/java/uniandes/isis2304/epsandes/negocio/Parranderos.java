@@ -714,10 +714,10 @@ public class Parranderos
 	 * @param horario - El horario en el que se sirve la bebida (DIURNO, NOCTURNO, TODOS)
 	 * @return Un objeto Visitan con los valores dados
 	 */
-	public Visitan adicionarVisitan (long idBebedor, long idBar, Timestamp fecha, String horario)
+	public Orden adicionarVisitan (long idBebedor, long idBar, Timestamp fecha, String horario)
 	{
         log.info ("Adicionando visitan [" + idBebedor + ", " + idBar + "]");
-        Visitan resp = pp.adicionarVisitan (idBebedor, idBar, fecha, horario);
+        Orden resp = pp.adicionarVisitan (idBebedor, idBar, fecha, horario);
         log.info ("Adicionando visitan: " + resp + " tuplas insertadas");
         return resp;
 	}
@@ -742,10 +742,10 @@ public class Parranderos
 	 * Adiciona entradas al log de la aplicación
 	 * @return Una lista de objetos VISITAN con todos los GUSTAN que conoce la aplicación, llenos con su información básica
 	 */
-	public List<Visitan> darVisitan ()
+	public List<Orden> darVisitan ()
 	{
         log.info ("Listando Visitan");
-        List<Visitan> visitan = pp.darVisitan ();	
+        List<Orden> visitan = pp.darVisitan ();	
         log.info ("Listando Visitan: Listo!");
         return visitan;
 	}
@@ -755,11 +755,11 @@ public class Parranderos
 	 * Adiciona entradas al log de la aplicación
 	 * @return Una lista de objetos Visitan con todos los Visitan que conoce la aplicación, llenos con su información básica
 	 */
-	public List<VOVisitan> darVOVisitan ()
+	public List<VOOrden> darVOVisitan ()
 	{
 		log.info ("Generando los VO de Visitan");
-		List<VOVisitan> voGustan = new LinkedList<VOVisitan> ();
-		for (VOVisitan vis: pp.darVisitan ())
+		List<VOOrden> voGustan = new LinkedList<VOOrden> ();
+		for (VOOrden vis: pp.darVisitan ())
 		{
 			voGustan.add (vis);
 		}

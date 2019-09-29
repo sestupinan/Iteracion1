@@ -27,7 +27,7 @@ import java.sql.Timestamp;
  * 
  * @author Germán Bravo
  */
-public class Visitan implements VOVisitan
+public class Orden implements VOOrden
 {
 	/* ****************************************************************
 	 * 			Atributos
@@ -35,22 +35,21 @@ public class Visitan implements VOVisitan
 	/**
 	 * El identificador del bebedor que realiza la visita
 	 */
-	private long idBebedor;
+	private long idHosp;
 	
 	/**
 	 * El identificador del bar visitado
 	 */
-	private long idBar;
-	
-	/**
-	 * La fecha de la visita
-	 */
-	private Timestamp fechaVisita;
+	private long idIPS;
+
 	
 	/**
 	 * El horario en que se realizó la visita (DIURNO, NOCTURNO, TODOS)
 	 */
-	private String horario;
+	private String estadoSalud;
+	
+	
+	private long idServSalud;
 
 	/* ****************************************************************
 	 * 			Métodos
@@ -58,12 +57,12 @@ public class Visitan implements VOVisitan
 	/**
 	 * Constructor por defecto
 	 */
-	public Visitan() 
+	public Orden() 
 	{
-		this.idBebedor = 0;
-		this.idBar = 0;
-		this.horario = "";
-		this.fechaVisita = new Timestamp (0);
+		this.idHosp = 0;
+		this.idIPS = 0;
+		this.estadoSalud = "";
+		this.idServSalud = 0;
 	}
 
 	/**
@@ -71,14 +70,14 @@ public class Visitan implements VOVisitan
 	 * @param idBebedor - El identificador del b ebedor. Debe existir un bebedor con dicho identificador
 	 * @param idBar - El identificador del bar. Debe exixtir un bar con dicho identificador
 	 * @param fechaVisita - La fecha en la cual se realiza la visita
-	 * @param horario - El horario en el que el bebedor vista el bar (DIURNO, NOCTURNO, TODOS)
+	 * @param pEstadoDeSalud - El horario en el que el bebedor vista el bar (DIURNO, NOCTURNO, TODOS)
 	 */
-	public Visitan(long idBebedor, long idBar, Timestamp fechaVisita, String horario) 
+	public Orden(long idBebedor, long idBar, String pEstadoDeSalud, long pIdServSalud) 
 	{
-		this.idBebedor = idBebedor;
-		this.idBar = idBar;
-		this.fechaVisita = fechaVisita;
-		this.horario = horario;
+		this.idHosp = idBebedor;
+		this.idIPS = idBar;
+		this.estadoSalud = pEstadoDeSalud;
+		this.idServSalud = pIdServSalud;
 	}
 
 	/**
@@ -86,7 +85,7 @@ public class Visitan implements VOVisitan
 	 */
 	public long getIdBebedor() 
 	{
-		return idBebedor;
+		return idHosp;
 	}
 
 	/**
@@ -94,7 +93,7 @@ public class Visitan implements VOVisitan
 	 */
 	public void setIdBebedor(long idBebedor) 
 	{
-		this.idBebedor = idBebedor;
+		this.idHosp = idBebedor;
 	}
 
 	/**
@@ -102,7 +101,7 @@ public class Visitan implements VOVisitan
 	 */
 	public long getIdBar() 
 	{
-		return idBar;
+		return idIPS;
 	}
 
 	/**
@@ -110,39 +109,24 @@ public class Visitan implements VOVisitan
 	 */
 	public void setIdBar(long idBar) 
 	{
-		this.idBar = idBar;
+		this.idIPS = idBar;
 	}
 
-	/**
-	 * @return La fechaVisita
-	 */
-	public Timestamp getFechaVisita() 
-	{
-		return fechaVisita;
-	}
-
-	/**
-	 * @param fechaVisita - La nueva fecha de visita al bar por el bebedor
-	 */
-	public void setFechaVisita(Timestamp fechaVisita) 
-	{
-		this.fechaVisita = fechaVisita;
-	}
 
 	/**
 	 * @return El horario
 	 */
-	public String getHorario() 
+	public String getEstadoSalud() 
 	{
-		return horario;
+		return estadoSalud;
 	}
 
 	/**
-	 * @param horario - El nuevo horario en que se realizó la visita (DIURNO, NOCTURNO, TODOS)
+	 * @param pEstadoSalud - El nuevo horario en que se realizó la visita (DIURNO, NOCTURNO, TODOS)
 	 */
-	public void setHorario(String horario) 
+	public void setEstadoSalud(String pEstadoSalud) 
 	{
-		this.horario = horario;
+		this.estadoSalud = pEstadoSalud;
 	}
 
 	/** 
@@ -151,7 +135,7 @@ public class Visitan implements VOVisitan
 	@Override
 	public String toString() 
 	{
-		return "Visitan [idBebedor=" + idBebedor + ", idBar=" + idBar + ", fechaVisita=" + fechaVisita + ", horario="
-				+ horario + "]";
+		return "Visitan [idHospitalizacion=" + idHosp + ", idIPS=" + idIPS + ", estadoDeSalud="
+				+ estadoSalud + ", idServSalud=" + idServSalud+ "]";
 	}
 }

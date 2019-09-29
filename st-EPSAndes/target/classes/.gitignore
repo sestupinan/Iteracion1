@@ -1,4 +1,3 @@
-/config/
 /hbase-site.xml
 /log4j.properties
 /package-cassandra.orm

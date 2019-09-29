@@ -39,8 +39,7 @@ public class ServicioSalud implements VOServicioSalud
 	
 	public int capacidad;
 	
-	public Date horario;
-	
+	private long idIPS;
 	
 	/* ****************************************************************
 	 * 			Métodos
@@ -53,7 +52,7 @@ public class ServicioSalud implements VOServicioSalud
 		this.id = 0;
 		this.tipo = "";
 		this.capacidad = 0;
-		this.horario = null;
+		this.idIPS = 0;
 	}
 
 	/**
@@ -61,12 +60,12 @@ public class ServicioSalud implements VOServicioSalud
 	 * @param id - El identificador del tipo de bebida
 	 * @param nombre - El nombre del tipo de bebida
 	 */
-	public ServicioSalud(long id, String tipo, int capacidad, Date horario) 
+	public ServicioSalud(long id, String tipo, int capacidad, long pServSalud) 
 	{
 		this.id = id;
 		this.tipo = tipo;
 		this.capacidad = capacidad;
-		this.horario = horario;
+		this.idIPS = pServSalud;
 	}
 
 	/**
@@ -101,23 +100,22 @@ public class ServicioSalud implements VOServicioSalud
 		this.capacidad = capacidad;
 	}
 
-	public Date getHorario() {
-		return horario;
+	
+	public long getIdIPS() {
+		return idIPS;
 	}
 
-	public void setHorario(Date horario) {
-		this.horario = horario;
+	public void setIdIPS(long pidIPS) {
+		this.idIPS = pidIPS;
 	}
-
-
 
 	/**
-	 * @return Una cadena de caracteres con la información del tipo de bebida
+	 * @return Una cadena de caracteres con la información del servicio de salud
 	 */
 	@Override
 	public String toString() 
 	{
-		return "TipoBebida [id=" + id + ", nombre=" + capacidad + "]";
+		return "ServicioSalud [id=" + id + ", tipo=" + tipo+ ", capacidad=" + capacidad+ ", idIPS=" + idIPS + "]";
 	}
 
 	

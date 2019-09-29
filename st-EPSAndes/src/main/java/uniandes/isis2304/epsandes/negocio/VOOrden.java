@@ -23,7 +23,7 @@ import java.sql.Timestamp;
  * 
  * @author Germán Bravo
  */
-public interface VOVisitan 
+public interface VOOrden 
 {
 	/* ****************************************************************
 	 * 			Métodos
@@ -38,15 +38,11 @@ public interface VOVisitan
 	 */
 	public long getIdBar();
 
-	/**
-	 * @return La fechaVisita
-	 */
-	public Timestamp getFechaVisita();
 
 	/**
 	 * @return El horario
 	 */
-	public String getHorario();
+	public String getEstadoSalud();
 
 	/** 
 	 * @return Una cadena con la información básica

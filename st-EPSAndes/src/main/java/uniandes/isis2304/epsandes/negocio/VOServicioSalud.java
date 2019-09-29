@@ -40,7 +40,6 @@ public interface VOServicioSalud
 
 	public int getCapacidad();
 	
-	public Date getHorario(); 
 	/**
 	 * @return Una cadena de caracteres con la información del tipo de bebida
 	 */

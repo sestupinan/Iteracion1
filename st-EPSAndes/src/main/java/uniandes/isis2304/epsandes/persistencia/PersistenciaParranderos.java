@@ -38,7 +38,7 @@ import uniandes.isis2304.epsandes.negocio.ConsultaUrgencias;
 import uniandes.isis2304.epsandes.negocio.Hospitalizacion;
 import uniandes.isis2304.epsandes.negocio.RemisionEspecialista;
 import uniandes.isis2304.epsandes.negocio.ServicioSalud;
-import uniandes.isis2304.epsandes.negocio.Visitan;
+import uniandes.isis2304.epsandes.negocio.Orden;
 
 /**
  * Clase para el manejador de persistencia del proyecto Parranderos
@@ -1348,7 +1348,7 @@ public class PersistenciaParranderos
 	 * @param horario - El hororio en que se sirve (DIURNO, NOCTURNO, TODOS)
 	 * @return Un objeto VISITAN con la información dada. Null si ocurre alguna Excepción
 	 */	
-	public Visitan adicionarVisitan (long idBebedor, long idBar, Timestamp fecha, String horario) 
+	public Orden adicionarVisitan (long idBebedor, long idBar, Timestamp fecha, String horario) 
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx=pm.currentTransaction();
@@ -1360,7 +1360,7 @@ public class PersistenciaParranderos
 
             log.trace ("Inserción de gustan: [" + idBebedor + ", " + idBar + "]. " + tuplasInsertadas + " tuplas insertadas");
 
-            return new Visitan (idBebedor, idBar, fecha, horario);
+            return new Orden (idBebedor, idBar, fecha, horario);
         }
         catch (Exception e)
         {
@@ -1484,7 +1484,7 @@ public class PersistenciaParranderos
 	 * Método que consulta todas las tuplas en la tabla VISITAN
 	 * @return La lista de objetos VISITAN, construidos con base en las tuplas de la tabla VISITAN
 	 */
-	public List<Visitan> darVisitan ()
+	public List<Orden> darVisitan ()
 	{
 		return sqlVisitan.darVisitan (pmf.getPersistenceManager());
 	}	

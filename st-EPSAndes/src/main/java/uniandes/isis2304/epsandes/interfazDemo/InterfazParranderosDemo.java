@@ -55,7 +55,7 @@ import uniandes.isis2304.epsandes.negocio.VOConsultaUrgencias;
 import uniandes.isis2304.epsandes.negocio.VOHospitalizacion;
 import uniandes.isis2304.epsandes.negocio.VORemisionEspecialista;
 import uniandes.isis2304.epsandes.negocio.VOServicioSalud;
-import uniandes.isis2304.epsandes.negocio.VOVisitan;
+import uniandes.isis2304.epsandes.negocio.VOOrden;
 
 /**
  * Clase principal de la interfaz
@@ -801,7 +801,7 @@ public class InterfazParranderosDemo extends JFrame implements ActionListener
 			List <VOConsultaMedica> listaBares = parranderos.darVOBares ();
 			List <VOConsultaUrgencias> bebedores = parranderos.darVOBebedores();
 			List <VOConsultaControl> listaGustan = parranderos.darVOGustan();
-			List <VOVisitan> listaVisitan = parranderos.darVOVisitan();
+			List <VOOrden> listaVisitan = parranderos.darVOVisitan();
 
 			VOConsultaUrgencias bdor2 = parranderos.darBebedorCompleto(bdor1.getId ());
 
@@ -888,7 +888,7 @@ public class InterfazParranderosDemo extends JFrame implements ActionListener
 			List <VOConsultaMedica> listaBares = parranderos.darVOBares ();
 			List <VOConsultaUrgencias> bebedores = parranderos.darVOBebedores();
 			List <VOConsultaControl> listaGustan = parranderos.darVOGustan();
-			List <VOVisitan> listaVisitan = parranderos.darVOVisitan();
+			List <VOOrden> listaVisitan = parranderos.darVOVisitan();
 
 			VOConsultaUrgencias bdor2 = parranderos.darBebedorCompleto(bdor1.getId ());
 
@@ -983,7 +983,7 @@ public class InterfazParranderosDemo extends JFrame implements ActionListener
 			List <VOConsultaMedica> listaBares = parranderos.darVOBares ();
 			List <VOConsultaUrgencias> bebedores = parranderos.darVOBebedores();
 			List <VOConsultaControl> listaGustan = parranderos.darVOGustan();
-			List <VOVisitan> listaVisitan = parranderos.darVOVisitan();
+			List <VOOrden> listaVisitan = parranderos.darVOVisitan();
 
 			VOConsultaUrgencias bdor2 = parranderos.darBebedorCompleto(bdor1.getId ());
 
@@ -1111,7 +1111,7 @@ public class InterfazParranderosDemo extends JFrame implements ActionListener
 
 			List<VOConsultaMedica> bares = parranderos.darVOBares();
 			List<VOConsultaUrgencias> bebedores = parranderos.darVOBebedores();
-			List<VOVisitan> visitan = parranderos.darVOVisitan ();
+			List<VOOrden> visitan = parranderos.darVOVisitan ();
 			List<Object []> bebedoresYNumVisitas = parranderos.darBebedoresYNumVisitasRealizadas ();
 
 			long [] elimBdor1 = parranderos.eliminarBebedorYVisitas_v1 (bdor1.getId ());
@@ -1179,7 +1179,7 @@ public class InterfazParranderosDemo extends JFrame implements ActionListener
 
 			List<VOConsultaMedica> bares = parranderos.darVOBares();
 			List<VOConsultaUrgencias> bebedores = parranderos.darVOBebedores();
-			List<VOVisitan> visitan = parranderos.darVOVisitan ();
+			List<VOOrden> visitan = parranderos.darVOVisitan ();
 			long bebedoresBogota = parranderos.darCantidadBebedoresCiudadVisitanBares ("Bogotá");
 			long bebedoresMedellin = parranderos.darCantidadBebedoresCiudadVisitanBares ("Medellín");
 
@@ -1381,7 +1381,7 @@ public class InterfazParranderosDemo extends JFrame implements ActionListener
 
 			List <VOConsultaMedica> listaBares = parranderos.darVOBares ();
 			List <VOConsultaUrgencias> listaBebedores = parranderos.darVOBebedores ();
-			List <VOVisitan> listaVisitan = parranderos.darVOVisitan();
+			List <VOOrden> listaVisitan = parranderos.darVOVisitan();
 			long visitanEliminados = parranderos.eliminarVisitan (bdor1.getId (), bar1.getId ());
 			long baresEliminados = parranderos.eliminarBarPorNombre ("Los Amigos1");
 			long bebedoresEliminadas = parranderos.eliminarBebedorPorNombre ("Pepito");
@@ -1669,11 +1669,11 @@ public class InterfazParranderosDemo extends JFrame implements ActionListener
      * @param lista - La lista con los visitan
      * @return La cadena con una líea para cada visitan recibido
      */
-    private String listarVisitan (List<VOVisitan> lista) 
+    private String listarVisitan (List<VOOrden> lista) 
     {
     	String resp = "Los visitan existentes son:\n";
     	int i = 1;
-        for (VOVisitan vis : lista)
+        for (VOOrden vis : lista)
         {
         	resp += i++ + ". " + vis.toString() + "\n";
         }
