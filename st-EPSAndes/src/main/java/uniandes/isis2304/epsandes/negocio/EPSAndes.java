@@ -22,7 +22,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import com.google.gson.JsonObject;
 
-import uniandes.isis2304.epsandes.persistencia.PersistenciaParranderos;
+import uniandes.isis2304.epsandes.persistencia.PersistenciaEPSAndes;
 
 /**
  * Clase principal del negocio
@@ -46,7 +46,7 @@ public class EPSAndes
 	/**
 	 * El manejador de persistencia
 	 */
-	private PersistenciaParranderos pp;
+	private PersistenciaEPSAndes pp;
 	
 	/* ****************************************************************
 	 * 			Métodos
@@ -56,7 +56,7 @@ public class EPSAndes
 	 */
 	public EPSAndes ()
 	{
-		pp = PersistenciaParranderos.getInstance ();
+		pp = PersistenciaEPSAndes.getInstance ();
 	}
 	
 	/**
@@ -65,7 +65,7 @@ public class EPSAndes
 	 */
 	public EPSAndes (JsonObject tableConfig)
 	{
-		pp = PersistenciaParranderos.getInstance (tableConfig);
+		pp = PersistenciaEPSAndes.getInstance (tableConfig);
 	}
 	
 	/**
