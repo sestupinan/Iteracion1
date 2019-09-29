@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 import org.datanucleus.store.types.converters.InstantDateConverter;
 
 
-public class Usuario 
+public class Usuario implements VOUsuario
 {
 	/* ****************************************************************
 	* 			Atributos
