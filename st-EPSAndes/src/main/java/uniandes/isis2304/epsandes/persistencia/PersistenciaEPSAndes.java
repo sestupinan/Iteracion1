@@ -231,7 +231,7 @@ public class PersistenciaEPSAndes
 	}
 
 	/**
-	 * @return La cadena de caracteres con el nombre del secuenciador de parranderos
+	 * @return La cadena de caracteres con el nombre del secuenciador de epsandes
 	 */
 	public String darSeqParranderos ()
 	{
