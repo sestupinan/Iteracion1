@@ -1,6 +1,6 @@
 package uniandes.isis2304.epsandes.negocio;
 
-public class ProcedimientoEspecializado 
+public class ProcedimientoEspecializado implements VOProcedimientoEspecializado
 {
 	/* ****************************************************************
 	* 			Atributos

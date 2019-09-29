@@ -1,6 +1,6 @@
 package uniandes.isis2304.epsandes.negocio;
 
-public class Terapia 
+public class Terapia implements VOTerapia
 {
 	/* ****************************************************************
 	* 			Atributos
