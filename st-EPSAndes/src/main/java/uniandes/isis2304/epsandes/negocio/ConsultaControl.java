@@ -68,7 +68,7 @@ public class ConsultaControl implements VOConsultaControl
 	 * @param idBebedor - El identificador del bebedor. Debe exixtir un bebedor con dicho identificador
 	 * @param idBebida - El identificador de la consulta de control. Debe existir una consulta de control con dicho identificador
 	 */
-	public ConsultaControl(long id, String efectividad, String resultado, String tratamiento, Long idHosp, Long idServSalud) 
+	public ConsultaControl(long id, String efectividad, String resultado, String tratamiento, long idHosp, long idServSalud) 
 	{
 		this.id = id;
 		this.efectividad = efectividad;

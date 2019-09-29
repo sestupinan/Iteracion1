@@ -35,18 +35,12 @@ public class Orden implements VOOrden
 	/**
 	 * El identificador del bebedor que realiza la visita
 	 */
-	private long idHosp;
-	
-	/**
-	 * El identificador del bar visitado
-	 */
-	private long idIPS;
-
+	private long idOrden;
 	
 	/**
 	 * El horario en que se realizó la visita (DIURNO, NOCTURNO, TODOS)
 	 */
-	private String estadoSalud;
+	private String medicamentos;
 	
 	
 	private long idServSalud;
@@ -59,9 +53,8 @@ public class Orden implements VOOrden
 	 */
 	public Orden() 
 	{
-		this.idHosp = 0;
-		this.idIPS = 0;
-		this.estadoSalud = "";
+		this.idOrden = 0;
+		this.medicamentos = "";
 		this.idServSalud = 0;
 	}
 
@@ -70,63 +63,45 @@ public class Orden implements VOOrden
 	 * @param idBebedor - El identificador del b ebedor. Debe existir un bebedor con dicho identificador
 	 * @param idBar - El identificador del bar. Debe exixtir un bar con dicho identificador
 	 * @param fechaVisita - La fecha en la cual se realiza la visita
-	 * @param pEstadoDeSalud - El horario en el que el bebedor vista el bar (DIURNO, NOCTURNO, TODOS)
+	 * @param pMedicamentos - El horario en el que el bebedor vista el bar (DIURNO, NOCTURNO, TODOS)
 	 */
-	public Orden(long idBebedor, long idBar, String pEstadoDeSalud, long pIdServSalud) 
+	public Orden(long idOrden, String pMedicamentos, long pIdServSalud) 
 	{
-		this.idHosp = idBebedor;
-		this.idIPS = idBar;
-		this.estadoSalud = pEstadoDeSalud;
+		this.idOrden = idOrden;
+		this.medicamentos = pMedicamentos;
 		this.idServSalud = pIdServSalud;
 	}
 
 	/**
 	 * @return El idBebedor
 	 */
-	public long getIdHosp() 
+	public long getIdOrden() 
 	{
-		return idHosp;
+		return idOrden;
 	}
 
 	/**
 	 * @param idBebedor - El nuevo idBebedor. Debe existir un bebedor con dicho identificador
 	 */
-	public void setIdHosp(long idBebedor) 
+	public void setIdOrden(long idBebedor) 
 	{
-		this.idHosp = idBebedor;
+		this.idOrden = idBebedor;
 	}
-
-	/**
-	 * @return El idBar
-	 */
-	public long getIdIPS() 
-	{
-		return idIPS;
-	}
-
-	/**
-	 * @param idBar - El nuevo idBar. Debe exixtir un bar con dicho identificador
-	 */
-	public void setIdIPS(long idBar) 
-	{
-		this.idIPS = idBar;
-	}
-
 
 	/**
 	 * @return El horario
 	 */
-	public String getEstadoSalud() 
+	public String getmedicamentos() 
 	{
-		return estadoSalud;
+		return medicamentos;
 	}
 
 	/**
-	 * @param pEstadoSalud - El nuevo horario en que se realizó la visita (DIURNO, NOCTURNO, TODOS)
+	 * @param pmedicamentos - El nuevo horario en que se realizó la visita (DIURNO, NOCTURNO, TODOS)
 	 */
-	public void setEstadoSalud(String pEstadoSalud) 
+	public void setmedicamentos(String pmedicamentos) 
 	{
-		this.estadoSalud = pEstadoSalud;
+		this.medicamentos = pmedicamentos;
 	}
 	
 	/**
@@ -134,14 +109,14 @@ public class Orden implements VOOrden
 	 */
 	public long getIdServSalud() 
 	{
-		return idIPS;
+		return idServSalud;
 	}
 
 	/**
 	 * @param idBar - El nuevo idBar. Debe exixtir un bar con dicho identificador
 	 */
 	public void setIdServSalud(long idBar) 
-	{
+	{	
 		this.idServSalud = idBar;
 	}
 
@@ -151,7 +126,7 @@ public class Orden implements VOOrden
 	@Override
 	public String toString() 
 	{
-		return "Visitan [idHospitalizacion=" + idHosp + ", idIPS=" + idIPS + ", estadoDeSalud="
-				+ estadoSalud + ", idServSalud=" + idServSalud+ "]";
+		return "Visitan [idOrdenitalizacion=" + idOrden +  ", Medicamentos="
+				+ medicamentos + ", idServSalud=" + idServSalud+ "]";
 	}
 }

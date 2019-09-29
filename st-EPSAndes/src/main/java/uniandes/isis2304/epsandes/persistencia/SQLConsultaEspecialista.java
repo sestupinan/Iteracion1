@@ -20,7 +20,7 @@ import java.util.List;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
-import uniandes.isis2304.epsandes.negocio.ConsultaControl;
+import uniandes.isis2304.epsandes.negocio.ConsultaEspecialista;
 
 /**
  * Clase que encapsula los métodos que hacen acceso a la base de datos para el concepto GUSTAN de Parranderos
@@ -59,46 +59,57 @@ class SQLConsultaEspecialista
 		this.pp = pp;
 	}
 	
-	/**
-	 * Crea y ejecuta la sentencia SQL para adicionar un GUSTAN a la base de datos de Parranderos
-	 * @param pm - El manejador de persistencia
-	 * @param idBebedor - El identificador del bebedor
-	 * @param idBebida - El identificador de la bebida
-	 * @return EL número de tuplas insertadas
-	 */
-	public long adicionarGustan(PersistenceManager pm, long idBebedor, long idBebida) 
+
+	public long adicionarConsultaEspecialista(PersistenceManager pm, long id, long idMedico, String dolencia, long servSalud) 
 	{
-        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaGustan () + "(idbebedor, idbebida) values (?, ?)");
-        q.setParameters(idBebedor, idBebida);
+        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaConsultaEspecialista() + "(id, idmedico, dolencia, servSalud) values (?, ?, ?, ?)");
+        q.setParameters(id, idMedico, dolencia, servSalud);
         return (long) q.executeUnique();
 	}
 
 	/**
-	 * Crea y ejecuta la sentencia SQL para eliminar UN GUSTAN de la base de datos de Parranderos, por sus identificador
+	 * Crea y ejecuta la sentencia SQL para eliminar TODAS LAS VISITAS de la base de datos de Parranderos
 	 * @param pm - El manejador de persistencia
-	 * @param idBebedor - El identificador del bebedor
-	 * @param idBebida - El identificador de la bebida
 	 * @return EL número de tuplas eliminadas
 	 */
-	public long eliminarGustan (PersistenceManager pm, long idBebedor, long idBebida)
+	public long eliminarConsultaEspecialista(PersistenceManager pm) 
 	{
-        Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaGustan () + " WHERE idbebedor = ? AND idbebida = ?");
-        q.setParameters(idBebedor, idBebida);
+        Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaConsultaEspecialista());
         return (long) q.executeUnique();
 	}
 
 	/**
-	 * Crea y ejecuta la sentencia SQL para encontrar la información de los GUSTAN de la 
-	 * base de datos de Parranderos
+	 * Crea y ejecuta la sentencia SQL para ELIMINAR TODAS LAS VISITAS DE UN BEBEDOR de la base de datos de Parranderos, por su identificador
 	 * @param pm - El manejador de persistencia
-	 * @return Una lista de objetos GUSTAN
+	 * @param idConsultaEspecialista- El identificador del orden
+	 * @return EL número de tuplas eliminadas
 	 */
-	public List<ConsultaControl> darGustan (PersistenceManager pm)
+	public long eliminarConsultaEspecialistaPorIdConsultaEspecialista(PersistenceManager pm, long idConsultaEspecialista) 
 	{
-		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaGustan ());
-		q.setResultClass(ConsultaControl.class);
-		List<ConsultaControl> resp = (List<ConsultaControl>) q.execute();
-		return resp;
+        Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaConsultaEspecialista() + " WHERE id = ?");
+        q.setParameters(idConsultaEspecialista);
+        return (long) q.executeUnique();
 	}
 
+
+	/**
+	 * Crea y ejecuta la sentencia SQL para encontrar la información de los ConsultaEspecialistade la 
+	 * base de datos de Parranderos
+	 * @param pm - El manejador de persistencia
+	 * @return Una lista de objetos ConsultaEspecialista
+	 */
+	public List<ConsultaEspecialista> darConsultaEspecialista(PersistenceManager pm)
+	{
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaConsultaEspecialista());
+		q.setResultClass(ConsultaEspecialista.class);
+		return (List<ConsultaEspecialista>) q.execute();
+	}
+	
+	public ConsultaEspecialista darConsultaEspecialistaPorId (PersistenceManager pm, long idConsultaEspecialista) 
+	{
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaConsultaEspecialista () + " WHERE id = ?");
+		q.setResultClass(ConsultaEspecialista.class);
+		q.setParameters(idConsultaEspecialista);
+		return (ConsultaEspecialista) q.executeUnique();
+	}
 }
