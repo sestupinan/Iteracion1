@@ -31,18 +31,20 @@ public interface VOOrden
 	/**
 	 * @return El idBebedor
 	 */
-	public long getIdBebedor();
+	public long getIdIPS();
 
 	/**
 	 * @return El idBar
 	 */
-	public long getIdBar();
+	public long getIdHosp();
 
 
 	/**
 	 * @return El horario
 	 */
 	public String getEstadoSalud();
+	
+	public long getIdServSalud();
 
 	/** 
 	 * @return Una cadena con la información básica

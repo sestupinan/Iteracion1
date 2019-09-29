@@ -1,6 +1,6 @@
 package uniandes.isis2304.epsandes.negocio;
 
-public class ExamenDiagnostico 
+public class ExamenDiagnostico implements VOExamenDiagnostico
 {
 	/* ****************************************************************
 	* 			Atributos

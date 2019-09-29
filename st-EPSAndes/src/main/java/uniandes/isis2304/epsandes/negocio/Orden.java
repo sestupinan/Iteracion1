@@ -83,7 +83,7 @@ public class Orden implements VOOrden
 	/**
 	 * @return El idBebedor
 	 */
-	public long getIdBebedor() 
+	public long getIdHosp() 
 	{
 		return idHosp;
 	}
@@ -91,7 +91,7 @@ public class Orden implements VOOrden
 	/**
 	 * @param idBebedor - El nuevo idBebedor. Debe existir un bebedor con dicho identificador
 	 */
-	public void setIdBebedor(long idBebedor) 
+	public void setIdHosp(long idBebedor) 
 	{
 		this.idHosp = idBebedor;
 	}
@@ -99,7 +99,7 @@ public class Orden implements VOOrden
 	/**
 	 * @return El idBar
 	 */
-	public long getIdBar() 
+	public long getIdIPS() 
 	{
 		return idIPS;
 	}
@@ -107,7 +107,7 @@ public class Orden implements VOOrden
 	/**
 	 * @param idBar - El nuevo idBar. Debe exixtir un bar con dicho identificador
 	 */
-	public void setIdBar(long idBar) 
+	public void setIdIPS(long idBar) 
 	{
 		this.idIPS = idBar;
 	}
@@ -127,6 +127,22 @@ public class Orden implements VOOrden
 	public void setEstadoSalud(String pEstadoSalud) 
 	{
 		this.estadoSalud = pEstadoSalud;
+	}
+	
+	/**
+	 * @return El idBar
+	 */
+	public long getIdServSalud() 
+	{
+		return idIPS;
+	}
+
+	/**
+	 * @param idBar - El nuevo idBar. Debe exixtir un bar con dicho identificador
+	 */
+	public void setIdServSalud(long idBar) 
+	{
+		this.idServSalud = idBar;
 	}
 
 	/** 
