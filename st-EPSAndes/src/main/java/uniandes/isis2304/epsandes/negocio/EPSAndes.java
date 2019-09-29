@@ -361,7 +361,7 @@ public class EPSAndes
 	{
         log.info ("Dar información COMPLETA de un bebedor por id: " + idBebedor);
         ConsultaUrgencias bebedor = pp.darBebedorCompleto (idBebedor);
-        log.info ("Buscando bebedor por Id: " + bebedor.toStringCompleto() != null ? bebedor : "NO EXISTE");
+        log.info ("Buscando bebedor por Id: " + bebedor.toString() != null ? bebedor : "NO EXISTE");
         return bebedor;
 	}
 
@@ -776,7 +776,7 @@ public class EPSAndes
 	 * @return Un arreglo con 7 números que indican el número de tuplas borradas en las tablas GUSTAN, SIRVEN, VISITAN, BEBIDA,
 	 * TIPOBEBIDA, BEBEDOR y BAR, respectivamente
 	 */
-	public long [] limpiarParranderos ()
+	public long [] limpiar ()
 	{
         log.info ("Limpiando la BD de Parranderos");
         long [] borrrados = pp.limpiarParranderos();	
