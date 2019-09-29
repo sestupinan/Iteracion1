@@ -40,9 +40,6 @@ public interface VOConsultaControl
 	
 	public String getTratamiento();
 	
-	public String getRecetas();
-	
-	public String getOrden();
 	
 	/** 
 	 * @return Una cadena con la información básica

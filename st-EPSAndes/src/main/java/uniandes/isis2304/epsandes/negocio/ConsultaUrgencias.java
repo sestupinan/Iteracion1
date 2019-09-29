@@ -32,7 +32,7 @@ public class ConsultaUrgencias implements VOConsultaUrgencias
 	/**
 	 * El identificador ÚNICO de la consulta de urgencias
 	 */
-	private long id;	
+	private Long id;	
 	
 	/**
 	 * El triage de la consulta de urgencias
@@ -42,27 +42,20 @@ public class ConsultaUrgencias implements VOConsultaUrgencias
 	/**
 	 * El idMedico de la consulta de urgencias
 	 */
-	private long idMedico;
+	private Long idMedico;
 	
-	/**
-	 * El idExamenDiagnostico de la consulta de urgencias 
-	 */
-	private long idExamenDiagnostico;
+
 	
 	/**
 	 * El idConsulta de la consulta de urgencias 
 	 */
-	private long idConsulta;
+	private Long idServSalud;
 	
-	/**
-	 * El idHospitalizacion de la consulta de urgencias 
-	 */
-	private long idHospitalizacion;
 	
 	/**
 	 * El estado de dada de alta de la consulta de urgencias 
 	 */
-	private boolean dadoDeAlta;
+	private Boolean dadoDeAlta;
 	
 	/* ****************************************************************
 	 * 			Métodos
@@ -72,12 +65,10 @@ public class ConsultaUrgencias implements VOConsultaUrgencias
 	 */
 	public ConsultaUrgencias() 
 	{
-		this.id = 0;
+		this.id = 0L;
 		this.triage = "";
-		this.idMedico = 0;
-		this.idExamenDiagnostico = 0;
-		this.idConsulta = 0;
-		this.idHospitalizacion = 0;
+		this.idMedico = 0L;
+		this.idServSalud = 0L;
 		this.dadoDeAlta = false;
 	}
 
@@ -88,21 +79,19 @@ public class ConsultaUrgencias implements VOConsultaUrgencias
 	 * @param idMedico - El idMedico de la consulta de urgencias
 	 * @param idExamenDiagnostico - El idExamenDiagnostico de la consulta de urgencias 
 	 */
-	public ConsultaUrgencias(long id, String triage, long idMedico, long idExamenDiagnostico, long idConsulta, long idHospitalizacion, boolean dadoDeAlta) 
+	public ConsultaUrgencias(long id, String triage, long idMedico, long idConsulta, boolean dadoDeAlta) 
 	{
 		this.id = id;
 		this.triage = triage;
 		this.idMedico = idMedico;
-		this.idExamenDiagnostico = idExamenDiagnostico;
-		this.idConsulta = idConsulta;	
-		this.idHospitalizacion = idHospitalizacion;
+		this.idServSalud = idConsulta;	
 		this.dadoDeAlta = dadoDeAlta;
 	}
 
 	/**
 	 * @return El id de la consulta de urgencias
 	 */
-	public long getId() 
+	public Long getId() 
 	{
 		return id;
 	}
@@ -110,7 +99,7 @@ public class ConsultaUrgencias implements VOConsultaUrgencias
 	/**
 	 * @param id - El nuevo id de la consulta de urgencias
 	 */
-	public void setId(long id) 
+	public void setId(Long id) 
 	{
 		this.id = id;
 	}
@@ -134,7 +123,7 @@ public class ConsultaUrgencias implements VOConsultaUrgencias
 	/**
 	 * @return El idMedico de la consulta de urgencias
 	 */
-	public long getIdMedico() 
+	public Long getIdMedico() 
 	{
 		return idMedico;
 	}
@@ -142,63 +131,32 @@ public class ConsultaUrgencias implements VOConsultaUrgencias
 	/**
 	 * @param idMedico - La nueva idMedico de la consulta de urgencias
 	 */
-	public void setIdMedico(long idMedico) 
+	public void setIdMedico(Long idMedico) 
 	{
 		this.idMedico = idMedico;
 	}
 
-	/**
-	 * @return El idExamenDiagnostico de la consulta de urgencias
-	 */
-	public long getIdExamenDiagnostico() 
-	{
-		return idExamenDiagnostico;
-	}
-
-	/**
-	 * @param idExamenDiagnostico - El nuevo idExamenDiagnostico de la consulta de urgencias
-	 */
-	public void setIdExamenDiagnostico(long idExamenDiagnostico) 
-	{
-		this.idExamenDiagnostico = idExamenDiagnostico;
-	}
 	
 	/**
 	 * @return El idExamenDiagnostico de la consulta de urgencias
 	 */
-	public long getIdConsulta() 
+	public Long getServSalud() 
 	{
-		return idConsulta;
+		return idServSalud;
 	}
 
 	/**
 	 * @param idConsulta - El nuevo idConsulta de la consulta de urgencias
 	 */
-	public void setIdConsulta(long idConsulta) 
+	public void setIdServSalud(Long idConsulta) 
 	{
-		this.idConsulta = idConsulta;
-	}
-	
-	/**
-	 * @return El idHospitalizacion de la consulta de urgencias
-	 */
-	public long getIdHospitalizacion() 
-	{
-		return idHospitalizacion;
-	}
-
-	/**
-	 * @param idHospitalizacion - El nuevo idHospitalizacion de la consulta de urgencias
-	 */
-	public void setIdHospitalizacion(long idHospitalizacion) 
-	{
-		this.idHospitalizacion = idHospitalizacion;
+		this.idServSalud = idConsulta;
 	}
 	
 	/**
 	 * @return El estado de dada de alta de la consulta de urgencias
 	 */
-	public boolean getDadoDeAlta() 
+	public Boolean getDadoDeAlta() 
 	{
 		return dadoDeAlta;
 	}

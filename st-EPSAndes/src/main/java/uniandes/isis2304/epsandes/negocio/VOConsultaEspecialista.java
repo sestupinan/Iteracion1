@@ -21,7 +21,7 @@ package uniandes.isis2304.epsandes.negocio;
  * 
  * @author Germán Bravo
  */
-public interface VORemisionEspecialista 
+public interface VOConsultaEspecialista 
 {
 	/**
 	 * @return El id de la bebida

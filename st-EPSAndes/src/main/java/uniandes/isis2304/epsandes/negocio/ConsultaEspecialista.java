@@ -20,7 +20,7 @@ package uniandes.isis2304.epsandes.negocio;
  *
  * @author Germán Bravo
  */
-public class RemisionEspecialista implements VORemisionEspecialista
+public class ConsultaEspecialista implements VOConsultaEspecialista
 {
 	/* ****************************************************************
 	 * 			Atributos
@@ -35,6 +35,10 @@ public class RemisionEspecialista implements VORemisionEspecialista
 	 */
 	private long idMedico;
 	
+	private Long idServSalud;
+	
+	private String dolencia;
+	
 
 	/* ****************************************************************
 	 * 			Métodos
@@ -42,7 +46,7 @@ public class RemisionEspecialista implements VORemisionEspecialista
 	/**
 	 * Constructor por defecto
 	 */
-	public RemisionEspecialista() 
+	public ConsultaEspecialista() 
 	{
 		this.id = 0;
 		this.idMedico = 0;
@@ -53,7 +57,7 @@ public class RemisionEspecialista implements VORemisionEspecialista
 	 * @param id - El id de la Remision al especialista
 	 * @param nombre - El idMedico de la Remision al especialista
 	 */
-	public RemisionEspecialista(long id, long idMedico) 
+	public ConsultaEspecialista(long id, long idMedico) 
 	{
 		this.id = id;
 		this.idMedico = idMedico;
@@ -103,4 +107,22 @@ public class RemisionEspecialista implements VORemisionEspecialista
 		return "Bebida [id=" + id + ", nombre=" + idMedico + "]";
 	}
 
+	public Long getIdServSalud() {
+		return idServSalud;
+	}
+
+	public void setIdServSalud(Long idServSalud) {
+		this.idServSalud = idServSalud;
+	}
+
+	public String getDolencia() {
+		return dolencia;
+	}
+
+	public void setDolencia(String dolencia) {
+		this.dolencia = dolencia;
+	}
+
+	
+	
 }

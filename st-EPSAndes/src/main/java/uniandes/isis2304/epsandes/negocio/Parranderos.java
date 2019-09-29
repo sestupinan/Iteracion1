@@ -176,10 +176,10 @@ public class Parranderos
 	 * @param gradoAlcohol - El grado de alcohol de la bebida (Mayor que 0)
 	 * @return El objeto Bebida adicionado. null si ocurre alguna Excepción
 	 */
-	public RemisionEspecialista adicionarBebida (String nombre, long idTipoBebida, int gradoAlcohol)
+	public ConsultaEspecialista adicionarBebida (String nombre, long idTipoBebida, int gradoAlcohol)
 	{
 		log.info ("Adicionando bebida " + nombre);
-		RemisionEspecialista bebida = pp.adicionarBebida (nombre, idTipoBebida, gradoAlcohol);
+		ConsultaEspecialista bebida = pp.adicionarBebida (nombre, idTipoBebida, gradoAlcohol);
         log.info ("Adicionando bebida: " + bebida);
         return bebida;
 	}
@@ -217,10 +217,10 @@ public class Parranderos
 	 * Adiciona entradas al log de la aplicación
 	 * @return Una lista de objetos Bebida con todos las bebidas que conoce la aplicación, llenos con su información básica
 	 */
-	public List<RemisionEspecialista> darBebidas ()
+	public List<ConsultaEspecialista> darBebidas ()
 	{
         log.info ("Consultando Bebidas");
-        List<RemisionEspecialista> bebidas = pp.darBebidas ();	
+        List<ConsultaEspecialista> bebidas = pp.darBebidas ();	
         log.info ("Consultando Bebidas: " + bebidas.size() + " bebidas existentes");
         return bebidas;
 	}
@@ -230,11 +230,11 @@ public class Parranderos
 	 * Adiciona entradas al log de la aplicación
 	 * @return Una lista de objetos VOBebida con todos las bebidas que conoce la aplicación, llenos con su información básica
 	 */
-	public List<VORemisionEspecialista> darVOBebidas ()
+	public List<VOConsultaEspecialista> darVOBebidas ()
 	{
 		log.info ("Generando los VO de las bebidas");       
-        List<VORemisionEspecialista> voBebidas = new LinkedList<VORemisionEspecialista> ();
-        for (RemisionEspecialista beb : pp.darBebidas ())
+        List<VOConsultaEspecialista> voBebidas = new LinkedList<VOConsultaEspecialista> ();
+        for (ConsultaEspecialista beb : pp.darBebidas ())
         {
         	voBebidas.add (beb);
         }

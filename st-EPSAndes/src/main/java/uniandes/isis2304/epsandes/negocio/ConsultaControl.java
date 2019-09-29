@@ -43,9 +43,9 @@ public class ConsultaControl implements VOConsultaControl
 	
 	private String tratamiento;
 	
-	private String receta;
+	private Long idHospitalizacion;
 	
-	private Orden orden;
+	private Long idServSalud;
 
 	/* ****************************************************************
 	 * 			Métodos
@@ -59,8 +59,8 @@ public class ConsultaControl implements VOConsultaControl
 		this.efectividad = "";
 		this.resultado = "";
 		this.tratamiento = "";
-		this.receta = "";
-		this.orden = "";
+		this.idHospitalizacion = 0L;
+		this.idServSalud = 0L;
 	}
 
 	/**
@@ -68,14 +68,14 @@ public class ConsultaControl implements VOConsultaControl
 	 * @param idBebedor - El identificador del bebedor. Debe exixtir un bebedor con dicho identificador
 	 * @param idBebida - El identificador de la consulta de control. Debe existir una consulta de control con dicho identificador
 	 */
-	public ConsultaControl(long id, String efectividad, String resultado, String tratamiento, String receta, Orden orden) 
+	public ConsultaControl(long id, String efectividad, String resultado, String tratamiento, Long idHosp, Long idServSalud) 
 	{
 		this.id = id;
 		this.efectividad = efectividad;
 		this.resultado = "";
 		this.tratamiento = "";
-		this.receta = "";
-		this.orden = "";
+		this.idHospitalizacion = idHosp;
+		this.idServSalud = idServSalud;
 	}
 	
 	
@@ -105,15 +105,7 @@ public class ConsultaControl implements VOConsultaControl
 		return tratamiento;
 	}
 
-	public String getRecetas() {
-		// TODO Auto-generated method stub
-		return receta;
-	}
 
-	public String getOrden() {
-		// TODO Auto-generated method stub
-		return orden;
-	}
 	
 	public void setEfectividad(String efectividad) {
 		this.efectividad = efectividad;
@@ -127,21 +119,29 @@ public class ConsultaControl implements VOConsultaControl
 		this.tratamiento = tratamiento;
 	}
 
-	public void setReceta(String receta) {
-		this.receta = receta;
-	}
-
-	public void setOrden(Orden orden) {
-		this.orden = orden;
-	}
-
 	
+	public Long getIdHospitalizacion() {
+		return idHospitalizacion;
+	}
+
+	public void setIdHospitalizacion(Long idHospitalizacion) {
+		this.idHospitalizacion = idHospitalizacion;
+	}
+
+	public Long getIdServSalud() {
+		return idServSalud;
+	}
+
+	public void setIdServSalud(Long idServSalud) {
+		this.idServSalud = idServSalud;
+	}
+
 	/** 
 	 * @return Una cadena con la información básica
 	 */
 	@Override
 	public String toString() 
 	{
-		return "Gustan [id=" + id + ", efectividad=" + efectividad + "]";
+		return "Consulta de control [id=" + id + ", efectividad=" + efectividad + "]";
 	}
 }

@@ -31,7 +31,7 @@ public interface VOConsultaUrgencias
 	/**
 	 * @return El id de la consulta medica
 	 */
-	public long getId();
+	public Long getId();
 
 	/**
 	 * @return El nombre de la consulta medica
@@ -41,18 +41,15 @@ public interface VOConsultaUrgencias
 	/**
 	 * @return La ciudad de la consulta medica
 	 */
-	public long getIdMedico();
+	public Long getIdMedico();
 
 	/**
 	 * @return El presupuesto de la consulta medica
 	 */
-	public long getIdExamenDiagnostico();
 	
-	public long getIdConsulta();
-	
-	public long getIdHospitalizacion();
-	
-	public boolean getDadoDeAlta();
+	public Long getServSalud();
+		
+	public Boolean getDadoDeAlta();
 
 
 	/**

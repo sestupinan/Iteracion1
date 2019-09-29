@@ -26,9 +26,9 @@ public class ConsultaMedica implements VOConsultaMedica
 	 * 			Atributos
 	 *****************************************************************/
 	/**
-	 * El identificador ÚNICO de los consulta medicaes
+	 * El identificador ÚNICO de los consulta medicas
 	 */
-	private long id;
+	private Long id;
 	
 	/**
 	 * El tipo de la consulta medica
@@ -41,9 +41,9 @@ public class ConsultaMedica implements VOConsultaMedica
 	private String dolencia;
 	
 	/**
-	 * El receta de la consulta medica (ALTO, MEDIO, BAJO)
+	 * id del servicio de salud
 	 */
-	private Receta receta;
+	private Long idServicioSalud;
 	
 	/* ****************************************************************
 	 * 			Métodos 
@@ -53,10 +53,10 @@ public class ConsultaMedica implements VOConsultaMedica
      */
 	public ConsultaMedica() 
     {
-    	this.id = 0;
+    	this.id = 0L;
 		this.tipo = "";
 		this.dolencia = "";
-		this.receta = "";
+		this.idServicioSalud = 0L;
 	}
 
 	/**
@@ -67,12 +67,11 @@ public class ConsultaMedica implements VOConsultaMedica
 	 * @param receta - El receta de la consulta medica (ALTO, MEDIO, BAJO)
 	 * @param cantSedes - Las sedes de la consulta medica (Mayor que 0)
 	 */
-    public ConsultaMedica(long id, String tipo, String dolencia, String receta, int cantSedes) 
-    {
+    public ConsultaMedica(long id, String tipo, String dolencia, Long servSalud) {
     	this.id = id;
 		this.tipo = tipo;
 		this.dolencia = dolencia;
-		this.receta = receta;
+		this.idServicioSalud = servSalud;
 	}
 
     /**
@@ -123,31 +122,24 @@ public class ConsultaMedica implements VOConsultaMedica
 		this.dolencia = dolencia;
 	}
 	
-	/**
-	 * @return La receta de la consulta medica
-	 */
-	public Receta getReceta() 
-	{
-		return receta;
+	
+	
+	public Long getIdServicioSalud() {
+		return idServicioSalud;
 	}
-	
-	/**
-	 * @param receta - La nueva receta de la consulta medica 
-	 */
-	public void setReceta(Receta receta) 
-	{
-		this.receta = receta;
+
+	public void setIdServicioSalud(Long idServicioSalud) {
+		this.idServicioSalud = idServicioSalud;
 	}
-	
-	
+
 	@Override
 	/**
 	 * @return Una cadena de caracteres con todos los atributos de la consulta medica
 	 */
 	public String toString() 
 	{
-		return "consulta medica [id=" + id + ", tipo=" + tipo + ", dolencia=" + dolencia + ", receta=" + receta
-				+ ", cantSedes=" + cantSedes + "]";
+		return "consulta medica [id=" + id + ", tipo=" + tipo + ", dolencia=" + dolencia + ", receta=" + idServicioSalud
+				+ "]";
 	}
 	
 

@@ -45,7 +45,7 @@ public interface VOConsultaMedica
 	/**
 	 * @return El presupuesto del bar
 	 */
-	public Receta getReceta();
+	public Long  getIdServicioSalud();
 	
 	@Override
 	/**
