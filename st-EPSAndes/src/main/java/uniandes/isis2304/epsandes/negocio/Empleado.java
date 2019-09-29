@@ -1,6 +1,6 @@
 package uniandes.isis2304.epsandes.negocio;
 
-public class Empleado 
+public class Empleado implements VOEmpleado
 {
 	/* ****************************************************************
 	* 			Atributos

@@ -1,6 +1,6 @@
 package uniandes.isis2304.epsandes.negocio;
 
-public class IPS 
+public class IPS implements VOIPS
 {
 	/* ****************************************************************
 	* 			Atributos
