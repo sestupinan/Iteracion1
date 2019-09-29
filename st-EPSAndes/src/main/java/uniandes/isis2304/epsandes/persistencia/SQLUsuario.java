@@ -61,14 +61,7 @@ class SQLUsuario
 	}
 	
 	/**
-	 * Crea y ejecuta la sentencia SQL para adicionar un BAR a la base de datos de Parranderos
-	 * @param pm - El manejador de persistencia
-	 * @param idBar - El identificador del bar
-	 * @param nombre - El nombre del bar
-	 * @param ciudad - La ciudad del bar
-	 * @param presupuesto - El presupuesto del bar (ALTO, MEDIO, BAJO)
-	 * @param sedes - El número de sedes del bar
-	 * @return El número de tuplas insertadas
+	 * Crea y ejecuta la sentencia SQL para adicionar un usuario a la base de datos de Parranderos
 	 */
 	public long adicionarBar (PersistenceManager pm, long idBar, String nombre, String ciudad, String presupuesto, int sedes) 
 	{
