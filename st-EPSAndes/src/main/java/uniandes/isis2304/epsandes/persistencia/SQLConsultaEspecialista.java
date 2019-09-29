@@ -28,7 +28,7 @@ import uniandes.isis2304.epsandes.negocio.ConsultaControl;
  * 
  * @author Germán Bravo
  */
-class SQLGustan 
+class SQLConsultaEspecialista 
 {
 	/* ****************************************************************
 	 * 			Constantes
@@ -54,7 +54,7 @@ class SQLGustan
 	 * Constructor
 	 * @param pp - El Manejador de persistencia de la aplicación
 	 */
-	public SQLGustan (PersistenciaEPSAndes pp)
+	public SQLConsultaEspecialista (PersistenciaEPSAndes pp)
 	{
 		this.pp = pp;
 	}

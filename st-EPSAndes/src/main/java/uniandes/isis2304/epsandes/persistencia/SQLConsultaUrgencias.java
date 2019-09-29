@@ -29,7 +29,7 @@ import uniandes.isis2304.epsandes.negocio.ServicioSalud;
  * 
  * @author Germán Bravo
  */
-class SQLBebida 
+class SQLConsultaUrgencias 
 {
 	/* ****************************************************************
 	 * 			Constantes
@@ -55,7 +55,7 @@ class SQLBebida
 	 * Constructor
 	 * @param pp - El Manejador de persistencia de la aplicación
 	 */
-	public SQLBebida (PersistenciaEPSAndes pp)
+	public SQLConsultaUrgencias (PersistenciaEPSAndes pp)
 	{
 		this.pp = pp;
 	}

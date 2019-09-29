@@ -28,7 +28,7 @@ import uniandes.isis2304.epsandes.negocio.Hospitalizacion;
  * 
  * @author Germán Bravo
  */
-class SQLSirven 
+class SQLConsultaControl 
 {
 	/* ****************************************************************
 	 * 			Constantes
@@ -54,7 +54,7 @@ class SQLSirven
 	 * Constructor
 	 * @param pp - El Manejador de persistencia de la aplicación
 	 */
-	public SQLSirven (PersistenciaEPSAndes pp)
+	public SQLConsultaControl (PersistenciaEPSAndes pp)
 	{
 		this.pp = pp;
 	}
