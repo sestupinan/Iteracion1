@@ -30,7 +30,7 @@ import uniandes.isis2304.epsandes.persistencia.PersistenciaParranderos;
  *
  * @author Germán Bravo
  */
-public class Parranderos 
+public class EPSAndes 
 {
 	/* ****************************************************************
 	 * 			Constantes
@@ -38,7 +38,7 @@ public class Parranderos
 	/**
 	 * Logger para escribir la traza de la ejecución
 	 */
-	private static Logger log = Logger.getLogger(Parranderos.class.getName());
+	private static Logger log = Logger.getLogger(EPSAndes.class.getName());
 	
 	/* ****************************************************************
 	 * 			Atributos
@@ -54,7 +54,7 @@ public class Parranderos
 	/**
 	 * El constructor por defecto
 	 */
-	public Parranderos ()
+	public EPSAndes ()
 	{
 		pp = PersistenciaParranderos.getInstance ();
 	}
@@ -63,7 +63,7 @@ public class Parranderos
 	 * El constructor qye recibe los nombres de las tablas en tableConfig
 	 * @param tableConfig - Objeto Json con los nombres de las tablas y de la unidad de persistencia
 	 */
-	public Parranderos (JsonObject tableConfig)
+	public EPSAndes (JsonObject tableConfig)
 	{
 		pp = PersistenciaParranderos.getInstance (tableConfig);
 	}
