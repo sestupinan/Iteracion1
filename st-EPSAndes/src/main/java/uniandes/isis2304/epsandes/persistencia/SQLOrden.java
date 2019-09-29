@@ -31,7 +31,7 @@ import uniandes.isis2304.epsandes.negocio.Orden;
  * 
  * @author Germán Bravo
  */
-class SQLVisitan 
+class SQLOrden 
 {
 	/* ****************************************************************
 	 * 			Constantes
@@ -57,7 +57,7 @@ class SQLVisitan
 	 * Constructor
 	 * @param pp - El Manejador de persistencia de la aplicación
 	 */
-	public SQLVisitan (PersistenciaEPSAndes pp)
+	public SQLOrden (PersistenciaEPSAndes pp)
 	{
 		this.pp = pp;
 	}

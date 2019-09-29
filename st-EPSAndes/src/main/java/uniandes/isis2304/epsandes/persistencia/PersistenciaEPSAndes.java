@@ -92,12 +92,12 @@ public class PersistenciaEPSAndes
 	/**
 	 * Atributo para el acceso a la tabla TIPOBEBIDA de la base de datos
 	 */
-	private SQLTipoBebida sqlTipoBebida;
+	private SQLHospitalizacion sqlTipoBebida;
 	
 	/**
 	 * Atributo para el acceso a la tabla BEBIDA de la base de datos
 	 */
-	private SQLBebida sqlBebida;
+	private SQLConsultaUrgencias sqlBebida;
 	
 	/**
 	 * Atributo para el acceso a la tabla BAR de la base de datos
@@ -107,22 +107,22 @@ public class PersistenciaEPSAndes
 	/**
 	 * Atributo para el acceso a la tabla BEBIDA de la base de datos
 	 */
-	private SQLBebedor sqlBebedor;
+	private SQLConsultaMedica sqlBebedor;
 	
 	/**
 	 * Atributo para el acceso a la tabla GUSTAN de la base de datos
 	 */
-	private SQLGustan sqlGustan;
+	private SQLConsultaEspecialista sqlGustan;
 	
 	/**
 	 * Atributo para el acceso a la tabla SIRVEN de la base de datos
 	 */
-	private SQLSirven sqlSirven;
+	private SQLConsultaControl sqlSirven;
 	
 	/**
 	 * Atributo para el acceso a la tabla VISITAN de la base de datos
 	 */
-	private SQLVisitan sqlVisitan;
+	private SQLOrden sqlVisitan;
 	
 	/* ****************************************************************
 	 * 			Métodos del MANEJADOR DE PERSISTENCIA
@@ -220,13 +220,13 @@ public class PersistenciaEPSAndes
 	 */
 	private void crearClasesSQL ()
 	{
-		sqlTipoBebida = new SQLTipoBebida(this);
-		sqlBebida = new SQLBebida(this);
+		sqlTipoBebida = new SQLHospitalizacion(this);
+		sqlBebida = new SQLConsultaUrgencias(this);
 		sqlBar = new SQLUsuario(this);
-		sqlBebedor = new SQLBebedor(this);
-		sqlGustan = new SQLGustan(this);
-		sqlSirven = new SQLSirven (this);
-		sqlVisitan = new SQLVisitan(this);		
+		sqlBebedor = new SQLConsultaMedica(this);
+		sqlGustan = new SQLConsultaEspecialista(this);
+		sqlSirven = new SQLConsultaControl (this);
+		sqlVisitan = new SQLOrden(this);		
 		sqlUtil = new SQLUtil(this);
 	}
 
