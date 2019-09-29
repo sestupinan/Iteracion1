@@ -28,7 +28,7 @@ import uniandes.isis2304.epsandes.negocio.ConsultaMedica;
  * 
  * @author Germán Bravo
  */
-class SQLBar 
+class SQLUsuario 
 {
 	/* ****************************************************************
 	 * 			Constantes
@@ -55,7 +55,7 @@ class SQLBar
 	 * Constructor
 	 * @param pp - El Manejador de persistencia de la aplicación
 	 */
-	public SQLBar (PersistenciaEPSAndes pp)
+	public SQLUsuario (PersistenciaEPSAndes pp)
 	{
 		this.pp = pp;
 	}

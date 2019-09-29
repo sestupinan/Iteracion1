@@ -102,7 +102,7 @@ public class PersistenciaEPSAndes
 	/**
 	 * Atributo para el acceso a la tabla BAR de la base de datos
 	 */
-	private SQLBar sqlBar;
+	private SQLUsuario sqlBar;
 	
 	/**
 	 * Atributo para el acceso a la tabla BEBIDA de la base de datos
@@ -133,7 +133,7 @@ public class PersistenciaEPSAndes
 	 */
 	private PersistenciaEPSAndes ()
 	{
-		pmf = JDOHelper.getPersistenceManagerFactory("Parranderos");		
+		pmf = JDOHelper.getPersistenceManagerFactory("EPSAndes");		
 		crearClasesSQL ();
 		
 		// Define los nombres por defecto de las tablas de la base de datos
@@ -222,7 +222,7 @@ public class PersistenciaEPSAndes
 	{
 		sqlTipoBebida = new SQLTipoBebida(this);
 		sqlBebida = new SQLBebida(this);
-		sqlBar = new SQLBar(this);
+		sqlBar = new SQLUsuario(this);
 		sqlBebedor = new SQLBebedor(this);
 		sqlGustan = new SQLGustan(this);
 		sqlSirven = new SQLSirven (this);
