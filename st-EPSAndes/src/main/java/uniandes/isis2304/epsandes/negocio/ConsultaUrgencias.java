@@ -79,12 +79,12 @@ public class ConsultaUrgencias implements VOConsultaUrgencias
 	 * @param idMedico - El idMedico de la consulta de urgencias
 	 * @param idExamenDiagnostico - El idExamenDiagnostico de la consulta de urgencias 
 	 */
-	public ConsultaUrgencias(long id, String triage, long idMedico, long idConsulta, boolean dadoDeAlta) 
+	public ConsultaUrgencias(long id, String triage, long idMedico, long idServSalud, boolean dadoDeAlta) 
 	{
 		this.id = id;
 		this.triage = triage;
 		this.idMedico = idMedico;
-		this.idServSalud = idConsulta;	
+		this.idServSalud = idServSalud;	
 		this.dadoDeAlta = dadoDeAlta;
 	}
 

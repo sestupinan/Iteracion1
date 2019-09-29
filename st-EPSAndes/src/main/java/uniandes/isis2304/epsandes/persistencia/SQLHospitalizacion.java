@@ -20,7 +20,7 @@ import java.util.List;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
-import uniandes.isis2304.epsandes.negocio.ServicioSalud;
+import uniandes.isis2304.epsandes.negocio.Hospitalizacion;
 
 /**
  * Clase que encapsula los métodos que hacen acceso a la base de datos para el concepto TIPO DE BEBIDA de Parranderos
@@ -59,87 +59,57 @@ class SQLHospitalizacion
 		this.pp = pp;
 	}
 	
-	/**
-	 * Crea y ejecuta la sentencia SQL para adicionar un TIPOBEBIDA a la base de datos de Parranderos
-	 * @param pm - El manejador de persistencia
-	 * @param idTipoBebida - El identificador del tipo de bebida
-	 * @param nombre - El nombre del tipo de bebida
-	 * @return EL número de tuplas insertadas
-	 */
-	public long adicionarTipoBebida (PersistenceManager pm, long idTipoBebida, String nombre) 
+	public long adicionarHospitalizacion(PersistenceManager pm, long id, long idIPS, String estadoSalud, long idServSalud) 
 	{
-        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaTipoBebida  () + "(id, nombre) values (?, ?)");
-        q.setParameters(idTipoBebida, nombre);
-        return (long) q.executeUnique();            
+        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaHospitalizacion() + "(id, idIPS, estadoSalud, idServSalud) values (?, ?, ?, ?)");
+        q.setParameters(id, idIPS, estadoSalud, idServSalud);
+        return (long) q.executeUnique();
 	}
 
 	/**
-	 * Crea y ejecuta la sentencia SQL para eliminar TIPOS DE BEBIDA de la base de datos de Parranderos, por su nombre
+	 * Crea y ejecuta la sentencia SQL para eliminar TODAS LAS VISITAS de la base de datos de Parranderos
 	 * @param pm - El manejador de persistencia
-	 * @param nombreTipoBebida - El nombre del tipo de bebida
 	 * @return EL número de tuplas eliminadas
 	 */
-	public long eliminarTipoBebidaPorNombre (PersistenceManager pm, String nombreTipoBebida)
+	public long eliminarHospitalizacion(PersistenceManager pm) 
 	{
-        Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaTipoBebida  () + " WHERE nombre = ?");
-        q.setParameters(nombreTipoBebida);
-        return (long) q.executeUnique();            
+        Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaHospitalizacion());
+        return (long) q.executeUnique();
 	}
 
 	/**
-	 * Crea y ejecuta la sentencia SQL para eliminar TIPOS DE BEBIDA de la base de datos de Parranderos, por su identificador
+	 * Crea y ejecuta la sentencia SQL para ELIMINAR TODAS LAS VISITAS DE UN BEBEDOR de la base de datos de Parranderos, por su identificador
 	 * @param pm - El manejador de persistencia
-	 * @param idTipoBebida - El identificador del tipo de bebida
+	 * @param idHospitalizacion- El identificador del orden
 	 * @return EL número de tuplas eliminadas
 	 */
-	public long eliminarTipoBebidaPorId (PersistenceManager pm, long idTipoBebida)
+	public long eliminarHospitalizacionPorIdHospitalizacion(PersistenceManager pm, long idHospitalizacion) 
 	{
-        Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaTipoBebida  () + " WHERE id = ?");
-        q.setParameters(idTipoBebida);
-        return (long) q.executeUnique();            
+        Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaHospitalizacion() + " WHERE id = ?");
+        q.setParameters(idHospitalizacion);
+        return (long) q.executeUnique();
 	}
 
-	/**
-	 * Crea y ejecuta la sentencia SQL para encontrar la información de UN TIPO DE BEBIDA de la 
-	 * base de datos de Parranderos, por su identificador
-	 * @param pm - El manejador de persistencia
-	 * @param idTipoBebida - El identificador del tipo de bebida
-	 * @return El objeto TIPOBEBIDA que tiene el identificador dado
-	 */
-	public ServicioSalud darTipoBebidaPorId (PersistenceManager pm, long idTipoBebida) 
-	{
-		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaTipoBebida  () + " WHERE id = ?");
-		q.setResultClass(ServicioSalud.class);
-		q.setParameters(idTipoBebida);
-		return (ServicioSalud) q.executeUnique();
-	}
 
 	/**
-	 * Crea y ejecuta la sentencia SQL para encontrar la información de UN TIPO DE BEBIDA de la 
-	 * base de datos de Parranderos, por su nombre
-	 * @param pm - El manejador de persistencia
-	 * @param nombreTipoBebida - El nombre del tipo de bebida
-	 * @return El objeto TIPOBEBIDA que tiene el nombre dado
-	 */
-	public List<ServicioSalud> darTiposBebidaPorNombre (PersistenceManager pm, String nombreTipoBebida) 
-	{
-		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaTipoBebida  () + " WHERE nombre = ?");
-		q.setResultClass(ServicioSalud.class);
-		q.setParameters(nombreTipoBebida);
-		return (List<ServicioSalud>) q.executeList();
-	}
-
-	/**
-	 * Crea y ejecuta la sentencia SQL para encontrar la información de LOS TIPOS DE BEBIDA de la 
+	 * Crea y ejecuta la sentencia SQL para encontrar la información de los Hospitalizacionde la 
 	 * base de datos de Parranderos
 	 * @param pm - El manejador de persistencia
-	 * @return Una lista de objetos TIPOBEBIDA
+	 * @return Una lista de objetos Hospitalizacion
 	 */
-	public List<ServicioSalud> darTiposBebida (PersistenceManager pm)
+	public List<Hospitalizacion> darHospitalizacion(PersistenceManager pm)
 	{
-		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaTipoBebida  ());
-		q.setResultClass(ServicioSalud.class);
-		return (List<ServicioSalud>) q.executeList();
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaHospitalizacion());
+		q.setResultClass(Hospitalizacion.class);
+		return (List<Hospitalizacion>) q.execute();
+	}
+	
+	public Hospitalizacion darHospitalizacionPorId (PersistenceManager pm, long idHospitalizacion) 
+	{
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaHospitalizacion () + " WHERE id = ?");
+		q.setResultClass(Hospitalizacion.class);
+		q.setParameters(idHospitalizacion);
+		return (Hospitalizacion) q.executeUnique();
 	}
 
 }

@@ -28,21 +28,17 @@ public interface VOOrden
 	/* ****************************************************************
 	 * 			Métodos
 	 *****************************************************************/
-	/**
-	 * @return El idBebedor
-	 */
-	public long getIdIPS();
 
 	/**
 	 * @return El idBar
 	 */
-	public long getIdHosp();
+	public long getIdOrden();
 
 
 	/**
 	 * @return El horario
 	 */
-	public String getEstadoSalud();
+	public String getmedicamentos();
 	
 	public long getIdServSalud();
 

@@ -35,7 +35,7 @@ public class ConsultaEspecialista implements VOConsultaEspecialista
 	 */
 	private long idMedico;
 	
-	private Long idServSalud;
+	private long idServSalud;
 	
 	private String dolencia;
 	
@@ -50,6 +50,8 @@ public class ConsultaEspecialista implements VOConsultaEspecialista
 	{
 		this.id = 0;
 		this.idMedico = 0;
+		this.dolencia = "";
+		this.idServSalud = 0;
 	}
 
 	/**
@@ -57,10 +59,12 @@ public class ConsultaEspecialista implements VOConsultaEspecialista
 	 * @param id - El id de la Remision al especialista
 	 * @param nombre - El idMedico de la Remision al especialista
 	 */
-	public ConsultaEspecialista(long id, long idMedico) 
+	public ConsultaEspecialista(long id, long idMedico, String dolencia, long servSalud) 
 	{
 		this.id = id;
 		this.idMedico = idMedico;
+		this.dolencia = dolencia;
+		this.idServSalud = servSalud;
 	}
 
 	/**

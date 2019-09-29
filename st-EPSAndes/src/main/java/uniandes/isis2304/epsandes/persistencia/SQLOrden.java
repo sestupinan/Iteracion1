@@ -23,10 +23,12 @@ import java.util.List;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
+import uniandes.isis2304.epsandes.negocio.ConsultaUrgencias;
 import uniandes.isis2304.epsandes.negocio.Orden;
+import uniandes.isis2304.epsandes.negocio.ServicioSalud;
 
 /**
- * Clase que encapsula los métodos que hacen acceso a la base de datos para el concepto VISITAN de Parranderos
+ * Clase que encapsula los métodos que hacen acceso a la base de datos para el concepto Orden de Parranderos
  * Nótese que es una clase que es sólo conocida en el paquete de persistencia
  * 
  * @author Germán Bravo
@@ -63,18 +65,18 @@ class SQLOrden
 	}
 	
 	/**
-	 * Crea y ejecuta la sentencia SQL para adicionar un VISITAN a la base de datos de Parranderos
+	 * Crea y ejecuta la sentencia SQL para adicionar un Orden a la base de datos de Parranderos
 	 * @param pm - El manejador de persistencia
-	 * @param idBebedor - El identificador del bebedor
-	 * @param idBar - El identificador del bar
+	 * @param idOrden - El identificador del orden
+	 * @param idMedicamentos - El identificador del medicamentos
 	 * @param fecha - La fecha en que se realizó la visita
 	 * @param horario - EL horario en que se realizó la visita (DIURNO, NOCTURNO, TODOS)
 	 * @return EL número de tuplas insertadas
 	 */
-	public long adicionarVisitan (PersistenceManager pm, long idBebedor, long idBar, Timestamp fecha, String horario) 
+	public long adicionarOrden (PersistenceManager pm, long idOrden, String pMedicamentos, long pIdServSalud) 
 	{
-        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaVisitan () + "(idbebedor, idbar, fechavisita, horario) values (?, ?, ?, ?)");
-        q.setParameters(idBebedor, idBar, fecha, horario);
+        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaOrden () + "(idorden, medicamentos, idservsalud) values (?, ?, ?)");
+        q.setParameters(idOrden, pMedicamentos, pIdServSalud);
         return (long) q.executeUnique();
 	}
 
@@ -83,63 +85,71 @@ class SQLOrden
 	 * @param pm - El manejador de persistencia
 	 * @return EL número de tuplas eliminadas
 	 */
-	public long eliminarVisitan (PersistenceManager pm) 
+	public long eliminarOrden (PersistenceManager pm) 
 	{
-        Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaVisitan ());
+        Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaOrden ());
         return (long) q.executeUnique();
 	}
 
 	/**
-	 * Crea y ejecuta la sentencia SQL para eliminar UN VISITAN de la base de datos de Parranderos, por sus identificadores
+	 * Crea y ejecuta la sentencia SQL para eliminar UN Orden de la base de datos de Parranderos, por sus identificadores
 	 * @param pm - El manejador de persistencia
-	 * @param idBebedor - El identificador del bebedor
-	 * @param idBar - El identificador del bar
+	 * @param idOrden - El identificador del orden
+	 * @param idMedicamentos - El identificador del medicamentos
 	 * @return EL número de tuplas eliminadas
 	 */
-	public long eliminarVisitan (PersistenceManager pm, long idBebedor, long idBar) 
+	public long eliminarOrden (PersistenceManager pm, long idOrden, String Medicamentos) 
 	{
-        Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaVisitan () + " WHERE idbebedor = ? AND idbar = ?");
-        q.setParameters(idBebedor, idBar);
+        Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaOrden () + " WHERE idorden = ? AND idmedicamentos = ?");
+        q.setParameters(idOrden, Medicamentos);
         return (long) q.executeUnique();
 	}
 
 	/**
 	 * Crea y ejecuta la sentencia SQL para ELIMINAR TODAS LAS VISITAS DE UN BEBEDOR de la base de datos de Parranderos, por su identificador
 	 * @param pm - El manejador de persistencia
-	 * @param idBebedor - El identificador del bebedor
+	 * @param idOrden - El identificador del orden
 	 * @return EL número de tuplas eliminadas
 	 */
-	public long eliminarVisitanPorIdBebedor (PersistenceManager pm, long idBebedor) 
+	public long eliminarOrdenPorIdOrden (PersistenceManager pm, long idOrden) 
 	{
-        Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaVisitan () + " WHERE idbebedor = ?");
-        q.setParameters(idBebedor);
+        Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaOrden () + " WHERE idorden = ?");
+        q.setParameters(idOrden);
         return (long) q.executeUnique();
 	}
 
 	/**
 	 * Crea y ejecuta la sentencia SQL para ELIMINAR TODAS LAS VISITAS HECHAS A UN BAR de la base de datos de Parranderos, por su identificador
 	 * @param pm - El manejador de persistencia
-	 * @param idBar - El identificador del bar
+	 * @param idMedicamentos - El identificador del medicamentos
 	 * @return EL número de tuplas eliminadas
 	 */
-	public long eliminarVisitanPorIdBar (PersistenceManager pm, long idBar) 
+	public long eliminarOrdenPorMedicamentos (PersistenceManager pm, String Medicamentos) 
 	{
-        Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaVisitan () + " WHERE idBar = ?");
-        q.setParameters(idBar);
+        Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaOrden () + " WHERE medicamentos = ?");
+        q.setParameters(Medicamentos);
         return (long) q.executeUnique();
 	}
 
 	/**
-	 * Crea y ejecuta la sentencia SQL para encontrar la información de los VISITAN de la 
+	 * Crea y ejecuta la sentencia SQL para encontrar la información de los Orden de la 
 	 * base de datos de Parranderos
 	 * @param pm - El manejador de persistencia
-	 * @return Una lista de objetos VISITAN
+	 * @return Una lista de objetos Orden
 	 */
-	public List<Orden> darVisitan (PersistenceManager pm)
+	public List<Orden> darOrden (PersistenceManager pm)
 	{
-		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaVisitan ());
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaOrden ());
 		q.setResultClass(Orden.class);
 		return (List<Orden>) q.execute();
+	}
+	
+	public Orden darOrdenPorId (PersistenceManager pm, long idOrden) 
+	{
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaOrden () + " WHERE idorden = ?");
+		q.setResultClass(Orden.class);
+		q.setParameters(idOrden);
+		return (Orden) q.executeUnique();
 	}
 
 	/* ****************************************************************
@@ -147,24 +157,23 @@ class SQLOrden
 	 *****************************************************************/
   	
 	/**
-	 * Crea y ejecuta la sentencia SQL para encontrar la información de los VISITAN de la 
+	 * Crea y ejecuta la sentencia SQL para encontrar la información de los Orden de la 
 	 * base de datos de Parranderos
 	 * @param pm - El manejador de persistencia
-	 * @return Una lista de objetos VISITAN
+	 * @return Una lista de objetos Orden
 	 */
-	private List<Orden> darVisitan_V2 (PersistenceManager pm)
+	private List<Orden> darOrden_V2 (PersistenceManager pm)
 	{
-		Query q = pm.newQuery(SQL, "SELECT idBebedor, idBar, fechaVisita, horario FROM " + pp.darTablaVisitan ());
+		Query q = pm.newQuery(SQL, "SELECT idorden, medicamentos, idservsalud FROM " + pp.darTablaOrden ());
 		List<Orden> resp = new LinkedList<>();
 		List results = q.executeList();
 		for (Object obj : results)
 		{
 			Object [] datos = (Object []) obj;
-			long idBebedor =  ((BigDecimal) datos [0]).longValue ();
-			long idBar = ((BigDecimal) datos [1]).longValue();
-			Timestamp fecha = (Timestamp) datos [2];
-			String horario = (String) datos [3];
-			resp.add (new Orden (idBebedor, idBar, fecha, horario));
+			long idOrden =  ((BigDecimal) datos [0]).longValue ();
+			long idServSalud = ((BigDecimal) datos [1]).longValue();
+			String medicamentos = (String) datos [3];
+			resp.add (new Orden (idOrden, medicamentos, idServSalud));
 		}
 		return resp;		
 	}

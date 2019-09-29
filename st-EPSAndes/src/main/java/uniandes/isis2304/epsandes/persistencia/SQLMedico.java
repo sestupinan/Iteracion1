@@ -1,5 +1,12 @@
 package uniandes.isis2304.epsandes.persistencia;
 
+import java.util.List;
+
+import javax.jdo.PersistenceManager;
+import javax.jdo.Query;
+
+import uniandes.isis2304.epsandes.negocio.Medico;
+
 public class SQLMedico {
 	/* ****************************************************************
 	 * 			Constantes
@@ -28,5 +35,59 @@ public class SQLMedico {
 	public SQLMedico (PersistenciaEPSAndes pp)
 	{
 		this.pp = pp;
+	}
+	
+
+	public long adicionarMedico (PersistenceManager pm, long id, String pEspecialidad, int pNRegistroMedico, long pIdEmpleado) 
+	{
+		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaMedico () + "(id, especialidad, registroMedico, idEmpleado) values (?, ?, ?, ?)");
+		q.setParameters(id, pEspecialidad, pNRegistroMedico, pIdEmpleado);
+		return (long) q.executeUnique();
+	}
+
+	/**
+	 * Crea y ejecuta la sentencia SQL para eliminar TODAS LAS VISITAS de la base de datos de Parranderos
+	 * @param pm - El manejador de persistencia
+	 * @return EL número de tuplas eliminadas
+	 */
+	public long eliminarMedico (PersistenceManager pm) 
+	{
+		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaMedico ());
+		return (long) q.executeUnique();
+	}
+
+	/**
+	 * Crea y ejecuta la sentencia SQL para ELIMINAR TODAS LAS VISITAS DE UN BEBEDOR de la base de datos de Parranderos, por su identificador
+	 * @param pm - El manejador de persistencia
+	 * @param idMedico - El identificador del orden
+	 * @return EL número de tuplas eliminadas
+	 */
+	public long eliminarMedicoPorIdMedico (PersistenceManager pm, long idMedico) 
+	{
+		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaMedico () + " WHERE id = ?");
+		q.setParameters(idMedico);
+		return (long) q.executeUnique();
+	}
+
+
+	/**
+	 * Crea y ejecuta la sentencia SQL para encontrar la información de los Medico de la 
+	 * base de datos de Parranderos
+	 * @param pm - El manejador de persistencia
+	 * @return Una lista de objetos Medico
+	 */
+	public List<Medico> darMedico (PersistenceManager pm)
+	{
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaMedico ());
+		q.setResultClass(Medico.class);
+		return (List<Medico>) q.execute();
+	}
+
+	public Medico darMedicoPorId (PersistenceManager pm, long idMedico) 
+	{
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaMedico () + " WHERE id = ?");
+		q.setResultClass(Medico.class);
+		q.setParameters(idMedico);
+		return (Medico) q.executeUnique();
 	}
 }
