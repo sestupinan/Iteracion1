@@ -30,7 +30,7 @@ public class OrdenDetail {
 	 * @param fechaVisita - La fecha en la cual se realiza la visita
 	 * @param pMedicamentos - El horario en el que el bebedor vista el bar (DIURNO, NOCTURNO, TODOS)
 	 */
-	public OrdenDetail(long idOrden, String pMedicamentos, long pIdServSalud) 
+	public OrdenDetail(long idOrden, long pIdServSalud) 
 	{
 		this.ordenId = idOrden;
 		this.servSaludId = pIdServSalud;
