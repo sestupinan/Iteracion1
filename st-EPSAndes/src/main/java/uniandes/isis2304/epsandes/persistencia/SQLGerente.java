@@ -64,7 +64,7 @@ public class SQLGerente {
 	public long eliminarGerentePorIdGerente (PersistenceManager pm, long idGerente) 
 	{
 		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaGerente () + " WHERE id = ?");
-		q.setParameters(idGerente, idUsuario);
+		q.setParameters(idGerente);
 		return (long) q.executeUnique();
 	}
 

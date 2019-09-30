@@ -6,7 +6,7 @@ import java.util.List;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
-import uniandes.isis2304.epsandes.negocio.Trabajan;
+import uniandes.isis2304.epsandes.negocio.Usan;
 
 public class SQLUsan 
 {
@@ -39,9 +39,9 @@ public class SQLUsan
 		this.pp = pp;
 	}
 	
-	public long adicionarTrabajan (PersistenceManager pm, long id, long idServSalud, Timestamp pFechaReserva,Timestamp pFechaAtencion, long pNombre, int pEstado) 
+	public long adicionarUsan (PersistenceManager pm, long id, long idServSalud, Timestamp pFechaReserva,Timestamp pFechaAtencion, long pNombre, int pEstado) 
 	{
-		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaTrabajan () + "(idUsuario, idServSalud, fechaReserva, fechaAtencion, nombre, estado) values (?, ?, ?, ?, ?, ?)");
+		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaUsan () + "(idUsuario, idServSalud, fechaReserva, fechaAtencion, nombre, estado) values (?, ?, ?, ?, ?, ?)");
 		q.setParameters(id, idServSalud, pFechaReserva, pFechaAtencion, pNombre, pEstado);
 		return (long) q.executeUnique();
 	}
@@ -51,9 +51,9 @@ public class SQLUsan
 	 * @param pm - El manejador de persistencia
 	 * @return EL número de tuplas eliminadas
 	 */
-	public long eliminarTrabajan (PersistenceManager pm) 
+	public long eliminarUsan (PersistenceManager pm) 
 	{
-		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaTrabajan ());
+		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaUsan ());
 		return (long) q.executeUnique();
 	}
 
@@ -63,32 +63,32 @@ public class SQLUsan
 	 * @param idMedico - El identificador del orden
 	 * @return EL número de tuplas eliminadas
 	 */
-	public long eliminarTrabajanPorIdTrabajan (PersistenceManager pm, long idUsuario ) 
+	public long eliminarUsanPorIdUsan (PersistenceManager pm, long idUsuario ) 
 	{
-		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaTrabajan () + " WHERE idUsuario = ?");
+		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaUsan () + " WHERE idUsuario = ?");
 		q.setParameters(idUsuario);
 		return (long) q.executeUnique();
 	}
 
 
 	/**
-	 * Crea y ejecuta la sentencia SQL para encontrar la información de los Trabajan de la 
+	 * Crea y ejecuta la sentencia SQL para encontrar la información de los Usan de la 
 	 * base de datos de Parranderos
 	 * @param pm - El manejador de persistencia
-	 * @return Una lista de objetos Trabajan
+	 * @return Una lista de objetos Usan
 	 */
-	public List<Trabajan> darTrabajan (PersistenceManager pm)
+	public List<Usan> darUsan (PersistenceManager pm)
 	{
-		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaTrabajan ());
-		q.setResultClass(Trabajan.class);
-		return (List<Trabajan>) q.execute();
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaUsan ());
+		q.setResultClass(Usan.class);
+		return (List<Usan>) q.execute();
 	}
 
-	public Trabajan darTrabajanPorId (PersistenceManager pm, long idUsuario) 
+	public Usan darUsanPorId (PersistenceManager pm, long idUsuario) 
 	{
-		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaTrabajan () + " WHERE idUsuario = ?");
-		q.setResultClass(Trabajan.class);
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaUsan () + " WHERE idUsuario = ?");
+		q.setResultClass(Usan.class);
 		q.setParameters(idUsuario);
-		return (Trabajan) q.executeUnique();
+		return (Usan) q.executeUnique();
 	}
 }
