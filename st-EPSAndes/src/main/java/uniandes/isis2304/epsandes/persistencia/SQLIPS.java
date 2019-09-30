@@ -36,12 +36,12 @@ public class SQLIPS {
 	{
 		this.pp = pp;
 	}
-	
+
 	public long adicionarIPS (PersistenceManager pm, long id, String tipo, String pLocalizacion) 
 	{
-        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaIPS () + "(id, tipo, localizacion) values (?, ?, ?)");
-        q.setParameters(id, tipo, pLocalizacion);
-        return (long) q.executeUnique();
+		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaIPS () + "(id, tipo, localizacion) values (?, ?, ?)");
+		q.setParameters(id, tipo, pLocalizacion);
+		return (long) q.executeUnique();
 	}
 
 	/**
@@ -51,8 +51,8 @@ public class SQLIPS {
 	 */
 	public long eliminarIPS (PersistenceManager pm) 
 	{
-        Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaIPS ());
-        return (long) q.executeUnique();
+		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaIPS ());
+		return (long) q.executeUnique();
 	}
 
 	/**
@@ -63,9 +63,9 @@ public class SQLIPS {
 	 */
 	public long eliminarIPSPorIdIPS (PersistenceManager pm, long idIPS) 
 	{
-        Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaIPS () + " WHERE id = ?");
-        q.setParameters(idIPS);
-        return (long) q.executeUnique();
+		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaIPS () + " WHERE id = ?");
+		q.setParameters(idIPS);
+		return (long) q.executeUnique();
 	}
 
 
@@ -81,7 +81,7 @@ public class SQLIPS {
 		q.setResultClass(IPS.class);
 		return (List<IPS>) q.execute();
 	}
-	
+
 	public IPS darIPSPorId (PersistenceManager pm, long idIPS) 
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaIPS () + " WHERE id = ?");

@@ -100,7 +100,7 @@ class SQLOrden
 	 */
 	public long eliminarOrden (PersistenceManager pm, long idOrden, String Medicamentos) 
 	{
-        Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaOrden () + " WHERE idorden = ? AND idmedicamentos = ?");
+        Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaOrden () + " WHERE idorden = ? AND medicamentos = ?");
         q.setParameters(idOrden, Medicamentos);
         return (long) q.executeUnique();
 	}
