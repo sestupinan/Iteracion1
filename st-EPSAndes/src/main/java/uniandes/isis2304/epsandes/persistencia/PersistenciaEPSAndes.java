@@ -441,34 +441,42 @@ public class PersistenciaEPSAndes
 	}
 	
 	//RFC8
-	public Orden reservaServMed(Timestamp fechaReserva, long pIdServSalud, long pIps, int ordenesExtra, Long[] idOrdenesExtra, Long[] idServExtra)
+	public void reservaServMed(Timestamp fechaReserva, long pIdServSalud, long pIps, long pIdUsuario, long pIdOrden)
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx=pm.currentTransaction();
 		try
 		{
 			tx.begin();
-			long idOrden = nextval ();
-			Query q = pm.newQuery(SQL, "INSERT INTO " + tablas.get(12) + "(idorden,rmedica,fecha,idmedico, idusuario) VALUES (SEQ_ORDEN.nextval,? ,sysdate,?,?)");
-			q.setParameters(medicinas, pIdMedico, pIdSusuario);
-			while(ordenesExtra>0)
+			//Verifica disponibilidad
+			Query q = pm.newQuery(SQL, "SELECT COUNT(*)\r\n" + 
+					"FROM usan INNER JOIN serviciosalud ON usan.idservsalud = serviciosalud.idservsalud\r\n" + 
+					"WHERE fecha ="+ fechaReserva+" AND usan.idservsalud = "+pIdServSalud +"AND serviciosalud.idips ="+ pIps);
+			int rta = 0;
+			if(rta==0)
 			{
-				Query k = pm.newQuery(SQL, "INSERT INTO " + tablas.get(13) + "(ordenid,servicioid) VALUES (?,?)");
-				k.setParameters(idOrdenesExtra[ordenesExtra-1], idServExtra[ordenesExtra]);
-				ordenesExtra--;
+				if(pIdServSalud!= 0 && pIdServSalud!= 1) {
+					//Verifica, si es necesario, que tenga la orden requerida para agendar el servicio
+					Query k = pm.newQuery(SQL, "SELECT idorden \r\n" + 
+							"FROM orden JOIN ordendetail ON orden.idorden = ordendetail.ordenid\r\n" + 
+							"WHERE orden.idusuario = "+pIdUsuario+" AND ordendetail.servicioid ="+ pIdServSalud);
+				}
+	            Query r = pm.newQuery(SQL, "INSERT INTO usan (idusuario,idservsalud,estado,fechareserva,fechaatencion,idrecepcionista, idorden) \r\n" + 
+	            		"VALUES ("+pIdUsuario+","+pIdServSalud+","+0+","+ fechaReserva+",null,null,"+ pIdOrden+")");
+				
+
 			}
 
+			
 			tx.commit();
 
 			log.trace ("Inserción de orden medica");
 
-			return new Orden(idOrden, medicinas, pIdMedico);
 		}
 		catch (Exception e)
 		{
 			//	        	e.printStackTrace();
 			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
-			return null;
 		}
 		finally
 		{
@@ -480,7 +488,81 @@ public class PersistenciaEPSAndes
 		}
 	}
 
+	//RFC9
+	public void registrarPrestServ(Timestamp fechaReserva, long pIdServSalud, long pIps, long pIdUsuario, long pIdRecepcionista)
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			//Verifica disponibilidad
+			Query q = pm.newQuery(SQL, "UPDATE usan\r\n" + 
+					"SET\r\n" + 
+					"    estado = 1, fechaatencion= sysdate, idrecepcionista ="+ pIdRecepcionista+"\r\n" + 
+					"WHERE\r\n" + 
+					"    idusuario = "+pIdUsuario+"\r\n" + 
+					"    AND idservsalud = "+pIdServSalud+"\r\n" + 
+					"    AND estado = 0\r\n" + 
+					"    AND fechareserva = "+fechaReserva+"\r\n" + 
+					"    ");
 
+			tx.commit();
+
+			log.trace ("Inserción de orden medica");
+
+		}
+		catch (Exception e)
+		{
+			//	        	e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+	}
+	
+	
+	
+	//RFC1
+	public void servPrestadosPorIPSEnFechas(Timestamp pFechaInicial, Timestamp pFechaFinal)
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			//Verifica disponibilidad
+			Query q = pm.newQuery(SQL, "SELECT COUNT(*)\r\n" + 
+					"FROM usan\r\n" + 
+					"WHERE (fechaatencion BETWEEN"+ pFechaInicial+" AND"+ pFechaFinal+") AND estado = 1");
+
+			tx.commit();
+
+			log.trace ("Inserción de orden medica");
+
+		}
+		catch (Exception e)
+		{
+			//	        	e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+	}
+	
+	
 	/* ****************************************************************
 	 * 			Métodos para manejar los TIPOS DE BEBIDA
 	 *****************************************************************/
