@@ -17,7 +17,7 @@ package uniandes.isis2304.epsandes.persistencia;
 
 
 import java.math.BigDecimal;
-
+import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
@@ -681,7 +681,6 @@ public class PersistenciaEPSAndes
 			Query q = pm.newQuery(SQL, "SELECT usuario.nombre\r\n" + 
 					"FROM usuario, usan\r\n" + 
 					"WHERE"+ pUsuarioId+" = usuario.nidentificacion AND usan.idusuario = "+pUsuarioId+" AND fechaatencion BETWEEN"+ pFechaInicial+" AND "+pFechaFinal+"");
-
 			tx.commit();
 
 			log.trace ("Indice de uso de cada servicio");
