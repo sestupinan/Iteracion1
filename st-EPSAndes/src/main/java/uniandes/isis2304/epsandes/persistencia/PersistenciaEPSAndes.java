@@ -339,7 +339,9 @@ public class PersistenciaEPSAndes
 	 * 			Métodos para manejar los REQUERIMIENTOS FUNCIONALES 7-9
 	 *****************************************************************/
 
-	public Orden registrarOrden(String medicinas, long pIdSusuario, long pIdMedico, int ordenesExtra)
+	
+	//RFC7
+	public Orden registrarOrden(String medicinas, long pIdSusuario, long pIdMedico, int ordenesExtra, Long[] idOrdenesExtra, Long[] idServExtra)
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx=pm.currentTransaction();
@@ -349,6 +351,13 @@ public class PersistenciaEPSAndes
             long idOrden = nextval ();
             Query q = pm.newQuery(SQL, "INSERT INTO " + tablas.get(12) + "(idorden,rmedica,fecha,idmedico, idusuario) VALUES (SEQ_ORDEN.nextval,? ,sysdate,?,?)");
             q.setParameters(medicinas, pIdMedico, pIdSusuario);
+            while(ordenesExtra>0)
+            {
+            	Query k = pm.newQuery(SQL, "INSERT INTO " + tablas.get(13) + "(ordenid,servicioid) VALUES (?,?)");
+                k.setParameters(idOrdenesExtra[ordenesExtra-1], idServExtra[ordenesExtra]);
+            	ordenesExtra--;
+            }
+            
             tx.commit();
             
             log.trace ("Inserción de orden medica");
@@ -371,6 +380,47 @@ public class PersistenciaEPSAndes
         }
 	}
 	
+	//RFC8
+	public Orden reservaServMed(Timestamp fechaReserva, long pIdServSalud, long pIps, int ordenesExtra, Long[] idOrdenesExtra, Long[] idServExtra)
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			long idOrden = nextval ();
+			Query q = pm.newQuery(SQL, "INSERT INTO " + tablas.get(12) + "(idorden,rmedica,fecha,idmedico, idusuario) VALUES (SEQ_ORDEN.nextval,? ,sysdate,?,?)");
+			q.setParameters(medicinas, pIdMedico, pIdSusuario);
+			while(ordenesExtra>0)
+			{
+				Query k = pm.newQuery(SQL, "INSERT INTO " + tablas.get(13) + "(ordenid,servicioid) VALUES (?,?)");
+				k.setParameters(idOrdenesExtra[ordenesExtra-1], idServExtra[ordenesExtra]);
+				ordenesExtra--;
+			}
+
+			tx.commit();
+
+			log.trace ("Inserción de orden medica");
+
+			return new Orden(idOrden, medicinas, pIdMedico);
+		}
+		catch (Exception e)
+		{
+			//	        	e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return null;
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+	}
+
+
 	/* ****************************************************************
 	 * 			Métodos para manejar los TIPOS DE BEBIDA
 	 *****************************************************************/
