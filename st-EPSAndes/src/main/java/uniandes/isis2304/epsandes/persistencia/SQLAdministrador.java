@@ -1,5 +1,13 @@
 package uniandes.isis2304.epsandes.persistencia;
 
+import java.sql.Timestamp;
+import java.util.List;
+
+import javax.jdo.PersistenceManager;
+import javax.jdo.Query;
+
+import uniandes.isis2304.epsandes.negocio.Administrador;
+
 public class SQLAdministrador 
 {
 	/* ****************************************************************
@@ -29,5 +37,58 @@ public class SQLAdministrador
 	public SQLAdministrador (PersistenciaEPSAndes pp)
 	{
 		this.pp = pp;
+	}
+	
+	public long adicionarAdministrador (PersistenceManager pm, long pidMedico, long pIdIPS) 
+	{
+		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaAdministrador () + "(idMedico, idIPS) values (?, ?)");
+		q.setParameters(pidMedico, pIdIPS);
+		return (long) q.executeUnique();
+	}
+
+	/**
+	 * Crea y ejecuta la sentencia SQL para eliminar TODAS LAS VISITAS de la base de datos de Parranderos
+	 * @param pm - El manejador de persistencia
+	 * @return EL número de tuplas eliminadas
+	 */
+	public long eliminarAdministrador (PersistenceManager pm) 
+	{
+		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaAdministrador ());
+		return (long) q.executeUnique();
+	}
+
+	/**
+	 * Crea y ejecuta la sentencia SQL para ELIMINAR TODAS LAS VISITAS DE UN BEBEDOR de la base de datos de Parranderos, por su identificador
+	 * @param pm - El manejador de persistencia
+	 * @param idAdministrador - El identificador del orden
+	 * @return EL número de tuplas eliminadas
+	 */
+	public long eliminarAdministradorPorIdAdministrador (PersistenceManager pm, long idAdministrador, long idIPS ) 
+	{
+		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaAdministrador () + " WHERE id = ? AND idIPS = ?");
+		q.setParameters(idAdministrador, idIPS);
+		return (long) q.executeUnique();
+	}
+
+
+	/**
+	 * Crea y ejecuta la sentencia SQL para encontrar la información de los Administrador de la 
+	 * base de datos de Parranderos
+	 * @param pm - El manejador de persistencia
+	 * @return Una lista de objetos Administrador
+	 */
+	public List<Administrador> darAdministrador (PersistenceManager pm)
+	{
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaAdministrador ());
+		q.setResultClass(Administrador.class);
+		return (List<Administrador>) q.execute();
+	}
+
+	public Administrador darAdministradorPorId (PersistenceManager pm, long idAdministrador, long idIPS) 
+	{
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaAdministrador () + " WHERE id = ? AND idIPS = ?");
+		q.setResultClass(Administrador.class);
+		q.setParameters(idAdministrador, idIPS);
+		return (Administrador) q.executeUnique();
 	}
 }
