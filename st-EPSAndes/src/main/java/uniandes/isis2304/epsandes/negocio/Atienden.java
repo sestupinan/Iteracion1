@@ -27,10 +27,10 @@ public class Atienden {
 	/**
 	 * Constructor con valores
 	 */
-	public Atienden(long pidMedico, long pIdIPS) 
+	public Atienden(long pidMedico, long pIdUsuario) 
 	{
 		this.idMedico = pidMedico;
-		this.idUsuario = pIdIPS;
+		this.idUsuario = pIdUsuario;
 
 	}
 

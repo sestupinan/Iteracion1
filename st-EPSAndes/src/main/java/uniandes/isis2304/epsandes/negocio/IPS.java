@@ -29,7 +29,7 @@ public class IPS implements VOIPS
 	/**
 	 * Constructor con valores
 	 */
-	public IPS(long id, String tipo, String pLocalizacion, long pServSalud) 
+	public IPS(long id, String tipo, String pLocalizacion) 
 	{
 		this.id = id;
 		this.tipo = tipo;
