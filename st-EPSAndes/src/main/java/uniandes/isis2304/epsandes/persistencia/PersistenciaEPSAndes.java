@@ -246,7 +246,7 @@ public class PersistenciaEPSAndes
 	/**
 	 * @return La cadena de caracteres con el nombre del secuenciador de epsandes
 	 */
-	public String darSeqParranderos ()
+	public String darSeqOrden ()
 	{
 		return tablas.get (0);
 	}
@@ -254,7 +254,7 @@ public class PersistenciaEPSAndes
 	/**
 	 * @return La cadena de caracteres con el nombre de la tabla de TipoBebida de parranderos
 	 */
-	public String darTablaTipoBebida ()
+	public String darTablaAtienden ()
 	{
 		return tablas.get (1);
 	}
@@ -262,7 +262,7 @@ public class PersistenciaEPSAndes
 	/**
 	 * @return La cadena de caracteres con el nombre de la tabla de Bebida de parranderos
 	 */
-	public String darTablaBebida ()
+	public String darTablaConsultaControl ()
 	{
 		return tablas.get (2);
 	}
@@ -270,7 +270,7 @@ public class PersistenciaEPSAndes
 	/**
 	 * @return La cadena de caracteres con el nombre de la tabla de Bar de parranderos
 	 */
-	public String darTablaBar ()
+	public String darTablaConsultaEspecialista ()
 	{
 		return tablas.get (3);
 	}
@@ -278,7 +278,7 @@ public class PersistenciaEPSAndes
 	/**
 	 * @return La cadena de caracteres con el nombre de la tabla de Bebedor de parranderos
 	 */
-	public String darTablaBebedor ()
+	public String darTablaConsultaMedica ()
 	{
 		return tablas.get (4);
 	}
@@ -286,7 +286,7 @@ public class PersistenciaEPSAndes
 	/**
 	 * @return La cadena de caracteres con el nombre de la tabla de Gustan de parranderos
 	 */
-	public String darTablaGustan ()
+	public String darTablaConsultaUrgencias ()
 	{
 		return tablas.get (5);
 	}
@@ -294,7 +294,7 @@ public class PersistenciaEPSAndes
 	/**
 	 * @return La cadena de caracteres con el nombre de la tabla de Sirven de parranderos
 	 */
-	public String darTablaSirven ()
+	public String darTablaEmpleado ()
 	{
 		return tablas.get (6);
 	}
@@ -302,9 +302,69 @@ public class PersistenciaEPSAndes
 	/**
 	 * @return La cadena de caracteres con el nombre de la tabla de Visitan de parranderos
 	 */
-	public String darTablaVisitan ()
+	public String darTablaExamenDiagnostico ()
 	{
 		return tablas.get (7);
+	}
+	
+	public String darTablaGerente ()
+	{
+		return tablas.get (8);
+	}
+	
+	public String darTablaHospitalizacion ()
+	{
+		return tablas.get (9);
+	}
+	
+	public String darTablaIPS ()
+	{
+		return tablas.get (10);
+	}
+	
+	public String darTablaMedico ()
+	{
+		return tablas.get (11);
+	}
+	
+	public String darTablaOrden ()
+	{
+		return tablas.get (12);
+	}
+	
+	public String darTablaOrdenDetail ()
+	{
+		return tablas.get (13);
+	}
+	
+	public String darTablaProcedimientoEspecializado ()
+	{
+		return tablas.get (14);
+	}
+	
+	public String darTablaServicioSalud ()
+	{
+		return tablas.get (15);
+	}
+	
+	public String darTablaTerapia ()
+	{
+		return tablas.get (16);
+	}
+	
+	public String darTablaTrabajan ()
+	{
+		return tablas.get (17);
+	}
+	
+	public String darTablaUsan ()
+	{
+		return tablas.get (18);
+	}
+	
+	public String darTablaUsuario ()
+	{
+		return tablas.get (19);
 	}
 	
 	/**

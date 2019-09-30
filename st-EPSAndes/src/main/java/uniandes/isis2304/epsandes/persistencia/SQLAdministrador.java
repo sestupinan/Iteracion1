@@ -1,5 +1,13 @@
 package uniandes.isis2304.epsandes.persistencia;
 
+import java.sql.Timestamp;
+import java.util.List;
+
+import javax.jdo.PersistenceManager;
+import javax.jdo.Query;
+
+import uniandes.isis2304.epsandes.negocio.Administrador;
+
 public class SQLAdministrador 
 {
 	/* ****************************************************************
@@ -30,4 +38,5 @@ public class SQLAdministrador
 	{
 		this.pp = pp;
 	}
+	
 }
