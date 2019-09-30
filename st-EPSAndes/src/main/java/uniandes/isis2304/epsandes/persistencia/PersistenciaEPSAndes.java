@@ -17,6 +17,7 @@ package uniandes.isis2304.epsandes.persistencia;
 
 
 import java.math.BigDecimal;
+
 import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
@@ -25,6 +26,7 @@ import javax.jdo.JDODataStoreException;
 import javax.jdo.JDOHelper;
 import javax.jdo.PersistenceManager;
 import javax.jdo.PersistenceManagerFactory;
+import javax.jdo.Query;
 import javax.jdo.Transaction;
 
 import org.apache.log4j.Logger;
@@ -36,7 +38,6 @@ import uniandes.isis2304.epsandes.negocio.ConsultaControl;
 import uniandes.isis2304.epsandes.negocio.ConsultaMedica;
 import uniandes.isis2304.epsandes.negocio.ConsultaUrgencias;
 import uniandes.isis2304.epsandes.negocio.Hospitalizacion;
-import uniandes.isis2304.epsandes.negocio.RemisionEspecialista;
 import uniandes.isis2304.epsandes.negocio.ServicioSalud;
 import uniandes.isis2304.epsandes.negocio.Orden;
 
@@ -138,14 +139,26 @@ public class PersistenciaEPSAndes
 		
 		// Define los nombres por defecto de las tablas de la base de datos
 		tablas = new LinkedList<String> ();
-		tablas.add ("EPSAndes_sequence");
-		tablas.add ("TIPOBEBIDA");
-		tablas.add ("BEBIDA");
-		tablas.add ("BAR");
-		tablas.add ("BEBEDOR");
-		tablas.add ("GUSTAN");
-		tablas.add ("SIRVEN");
-		tablas.add ("VISITAN");
+		tablas.add ("SEQ_ORDEN");
+		tablas.add ("ATIENDEN");
+		tablas.add ("CONSULTACONTROL");
+		tablas.add ("CONSULTAESPECIALISTA");
+		tablas.add ("CONSULTAMEDICA");
+		tablas.add ("CONSULTAURGENCIAS");
+		tablas.add ("EMPLEADO");
+		tablas.add ("EXAMENDIAGNOSTICO");
+		tablas.add ("GERENTE");
+		tablas.add ("HOSPITALIZACION");
+		tablas.add ("IPS");
+		tablas.add ("MEDICO");
+		tablas.add ("ORDEN");
+		tablas.add ("ORDENDETAIL");
+		tablas.add ("PROCEDIMIENTOESPECIALIZADO");
+		tablas.add ("SERVICIOSALUD");
+		tablas.add ("TERAPIA");
+		tablas.add ("TRABAJAN");
+		tablas.add ("USAN");
+		tablas.add ("USUARIO");
 }
 
 	/**
@@ -321,7 +334,43 @@ public class PersistenciaEPSAndes
 		}
 		return resp;
 	}
+	
+	/* ****************************************************************
+	 * 			Métodos para manejar los REQUERIMIENTOS FUNCIONALES 7-9
+	 *****************************************************************/
 
+	public Orden registrarOrden(String medicinas, long pIdSusuario, long pIdMedico, int ordenesExtra)
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+            long idOrden = nextval ();
+            Query q = pm.newQuery(SQL, "INSERT INTO " + tablas.get(12) + "(idorden,rmedica,fecha,idmedico, idusuario) VALUES (SEQ_ORDEN.nextval,? ,sysdate,?,?)");
+            q.setParameters(medicinas, pIdMedico, pIdSusuario);
+            tx.commit();
+            
+            log.trace ("Inserción de orden medica");
+            
+            return new Orden(idOrden, medicinas, pIdMedico);
+        }
+        catch (Exception e)
+        {
+//        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+	
 	/* ****************************************************************
 	 * 			Métodos para manejar los TIPOS DE BEBIDA
 	 *****************************************************************/

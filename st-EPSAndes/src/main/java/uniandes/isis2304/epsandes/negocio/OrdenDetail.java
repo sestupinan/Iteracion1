@@ -1,0 +1,79 @@
+package uniandes.isis2304.epsandes.negocio;
+
+public class OrdenDetail {
+	/* ****************************************************************
+	 * 			Atributos
+	 *****************************************************************/
+	/**
+	 * El identificador del bebedor que realiza la visita
+	 */
+	private long ordenId;
+	
+	private long servSaludId;
+
+	/* ****************************************************************
+	 * 			Métodos
+	 *****************************************************************/
+	/**
+	 * Constructor por defecto
+	 */
+	public OrdenDetail() 
+	{
+		this.ordenId = 0;
+		this.servSaludId = 0;
+	}
+
+	/**
+	 * Constructor con valores
+	 * @param idBebedor - El identificador del b ebedor. Debe existir un bebedor con dicho identificador
+	 * @param idBar - El identificador del bar. Debe exixtir un bar con dicho identificador
+	 * @param fechaVisita - La fecha en la cual se realiza la visita
+	 * @param pMedicamentos - El horario en el que el bebedor vista el bar (DIURNO, NOCTURNO, TODOS)
+	 */
+	public OrdenDetail(long idOrden, String pMedicamentos, long pIdServSalud) 
+	{
+		this.ordenId = idOrden;
+		this.servSaludId = pIdServSalud;
+	}
+
+	/**
+	 * @return El idBebedor
+	 */
+	public long getIdOrden() 
+	{
+		return ordenId;
+	}
+
+	/**
+	 * @param idBebedor - El nuevo idBebedor. Debe existir un bebedor con dicho identificador
+	 */
+	public void setIdOrden(long idBebedor) 
+	{
+		this.ordenId = idBebedor;
+	}
+
+	/**
+	 * @return El idBar
+	 */
+	public long getIdServSalud() 
+	{
+		return servSaludId;
+	}
+
+	/**
+	 * @param idBar - El nuevo idBar. Debe exixtir un bar con dicho identificador
+	 */
+	public void setIdServSalud(long idBar) 
+	{	
+		this.servSaludId = idBar;
+	}
+
+	/** 
+	 * @return Una cadena con la información básica
+	 */
+	@Override
+	public String toString() 
+	{
+		return "Visitan [idOrdenitalizacion=" + ordenId + "idServSalud=" + servSaludId+ "]";
+	}
+}
