@@ -1,6 +1,8 @@
 package uniandes.isis2304.epsandes.negocio;
 
-public class Gerente {
+import java.sql.Timestamp;
+
+public class Gerente extends Empleado{
 	/* ****************************************************************
 	* 			Atributos
 	 *****************************************************************/
@@ -18,6 +20,7 @@ public class Gerente {
 	 */
 	public Gerente() 
 	{
+		super();
 		this.reporte = "";
 
 	}
@@ -25,8 +28,9 @@ public class Gerente {
 	/**
 	 * Constructor con valores
 	 */
-	public Gerente(String pReporte) 
+	public Gerente(String pReporte, Long id, String tipo, String pNombre) 
 	{
+		super(id, tipo, pNombre);
 		this.reporte = pReporte;
 
 	}

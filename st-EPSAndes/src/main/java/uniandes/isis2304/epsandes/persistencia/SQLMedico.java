@@ -38,10 +38,10 @@ public class SQLMedico {
 	}
 	
 
-	public long adicionarMedico (PersistenceManager pm, long id, String pEspecialidad, int pNRegistroMedico, long pIdEmpleado) 
+	public long adicionarMedico (PersistenceManager pm, Long id, String tipo, String pNombre, String pEspecialidad, int pNRegistroMedico) 
 	{
 		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaMedico () + "(id, especialidad, registroMedico, idEmpleado) values (?, ?, ?, ?)");
-		q.setParameters(id, pEspecialidad, pNRegistroMedico, pIdEmpleado);
+		q.setParameters(id, pEspecialidad, pNRegistroMedico, tipo, pNombre);
 		return (long) q.executeUnique();
 	}
 

@@ -1,14 +1,15 @@
 package uniandes.isis2304.epsandes.negocio;
 
-public class Administrador 
+import java.sql.Timestamp;
+
+public class Administrador extends Empleado
 {
 	/* ****************************************************************
 	* 			Atributos
 	 *****************************************************************/
 
-	private long idMedico;
+	private String caracteristicas;
 
-	private long idUsuario;
 	
 
 	
@@ -20,39 +21,26 @@ public class Administrador
 	 */
 	public Administrador() 
 	{
-		this.idMedico = 0;
-		this.idUsuario = 0;
-
+		super();
+		this.caracteristicas = "";
 	}
 
 	/**
 	 * Constructor con valores
 	 */
-	public Administrador(long pidMedico, long pIdIPS) 
+	public Administrador(String pCaracteristicas, Long id, String tipo, String pNombre) 
 	{
-		this.idMedico = pidMedico;
-		this.idUsuario = pIdIPS;
-
+		super(id, tipo, pNombre);
+		this.caracteristicas = pCaracteristicas;
 	}
 
 
-
-	public long getIdMedico() {
-		return idMedico;
+	public String getCaracteristicas() {
+		return caracteristicas;
 	}
 
-	public void setIdMedico(long idMedico) {
-		this.idMedico = idMedico;
-	}
-
-
-
-	public long getIdUsuario() {
-		return idUsuario;
-	}
-
-	public void setIdUsuario(long idUsuario) {
-		this.idUsuario = idUsuario;
+	public void setCaracteristicas(String caracteristicas) {
+		this.caracteristicas = caracteristicas;
 	}
 
 	/**
@@ -61,6 +49,6 @@ public class Administrador
 	@Override
 	public String toString() 
 	{
-		return "ProcedimientoEspecializado [idMedico=" + idMedico + ", idUsuario=" + idUsuario+ "]";
+		return "ProcedimientoEspecializado [idMedico=" + caracteristicas + ", idUsuario=" + "]";
 	}
 }

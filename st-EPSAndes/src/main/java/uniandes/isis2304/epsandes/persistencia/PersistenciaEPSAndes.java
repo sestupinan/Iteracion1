@@ -34,12 +34,18 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
+import uniandes.isis2304.epsandes.negocio.Administrador;
 import uniandes.isis2304.epsandes.negocio.ConsultaControl;
 import uniandes.isis2304.epsandes.negocio.ConsultaMedica;
 import uniandes.isis2304.epsandes.negocio.ConsultaUrgencias;
+import uniandes.isis2304.epsandes.negocio.Gerente;
 import uniandes.isis2304.epsandes.negocio.Hospitalizacion;
+import uniandes.isis2304.epsandes.negocio.IPS;
+import uniandes.isis2304.epsandes.negocio.Medico;
 import uniandes.isis2304.epsandes.negocio.ServicioSalud;
+import uniandes.isis2304.epsandes.negocio.Usuario;
 import uniandes.isis2304.epsandes.negocio.Orden;
+import uniandes.isis2304.epsandes.negocio.Recepcionista;
 
 /**
  * Clase para el manejador de persistencia del proyecto Parranderos
@@ -125,6 +131,15 @@ public class PersistenciaEPSAndes
 	 */
 	private SQLOrden sqlOrden;
 	
+	private SQLGerente sqlGerente;
+	
+	private SQLRecepcionista sqlRecepcionista;
+	
+	private SQLAdministrador sqlAdministrador;
+	
+	private SQLIPS sqlIPS;
+	
+	private SQLMedico sqlMedico;
 	/* ****************************************************************
 	 * 			Métodos del MANEJADOR DE PERSISTENCIA
 	 *****************************************************************/
@@ -241,6 +256,11 @@ public class PersistenciaEPSAndes
 		sqlConsultaControl = new SQLConsultaControl (this);
 		sqlOrden = new SQLOrden(this);		
 		sqlUtil = new SQLUtil(this);
+		sqlGerente = new SQLGerente(this);
+		sqlRecepcionista = new SQLRecepcionista(this);
+		sqlAdministrador = new SQLAdministrador(this);
+		sqlIPS = new SQLIPS(this);
+		sqlMedico = new SQLMedico(this);
 	}
 
 	/**
@@ -396,11 +416,232 @@ public class PersistenciaEPSAndes
 	}
 	
 	/* ****************************************************************
+	 * 			Métodos para manejar los REQUERIMIENTOS FUNCIONALES 1-6
+	 *****************************************************************/
+	
+	//RF1
+	
+	//RF2 Registrar usuario
+	public Gerente adicionarGerente(String pReporte, Long id, String tipo, String pNombre)
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+            long tuplasInsertadas = sqlGerente.adicionarGerente(pm, pReporte, id, tipo, pNombre);
+            tx.commit();
+            
+            log.trace ("Inserción de gerente: " + id + ": " + tuplasInsertadas + " tuplas insertadas");
+            
+            return new Gerente (pReporte, id, tipo, pNombre);
+        }
+        catch (Exception e)
+        {
+//        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+	
+	public Administrador adicionarAdminDatos(String pCaracteristicas, Long id, String tipo, String pNombre)
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+            long tuplasInsertadas = sqlAdministrador.adicionarAdmin(pm, pCaracteristicas, id, tipo, pNombre);
+            tx.commit();
+            
+            log.trace ("Inserción del admin de datos: " + id + ": " + tuplasInsertadas + " tuplas insertadas");
+            
+            return new Administrador(pCaracteristicas, id, tipo, pNombre);
+        }
+        catch (Exception e)
+        {
+//        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+	
+	public Recepcionista adicionarRecepcionista(String pCaracteristicas, Long id, String tipo, String pNombre)
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+            long tuplasInsertadas = sqlRecepcionista.adicionarRecepcionista(pm, id, tipo, pNombre);
+            tx.commit();
+            
+            log.trace ("Inserción de recepcionista: " + id + ": " + tuplasInsertadas + " tuplas insertadas");
+            
+            return new Recepcionista(id, tipo, pNombre);
+        }
+        catch (Exception e)
+        {
+//        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+	
+	//RF3 Registrar IPS
+	public IPS adicionarIPS(String pCaracteristicas, Long id, String tipo, String pLocalizacion)
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+            long tuplasInsertadas = sqlIPS.adicionarIPS(pm, id, tipo, pLocalizacion);          
+            tx.commit();
+        
+            log.trace ("Inserción de IPS: " + id + ": " + tuplasInsertadas + " tuplas insertadas");
+            
+            return new IPS(id, tipo, pLocalizacion);
+        }
+        catch (Exception e)
+        {
+//        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+	
+	//RF4 Registrar medico
+	public Medico adicionarMedico(Long id, String tipo, String pNombre, String pEspecialidad, int pNRegistroMedico)
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+            long tuplasInsertadas = sqlMedico.adicionarMedico(pm, id, tipo, pNombre, pEspecialidad, pNRegistroMedico);          
+            tx.commit();
+        
+            log.trace ("Inserción de medico: " + id + ": " + tuplasInsertadas + " tuplas insertadas");
+            
+            return new Medico(id, tipo, pNombre, pEspecialidad, pNRegistroMedico);
+        }
+        catch (Exception e)
+        {
+//        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+	
+	//RF4 Registrar usuario/afiliado
+		public Usuario adicionarUsuario(Long id, String tipo, String pNombre, Timestamp pFechaNacimiento)
+		{
+			PersistenceManager pm = pmf.getPersistenceManager();
+	        Transaction tx=pm.currentTransaction();
+	        try
+	        {
+	            tx.begin();
+	            long tuplasInsertadas = sqlUsuario.adicionarUsuario(pm, id, tipo, pFechaNacimiento, pNombre);          
+	            tx.commit();
+	        
+	            log.trace ("Inserción de usuario: " + id + ": " + tuplasInsertadas + " tuplas insertadas");
+	            
+	            return new Usuario(id, tipo, pFechaNacimiento, pNombre);
+	        }
+	        catch (Exception e)
+	        {
+//	        	e.printStackTrace();
+	        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+	        	return null;
+	        }
+	        finally
+	        {
+	            if (tx.isActive())
+	            {
+	                tx.rollback();
+	            }
+	            pm.close();
+	        }
+		}
+		
+		//RF6 Registrar servicio salud
+		public Medico adicionarServSalud(Long id, String tipo, String pNombre, String pEspecialidad, int pNRegistroMedico)
+		{
+			PersistenceManager pm = pmf.getPersistenceManager();
+	        Transaction tx=pm.currentTransaction();
+	        try
+	        {
+	            tx.begin();
+	            long tuplasInsertadas = sqlMedico.adicionarMedico(pm, id, tipo, pNombre, pEspecialidad, pNRegistroMedico);          
+	            tx.commit();
+	        
+	            log.trace ("Inserción de IPS: " + id + ": " + tuplasInsertadas + " tuplas insertadas");
+	            
+	            return new Medico(id, tipo, pNombre, pEspecialidad, pNRegistroMedico);
+	        }
+	        catch (Exception e)
+	        {
+//	        	e.printStackTrace();
+	        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+	        	return null;
+	        }
+	        finally
+	        {
+	            if (tx.isActive())
+	            {
+	                tx.rollback();
+	            }
+	            pm.close();
+	        }
+		}
+	
+	/* ****************************************************************
 	 * 			Métodos para manejar los REQUERIMIENTOS FUNCIONALES 7-9
 	 *****************************************************************/
 
 	
-	//RFC7
+	//RF7
 	public Orden registrarOrden(String medicinas, long pIdSusuario, long pIdMedico, int ordenesExtra, Long[] idOrdenesExtra, Long[] idServExtra)
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
@@ -440,7 +681,7 @@ public class PersistenciaEPSAndes
         }
 	}
 	
-	//RFC8
+	//RF8
 	public void reservaServMed(Timestamp fechaReserva, long pIdServSalud, long pIps, long pIdUsuario, long pIdOrden)
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
@@ -488,7 +729,7 @@ public class PersistenciaEPSAndes
 		}
 	}
 
-	//RFC9
+	//RF9
 	public void registrarPrestServ(Timestamp fechaReserva, long pIdServSalud, long pIps, long pIdUsuario, long pIdRecepcionista)
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
@@ -506,7 +747,7 @@ public class PersistenciaEPSAndes
 					"    AND estado = 0\r\n" + 
 					"    AND fechareserva = "+fechaReserva+"\r\n" + 
 					"    ");
-
+			//List<Object> h = q.executeList();
 			tx.commit();
 
 			log.trace ("Registro de la prestacion de un servicio de salud");

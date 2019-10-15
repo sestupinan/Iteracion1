@@ -7,6 +7,7 @@ import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
 import uniandes.isis2304.epsandes.negocio.Administrador;
+import uniandes.isis2304.epsandes.negocio.Gerente;
 
 public class SQLAdministrador 
 {
@@ -37,6 +38,59 @@ public class SQLAdministrador
 	public SQLAdministrador (PersistenciaEPSAndes pp)
 	{
 		this.pp = pp;
+	}
+	
+	public long adicionarAdmin (PersistenceManager pm, String pReporte, Long id, String tipo, String pNombre) 
+	{
+		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaGerente () + "(reporte) values (?)");
+		q.setParameters(pReporte,  id,  tipo,  pNombre);
+		return (long) q.executeUnique();
+	}
+
+	/**
+	 * Crea y ejecuta la sentencia SQL para eliminar TODAS LAS VISITAS de la base de datos de Parranderos
+	 * @param pm - El manejador de persistencia
+	 * @return EL número de tuplas eliminadas
+	 */
+	public long eliminarGerente (PersistenceManager pm) 
+	{
+		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaGerente ());
+		return (long) q.executeUnique();
+	}
+
+	/**
+	 * Crea y ejecuta la sentencia SQL para ELIMINAR TODAS LAS VISITAS DE UN BEBEDOR de la base de datos de Parranderos, por su identificador
+	 * @param pm - El manejador de persistencia
+	 * @param idGerente - El identificador del orden
+	 * @return EL número de tuplas eliminadas
+	 */
+	public long eliminarGerentePorIdGerente (PersistenceManager pm, long idGerente) 
+	{
+		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaGerente () + " WHERE id = ?");
+		q.setParameters(idGerente);
+		return (long) q.executeUnique();
+	}
+
+
+	/**
+	 * Crea y ejecuta la sentencia SQL para encontrar la información de los Gerente de la 
+	 * base de datos de Parranderos
+	 * @param pm - El manejador de persistencia
+	 * @return Una lista de objetos Gerente
+	 */
+	public List<Gerente> darGerente (PersistenceManager pm)
+	{
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaGerente ());
+		q.setResultClass(Gerente.class);
+		return (List<Gerente>) q.execute();
+	}
+
+	public Gerente darGerentePorId (PersistenceManager pm, long idGerente) 
+	{
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaGerente () + " WHERE id = ?");
+		q.setResultClass(Gerente.class);
+		q.setParameters(idGerente);
+		return (Gerente) q.executeUnique();
 	}
 	
 }

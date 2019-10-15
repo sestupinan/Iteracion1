@@ -1,5 +1,6 @@
 package uniandes.isis2304.epsandes.persistencia;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.jdo.PersistenceManager;
@@ -37,10 +38,10 @@ public class SQLGerente {
 		this.pp = pp;
 	}
 	
-	public long adicionarGerente (PersistenceManager pm, String pReporte) 
+	public long adicionarGerente (PersistenceManager pm, String pReporte, Long id, String tipo, String pNombre) 
 	{
 		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaGerente () + "(reporte) values (?)");
-		q.setParameters(pReporte);
+		q.setParameters(pReporte,  id,  tipo,  pNombre);
 		return (long) q.executeUnique();
 	}
 

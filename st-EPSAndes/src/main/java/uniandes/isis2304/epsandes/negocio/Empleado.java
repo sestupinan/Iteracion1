@@ -29,11 +29,11 @@ public class Empleado implements VOEmpleado
 	/**
 	 * Constructor con valores
 	 */
-	public Empleado(long id, String pTipoId, String pNOmbre) 
+	public Empleado(long id, String pTipoId, String pNombre) 
 	{
 		this.id = id;
 		this.tipoId = pTipoId;
-		this.nombre = pNOmbre;
+		this.nombre = pNombre;
 	}
 
 
