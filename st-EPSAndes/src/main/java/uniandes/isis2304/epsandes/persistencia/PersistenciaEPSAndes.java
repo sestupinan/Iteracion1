@@ -771,48 +771,23 @@ public class PersistenciaEPSAndes
 	
 	
 	//RFC1
-	public void servPrestadosPorIPSEnFechas(Timestamp pFechaInicial, Timestamp pFechaFinal)
+	public List<ServicioSalud> servPrestadosPorIPSEnFechas(Timestamp pFechaInicial, Timestamp pFechaFinal)
 	{
-		PersistenceManager pm = pmf.getPersistenceManager();
-		Transaction tx=pm.currentTransaction();
-		try
-		{
-			tx.begin();
 			//Verifica disponibilidad
-			Query q = pm.newQuery(SQL, "SELECT COUNT(*)\r\n" + 
+			Query q = pmf.getPersistenceManager().newQuery(SQL, "SELECT COUNT(*)\r\n" + 
 					"FROM usan\r\n" + 
 					"WHERE (fechaatencion BETWEEN"+ pFechaInicial+" AND"+ pFechaFinal+") AND estado = 1");
-
-			tx.commit();
-
+			q.setResultClass(ServicioSalud.class);
 			log.trace ("Servicios prestados por IPS en rango de fechas");
-
-		}
-		catch (Exception e)
-		{
-			//	        	e.printStackTrace();
-			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
-		}
-		finally
-		{
-			if (tx.isActive())
-			{
-				tx.rollback();
-			}
-			pm.close();
-		}
+			return (List<ServicioSalud>) q.executeList();
 	}
 	
 	//RFC2
-	public void mostrar20ServMasSolicitados(Timestamp pFechaInicial, Timestamp pFechaFinal)
+	public List<String> mostrar20ServMasSolicitados(Timestamp pFechaInicial, Timestamp pFechaFinal)
 	{
-		PersistenceManager pm = pmf.getPersistenceManager();
-		Transaction tx=pm.currentTransaction();
-		try
-		{
-			tx.begin();
+		
 			//Verifica disponibilidad
-			Query q = pm.newQuery(SQL, "SELECT *\r\n" + 
+			Query q = pmf.getPersistenceManager().newQuery(SQL, "SELECT *\r\n" + 
 					"FROM(\r\n" + 
 					"SELECT idservsalud, COUNT(idServSalud) c\r\n" + 
 					"FROM usan \r\n" + 
@@ -821,127 +796,57 @@ public class PersistenciaEPSAndes
 					"ORDER BY c)\r\n" + 
 					"WHERE ROWNUM <=20");
 
-			tx.commit();
 
 			log.trace ("20 servicios mas solicitados");
-
-		}
-		catch (Exception e)
-		{
-			//	        	e.printStackTrace();
-			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
-		}
-		finally
-		{
-			if (tx.isActive())
-			{
-				tx.rollback();
-			}
-			pm.close();
-		}
+			q.setResultClass(ServicioSalud.class);
+			List<String> rta;
+			rta = (List<String>) q.executeList();
+			return rta;
 	}
-	
+
 	//RFC3
 	public void mostrarIndiceUso(Timestamp pFechaInicial, Timestamp pFechaFinal)
 	{
-		PersistenceManager pm = pmf.getPersistenceManager();
-		Transaction tx=pm.currentTransaction();
-		try
-		{
-			tx.begin();
+		
 			//Verifica disponibilidad
-			Query q = pm.newQuery(SQL, "SELECT serviciosalud.idservsalud, COUNT(*)*100/serviciosalud.capacidad\r\n" + 
+			Query q = pmf.getPersistenceManager().newQuery(SQL, "SELECT serviciosalud.idservsalud, COUNT(*)*100/serviciosalud.capacidad\r\n" + 
 					"FROM usan JOIN serviciosalud ON usan.idservsalud = serviciosalud.idservsalud\r\n" + 
 					"WHERE (fechaatencion BETWEEN"+ pFechaInicial+" AND"+ pFechaFinal+") AND estado = 1 \r\n" + 
 					"group by serviciosalud.idservsalud;");
 
-			tx.commit();
 
 			log.trace ("Indice de uso de cada servicio");
-
-		}
-		catch (Exception e)
-		{
-			//	        	e.printStackTrace();
-			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
-		}
-		finally
-		{
-			if (tx.isActive())
-			{
-				tx.rollback();
-			}
-			pm.close();
-		}
 	}
-	
+
 	//RFC4
 	public void mostrarServiciosConCaracteristica(Timestamp pFechaInicial, Timestamp pFechaFinal)
 	{
-		PersistenceManager pm = pmf.getPersistenceManager();
-		Transaction tx=pm.currentTransaction();
-		try
-		{
-			tx.begin();
-			//Verifica disponibilidad
-			Query q = pm.newQuery(SQL, "SELECT serviciosalud.idservsalud, COUNT(*)*100/serviciosalud.capacidad\r\n" + 
-					"FROM usan JOIN serviciosalud ON usan.idservsalud = serviciosalud.idservsalud\r\n" + 
-					"WHERE (fechaatencion BETWEEN pFechaInicial AND pFechaFinal) AND estado = 1 \r\n" + 
-					"group by serviciosalud.idservsalud;");
+		//Verifica disponibilidad
+		Query q = pmf.getPersistenceManager().newQuery(SQL, "SELECT serviciosalud.idservsalud, COUNT(*)*100/serviciosalud.capacidad\r\n" + 
+				"FROM usan JOIN serviciosalud ON usan.idservsalud = serviciosalud.idservsalud\r\n" + 
+				"WHERE (fechaatencion BETWEEN pFechaInicial AND pFechaFinal) AND estado = 1 \r\n" + 
+				"group by serviciosalud.idservsalud;");
 
-			tx.commit();
 
-			log.trace ("Indice de uso de cada servicio");
+		log.trace ("Indice de uso de cada servicio");
 
-		}
-		catch (Exception e)
-		{
-			//	        	e.printStackTrace();
-			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
-		}
-		finally
-		{
-			if (tx.isActive())
-			{
-				tx.rollback();
-			}
-			pm.close();
-		}
+
 	}
-	
-	
+
+
 	//RFC5
 	public void mostrarUsoServiciosAfiliadoDado(long pFechaInicial, Timestamp pFechaFinal, long pUsuarioId)
 	{
-		PersistenceManager pm = pmf.getPersistenceManager();
-		Transaction tx=pm.currentTransaction();
-		try
-		{
-			tx.begin();
-			//Verifica disponibilidad
-			Query q = pm.newQuery(SQL, "SELECT usuario.nombre\r\n" + 
-					"FROM usuario, usan\r\n" + 
-					"WHERE"+ pUsuarioId+" = usuario.nidentificacion AND usan.idusuario = "+pUsuarioId+" AND fechaatencion BETWEEN"+ pFechaInicial+" AND "+pFechaFinal+"");
-			tx.commit();
 
-			log.trace ("Indice de uso de cada servicio");
+		//Verifica disponibilidad
+		Query q = pmf.getPersistenceManager().newQuery(SQL, "SELECT usuario.nombre\r\n" + 
+				"FROM usuario, usan\r\n" + 
+				"WHERE"+ pUsuarioId+" = usuario.nidentificacion AND usan.idusuario = "+pUsuarioId+" AND fechaatencion BETWEEN"+ pFechaInicial+" AND "+pFechaFinal+"");
 
-		}
-		catch (Exception e)
-		{
-			//	        	e.printStackTrace();
-			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
-		}
-		finally
-		{
-			if (tx.isActive())
-			{
-				tx.rollback();
-			}
-			pm.close();
-		}
+		log.trace ("Indice de uso de cada servicio");
+
 	}
-	
+
 
 
 	/**
@@ -950,7 +855,7 @@ public class PersistenciaEPSAndes
 	 * @return Un arreglo con 7 números que indican el número de tuplas borradas en las tablas GUSTAN, SIRVEN, VISITAN, BEBIDA,
 	 * TIPOBEBIDA, BEBEDOR y BAR, respectivamente
 	 */
-	public long [] limpiarParranderos ()
+	public long [] limpiarEPSAndes ()
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx=pm.currentTransaction();

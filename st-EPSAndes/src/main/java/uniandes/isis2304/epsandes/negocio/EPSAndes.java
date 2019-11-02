@@ -389,7 +389,37 @@ public class EPSAndes
 		}
 
 	}
+	
+	public void registrarGerente(String pReporte, Long id, String tipo, String pNombre)
+	{
+		pp.adicionarGerente(pReporte, id, tipo, pNombre);
+	}
+	
+	public void registrarAdmin(String pCaracteristicas, Long id, String tipo, String pNombre)
+	{
+		pp.adicionarAdminDatos(pCaracteristicas, id, tipo, pNombre);
+	}
 
+	public void registrarRecepcionista(String pCaracteristicas, Long id, String tipo, String pNombre)
+	{
+		pp.adicionarRecepcionista(pCaracteristicas, id, tipo, pNombre);
+	}
+	
+	public void registrarIPS(String pCaracteristicas, Long id, String tipo, String pLocalizacion)
+	{
+		pp.adicionarIPS(pCaracteristicas, id, tipo, pLocalizacion);
+	}
+	
+	public void registrarMedico(Long id, String tipo, String pNombre, String pEspecialidad, int pNRegistroMedico)
+	{
+		pp.adicionarMedico(id, tipo, pNombre, pEspecialidad, pNRegistroMedico);
+	}
+	
+	public void registrarUsuario(Long id, String tipo, String pNombre, Timestamp pFechaNacimiento)
+	{
+		pp.adicionarUsuario(id, tipo, pNombre, pFechaNacimiento);
+	}
+	
 	public void registrarOrden(String medicinas, long pIdSusuario, long pIdMedico, int ordenesExtra, Long[] idOrdenesExtra, Long[] idServExtra)
 	{
 		pp.registrarOrden(medicinas, pIdSusuario, pIdMedico, ordenesExtra, idOrdenesExtra, idServExtra);
@@ -419,10 +449,12 @@ public class EPSAndes
 	{
 		pp.mostrarIndiceUso(pFechaInicial, pFechaFinal);
 	}
+	
 	public void mostrarServiciosConCaracteristica(Timestamp pFechaInicial, Timestamp pFechaFinal)
 	{
 		pp.mostrarServiciosConCaracteristica(pFechaInicial, pFechaFinal);
 	}
+	
 	public void mostrarUsoServiciosAfiliadoDado(long pFechaInicial, Timestamp pFechaFinal, long pUsuarioId)
 	{
 		pp.mostrarUsoServiciosAfiliadoDado(pFechaInicial, pFechaFinal, pUsuarioId);
