@@ -81,6 +81,19 @@ public class EPSAndesview {
 
 	}
 	
+	public void printMenuRegistrarUsuario() {
+		System.out.println("---------------------Seleccione requerimiento----------------------");
+		System.out.println("");
+		System.out.println("1. Registrar un gerente");
+		System.out.println("2. Registrar un administrador");
+		System.out.println("3. Registrar un recepcionista");
+		System.out.println("4. Registrar un medico");
+		System.out.println("5. Registrar un afiliado");
+		System.out.println("");
+		System.out.println("Digite el número de opción para ejecutar la tarea, luego presione enter: (Ej., 1):");
+
+	}
+	
 	
 
 	public void printMessage(String mensaje) {

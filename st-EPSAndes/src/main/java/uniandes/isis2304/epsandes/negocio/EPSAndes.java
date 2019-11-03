@@ -161,9 +161,87 @@ public class EPSAndes
 					break;
 					
 				case 6:
-
-					//Registrar roles de usuarios
 					
+					view.printMenuRegistrarUsuario();
+					int option2 = sc.nextInt();
+					switch(option2)
+					{
+					case 1:
+
+						System.out.println("Inserte el reporte");
+						String pReporte = sc.next();
+						System.out.println("Inserte el id del gerente");
+						long idGerente = sc.nextLong();
+						System.out.println("Inserte el tipo de gerente");
+						String tipoGerente = sc.next();
+						System.out.println("Inserte el nombre del gerente");
+						String nombreGerente = sc.next();
+
+						controller.registrarGerente(pReporte, idGerente, tipoGerente, nombreGerente);
+						
+						break;
+
+					case 2:
+
+						System.out.println("Inserte las caracteristicas del administrador");
+						String pCaracteristicas = sc.next();
+						System.out.println("Inserte el id del administrador");
+						long idAdministrador = sc.nextLong();
+						System.out.println("Inserte el tipo de administrador");
+						String tipoAdministrador = sc.next();
+						System.out.println("Inserte el nombre del administrador");
+						String nombreAdministrador = sc.next();
+
+						controller.registrarAdmin(pCaracteristicas, idAdministrador, tipoAdministrador, nombreAdministrador);
+						
+						break;
+
+					case 3:
+
+						System.out.println("Inserte las caracteristicas del recepcionista");
+						String Caracteristicasrecepcionista = sc.next();
+						System.out.println("Inserte el id del recepcionista");
+						long idrecepcionista = sc.nextLong();
+						System.out.println("Inserte el tipo de recepcionista");
+						String tiporecepcionista = sc.next();
+						System.out.println("Inserte el nombre del recepcionista");
+						String nombrerecepcionista = sc.next();
+
+						controller.registrarRecepcionista(Caracteristicasrecepcionista, idrecepcionista, tiporecepcionista, nombrerecepcionista);
+						
+						break;
+
+					case 4:
+
+						System.out.println("Inserte el id del medico");
+						long idMedico = sc.nextLong();
+						System.out.println("Inserte el tipo de medico");
+						String tipoMedico = sc.next();
+						System.out.println("Inserte el nombre del medico");
+						String nombreMedico = sc.next();
+						System.out.println("Inserte la especialidad del medico");
+						String especialidadMedico = sc.next();
+						System.out.println("Inserte el numero de registro del medico");
+						int numeroRegistro = sc.nextInt();
+
+						controller.registrarMedico(idMedico, tipoMedico, nombreMedico, especialidadMedico, numeroRegistro);
+						break;
+
+					case 5:
+
+						System.out.println("Inserte el id");
+						long idUsuario = sc.nextLong();
+						System.out.println("Inserte el tipo");
+						String tipoUsuario = sc.next();
+						System.out.println("Inserte el nombre");
+						String nombreUsuario = sc.next();
+						System.out.println("Inserte la fecha de nacimiento");
+						Timestamp fechaUsuario = new Timestamp(sc.nextLong());
+
+						controller.registrarUsuario(idUsuario, tipoUsuario, nombreUsuario, fechaUsuario);
+
+						break;
+					}
 					break;
 					
 				case 7:
@@ -179,6 +257,7 @@ public class EPSAndes
 
 					controller.registrarUsuario(idUsuario, tipoUsuario, nombreUsuario, fechaUsuario);
 
+					
 					break;
 					
 				case 8:
@@ -213,14 +292,36 @@ public class EPSAndes
 					
 				case 10:
 
-					//Registrar afiliado
+					System.out.println("Inserte el id");
+					long idUsuario2 = sc.nextLong();
+					System.out.println("Inserte el tipo");
+					String tipoUsuario2 = sc.next();
+					System.out.println("Inserte el nombre");
+					String nombreUsuario2 = sc.next();
+					System.out.println("Inserte la fecha de nacimiento");
+					Timestamp fechaUsuario2 = new Timestamp(sc.nextLong());
+
+					controller.registrarUsuario(idUsuario2, tipoUsuario2, nombreUsuario2, fechaUsuario2);
+
 					
 					break;
 					
 				case 11:
 
-					//REGISTRAR UN SERVICIO DE SALUD PRESTADO POR UNA IPS
-
+					System.out.println("Inserte la fecha de reserva");
+					Timestamp fechaReserva = new Timestamp(sc.nextLong());
+					System.out.println("Inserte el id del servicio de salud");
+					long pIdServSalud = sc.nextLong();
+					System.out.println("Inserte el id de la IPS");
+					long pIps = sc.nextLong();
+					System.out.println("Inserte el id del usuario");
+					long pIdUsuario = sc.nextLong();
+					System.out.println("Inserte el id del recepcionista");
+					long pIdRecepcionista = sc.nextLong();
+					
+							
+					controller.registrarPrestServ(fechaReserva, pIdServSalud, pIps, pIdUsuario, pIdRecepcionista);
+					
 					break;
 				}
 
@@ -453,6 +554,11 @@ public class EPSAndes
 
 	}
 	
+	private String next() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	public void registrarGerente(String pReporte, Long id, String tipo, String pNombre)
 	{
 		pp.adicionarGerente(pReporte, id, tipo, pNombre);

@@ -1,16 +1,14 @@
 package uniandes.isis2304.epsandes.persistencia;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
-import uniandes.isis2304.epsandes.negocio.Administrador;
-import uniandes.isis2304.epsandes.negocio.Administrador;
+import uniandes.isis2304.epsandes.negocio.NoDisponibilidad;
 
-public class SQLAdministrador 
-{
+public class SQLNoDisponibilidad {
+
 	/* ****************************************************************
 	 * 			Constantes
 	 *****************************************************************/
@@ -35,14 +33,14 @@ public class SQLAdministrador
 	 * Constructor
 	 * @param pp - El Manejador de persistencia de la aplicación
 	 */
-	public SQLAdministrador (PersistenciaEPSAndes pp)
+	public SQLNoDisponibilidad (PersistenciaEPSAndes pp)
 	{
 		this.pp = pp;
 	}
 	
-	public long adicionarAdmin (PersistenceManager pm, String pReporte, Long id, String tipo, String pNombre) 
+	public long adicionarNoDisponibilidad (PersistenceManager pm, String pReporte, Long id, String tipo, String pNombre) 
 	{
-		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaAdministrador () + "(reporte) values (?)");
+		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaNoDisponibilidad () + "(reporte) values (?)");
 		q.setParameters(pReporte,  id,  tipo,  pNombre);
 		return (long) q.executeUnique();
 	}
@@ -52,45 +50,44 @@ public class SQLAdministrador
 	 * @param pm - El manejador de persistencia
 	 * @return EL número de tuplas eliminadas
 	 */
-	public long eliminarAdministrador (PersistenceManager pm) 
+	public long eliminarNoDisponibilidad (PersistenceManager pm) 
 	{
-		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaAdministrador ());
+		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaNoDisponibilidad ());
 		return (long) q.executeUnique();
 	}
 
 	/**
 	 * Crea y ejecuta la sentencia SQL para ELIMINAR TODAS LAS VISITAS DE UN BEBEDOR de la base de datos de Parranderos, por su identificador
 	 * @param pm - El manejador de persistencia
-	 * @param idAdministrador - El identificador del orden
+	 * @param idNoDisponibilidad - El identificador del orden
 	 * @return EL número de tuplas eliminadas
 	 */
-	public long eliminarAdministradorPorIdAdministrador (PersistenceManager pm, long idAdministrador) 
+	public long eliminarNoDisponibilidadPorIdNoDisponibilidad (PersistenceManager pm, long idNoDisponibilidad) 
 	{
-		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaAdministrador () + " WHERE id = ?");
-		q.setParameters(idAdministrador);
+		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaNoDisponibilidad () + " WHERE id = ?");
+		q.setParameters(idNoDisponibilidad);
 		return (long) q.executeUnique();
 	}
 
 
 	/**
-	 * Crea y ejecuta la sentencia SQL para encontrar la información de los Administrador de la 
+	 * Crea y ejecuta la sentencia SQL para encontrar la información de los NoDisponibilidad de la 
 	 * base de datos de Parranderos
 	 * @param pm - El manejador de persistencia
-	 * @return Una lista de objetos Administrador
+	 * @return Una lista de objetos NoDisponibilidad
 	 */
-	public List<Administrador> darAdministrador (PersistenceManager pm)
+	public List<NoDisponibilidad> darNoDisponibilidad (PersistenceManager pm)
 	{
-		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaAdministrador ());
-		q.setResultClass(Administrador.class);
-		return (List<Administrador>) q.execute();
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaNoDisponibilidad ());
+		q.setResultClass(NoDisponibilidad.class);
+		return (List<NoDisponibilidad>) q.execute();
 	}
 
-	public Administrador darAdministradorPorId (PersistenceManager pm, long idAdministrador) 
+	public NoDisponibilidad darNoDisponibilidadPorId (PersistenceManager pm, long idNoDisponibilidad) 
 	{
-		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaAdministrador () + " WHERE id = ?");
-		q.setResultClass(Administrador.class);
-		q.setParameters(idAdministrador);
-		return (Administrador) q.executeUnique();
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaNoDisponibilidad () + " WHERE id = ?");
+		q.setResultClass(NoDisponibilidad.class);
+		q.setParameters(idNoDisponibilidad);
+		return (NoDisponibilidad) q.executeUnique();
 	}
-	
 }
