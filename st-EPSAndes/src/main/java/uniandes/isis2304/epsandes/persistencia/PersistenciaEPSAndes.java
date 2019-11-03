@@ -140,6 +140,8 @@ public class PersistenciaEPSAndes
 	private SQLIPS sqlIPS;
 	
 	private SQLMedico sqlMedico;
+	
+	private SQLServicioDeSalud sqlServSalud;
 	/* ****************************************************************
 	 * 			Métodos del MANEJADOR DE PERSISTENCIA
 	 *****************************************************************/
@@ -261,6 +263,7 @@ public class PersistenciaEPSAndes
 		sqlAdministrador = new SQLAdministrador(this);
 		sqlIPS = new SQLIPS(this);
 		sqlMedico = new SQLMedico(this);
+		sqlServSalud = new SQLServicioDeSalud(this);
 	}
 
 	/**
@@ -464,7 +467,7 @@ public class PersistenciaEPSAndes
             
             log.trace ("Inserción del admin de datos: " + id + ": " + tuplasInsertadas + " tuplas insertadas");
             
-            return new Administrador(pCaracteristicas, id, tipo, pNombre);
+            return new Administrador(pCaracteristicas, pNombre, tipo, id);
         }
         catch (Exception e)
         {
@@ -494,7 +497,7 @@ public class PersistenciaEPSAndes
             
             log.trace ("Inserción de recepcionista: " + id + ": " + tuplasInsertadas + " tuplas insertadas");
             
-            return new Recepcionista(id, tipo, pNombre);
+            return new Recepcionista(pNombre, tipo, id);
         }
         catch (Exception e)
         {
@@ -556,7 +559,7 @@ public class PersistenciaEPSAndes
         
             log.trace ("Inserción de medico: " + id + ": " + tuplasInsertadas + " tuplas insertadas");
             
-            return new Medico(id, tipo, pNombre, pEspecialidad, pNRegistroMedico);
+            return new Medico(pEspecialidad, pNRegistroMedico, id, tipo, pNombre);
         }
         catch (Exception e)
         {
@@ -606,19 +609,19 @@ public class PersistenciaEPSAndes
 		}
 		
 		//RF6 Registrar servicio salud
-		public Medico adicionarServSalud(Long id, String tipo, String pNombre, String pEspecialidad, int pNRegistroMedico)
+		public Medico adicionarServSalud(long id, String tipo, int capacidad, long pServSalud)
 		{
 			PersistenceManager pm = pmf.getPersistenceManager();
 	        Transaction tx=pm.currentTransaction();
 	        try
 	        {
 	            tx.begin();
-	            long tuplasInsertadas = sqlMedico.adicionarMedico(pm, id, tipo, pNombre, pEspecialidad, pNRegistroMedico);          
+	            long tuplasInsertadas = sqlServSalud.adicionarServicioSalud(pm,  id,  tipo,  capacidad, pServSalud);          
 	            tx.commit();
 	        
 	            log.trace ("Inserción de IPS: " + id + ": " + tuplasInsertadas + " tuplas insertadas");
-	            
-	            return new Medico(id, tipo, pNombre, pEspecialidad, pNRegistroMedico);
+	            return null;
+	            //return new Medico(id, tipo, pNombre, pEspecialidad, pNRegistroMedico);
 	        }
 	        catch (Exception e)
 	        {
@@ -663,7 +666,7 @@ public class PersistenciaEPSAndes
             
             log.trace ("Inserción de orden medica");
             
-            return new Orden(idOrden, medicinas, pIdMedico);
+            return new Orden(idOrden, medicinas, null, pIdMedico, idOrden);
         }
         catch (Exception e)
         {
@@ -711,7 +714,7 @@ public class PersistenciaEPSAndes
 			
 			tx.commit();
 
-			log.trace ("Reservacion de un servicio de salud");
+			log.trace ("Reserva de un servicio de salud");
 
 		}
 		catch (Exception e)
@@ -847,7 +850,8 @@ public class PersistenciaEPSAndes
 
 	}
 
-//***************ITERACION 2***************************
+	
+//***************ITERACION 2************************************************************
 	
 	//RF10
 	/**
@@ -1071,6 +1075,125 @@ public class PersistenciaEPSAndes
 		}
 	}
 	
+	
+	//RFC6 Aqui hay tres opciones,  las fechas de mayor demanda(mayor cantidad de serviciossolicitados), 
+	//		las de mayor actividad(mayor cantidad de servicios efectivamente prestados)
+	//		y también las fechas de menor demanda
+	/**
+	 * 
+	 * @param unidadTiempo Tiene que estar en formato YY, WW, o MM
+	 * @param pIdServSalud El buscado
+	 */
+	public void analizarOperacionMayorDemanda(String unidadTiempo, Long pIdServSalud)
+	{
+
+		//Verifica disponibilidad
+		Query q = pmf.getPersistenceManager().newQuery(SQL, "SELECT *\r\n" + 
+				"FROM usuario, \r\n" + 
+				"    (\r\n" + 
+				"    SELECT COUNT(*) c,  usuario.nidentificacion n\r\n" + 
+				"    FROM usan, usuario,\r\n" + 
+				"        (\r\n" + 
+				"        SELECT COUNT(DISTINCT(usan.idservsalud)) co, usan.idusuario \r\n" + 
+				"        FROM usan group by usan.idusuario\r\n" + 
+				"        ) aux2\r\n" + 
+				"    WHERE usan.idusuario = usuario.nidentificacion AND usan.estado=1  AND aux2.co >3\r\n" + 
+				"    GROUP BY usuario.nidentificacion\r\n" + 
+				"    ) aux\r\n" + 
+				"WHERE aux.c > 11 and usuario.nidentificacion=aux.n\r\n" + 
+				";");
+
+		log.trace ("Indice de uso de cada servicio");
+
+	}
+	
+	public void analizarOperacionMayorActividad(String unidadTiempo, Long pIdServSalud)
+	{
+
+		//Verifica disponibilidad
+		Query q = pmf.getPersistenceManager().newQuery(SQL, "SELECT *\r\n" + 
+				"FROM usuario, \r\n" + 
+				"    (\r\n" + 
+				"    SELECT COUNT(*) c,  usuario.nidentificacion n\r\n" + 
+				"    FROM usan, usuario,\r\n" + 
+				"        (\r\n" + 
+				"        SELECT COUNT(DISTINCT(usan.idservsalud)) co, usan.idusuario \r\n" + 
+				"        FROM usan group by usan.idusuario\r\n" + 
+				"        ) aux2\r\n" + 
+				"    WHERE usan.idusuario = usuario.nidentificacion AND usan.estado=1  AND aux2.co >3\r\n" + 
+				"    GROUP BY usuario.nidentificacion\r\n" + 
+				"    ) aux\r\n" + 
+				"WHERE aux.c > 11 and usuario.nidentificacion=aux.n\r\n" + 
+				";");
+
+		log.trace ("Indice de uso de cada servicio");
+
+	}
+	
+	public void analizarOperacionMenorDemanda(String unidadTiempo, Long pIdServSalud)
+	{
+
+		//Verifica disponibilidad
+		Query q = pmf.getPersistenceManager().newQuery(SQL, "SELECT *\r\n" + 
+				"FROM usuario, \r\n" + 
+				"    (\r\n" + 
+				"    SELECT COUNT(*) c,  usuario.nidentificacion n\r\n" + 
+				"    FROM usan, usuario,\r\n" + 
+				"        (\r\n" + 
+				"        SELECT COUNT(DISTINCT(usan.idservsalud)) co, usan.idusuario \r\n" + 
+				"        FROM usan group by usan.idusuario\r\n" + 
+				"        ) aux2\r\n" + 
+				"    WHERE usan.idusuario = usuario.nidentificacion AND usan.estado=1  AND aux2.co >3\r\n" + 
+				"    GROUP BY usuario.nidentificacion\r\n" + 
+				"    ) aux\r\n" + 
+				"WHERE aux.c > 11 and usuario.nidentificacion=aux.n\r\n" + 
+				";");
+
+		log.trace ("Indice de uso de cada servicio");
+
+	}
+	
+	
+	//RFC7
+	public void encontrarAfiliadosExigentes()
+	{
+
+		//Verifica disponibilidad
+		Query q = pmf.getPersistenceManager().newQuery(SQL, "SELECT *\r\n" + 
+				"FROM usuario, \r\n" + 
+				"    (\r\n" + 
+				"    SELECT COUNT(*) c,  usuario.nidentificacion n\r\n" + 
+				"    FROM usan, usuario,\r\n" + 
+				"        (\r\n" + 
+				"        SELECT COUNT(DISTINCT(usan.idservsalud)) co, usan.idusuario \r\n" + 
+				"        FROM usan group by usan.idusuario\r\n" + 
+				"        ) aux2\r\n" + 
+				"    WHERE usan.idusuario = usuario.nidentificacion AND usan.estado=1  AND aux2.co >3\r\n" + 
+				"    GROUP BY usuario.nidentificacion\r\n" + 
+				"    ) aux\r\n" + 
+				"WHERE aux.c > 11 and usuario.nidentificacion=aux.n\r\n" + 
+				";");
+
+		log.trace ("Indice de uso de cada servicio");
+
+	}
+
+	//RFC8 BONO
+	public void encontrarServiciosPocaDemanda()
+	{
+
+		//Verifica disponibilidad
+		Query q = pmf.getPersistenceManager().newQuery(SQL, "SELECT serviciosalud.idservsalud, serviciosalud.nombre, COUNT(*), TO_CHAR(usan.fechareserva, 'WW')\r\n" + 
+				"FROM usan, serviciosalud\r\n" + 
+				"WHERE  usan.idservsalud = serviciosalud.idservsalud AND EXTRACT (YEAR FROM usan.fechareserva) = EXTRACT (YEAR FROM SYSDATE) -1\r\n" + 
+				"group by serviciosalud.idservsalud, serviciosalud.nombre, TO_CHAR(usan.fechareserva, 'WW') \r\n" + 
+				"HAVING COUNT(*)<3\r\n" + 
+				";");
+
+		log.trace ("Indice de uso de cada servicio");
+
+	}
+
 
 	/**
 	 * Elimina todas las tuplas de todas las tablas de la base de datos de Parranderos

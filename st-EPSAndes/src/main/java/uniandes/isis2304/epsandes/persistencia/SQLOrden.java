@@ -173,7 +173,7 @@ class SQLOrden
 			long idOrden =  ((BigDecimal) datos [0]).longValue ();
 			long idServSalud = ((BigDecimal) datos [1]).longValue();
 			String medicamentos = (String) datos [3];
-			resp.add (new Orden (idOrden, medicamentos, idServSalud));
+			resp.add (new Orden (idOrden, medicamentos, null, idServSalud, idServSalud));
 		}
 		return resp;		
 	}

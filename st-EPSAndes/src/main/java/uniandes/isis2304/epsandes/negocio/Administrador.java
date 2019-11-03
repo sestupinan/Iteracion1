@@ -14,7 +14,7 @@ public class Administrador extends Empleado
 	
 	private String nombre;
 
-	private String idEmpleado;
+	private Long idEmpleado;
 
 
 	/* ****************************************************************
@@ -22,7 +22,7 @@ public class Administrador extends Empleado
 	 *****************************************************************/
 
 	
-	public Administrador(String caracteristicas, String tipo, String nombre, String idEmpleado) {
+	public Administrador(String caracteristicas, String tipo, String nombre, Long idEmpleado) {
 		this.caracteristicas = caracteristicas;
 		this.tipo = tipo;
 		this.nombre = nombre;
@@ -53,11 +53,11 @@ public class Administrador extends Empleado
 		this.nombre = nombre;
 	}
 
-	public String getIdEmpleado() {
+	public Long getIdEmpleado() {
 		return idEmpleado;
 	}
 
-	public void setIdEmpleado(String idEmpleado) {
+	public void setIdEmpleado(Long idEmpleado) {
 		this.idEmpleado = idEmpleado;
 	}
 
