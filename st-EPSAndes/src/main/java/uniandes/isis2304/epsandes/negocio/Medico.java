@@ -9,57 +9,72 @@ public class Medico extends Empleado
 	private String especialidad;
 	
 	private long nRegistroMedico;
-		
-	/* ****************************************************************
-	 * 			Métodos
-	 *****************************************************************/
-	/**
-	 * Constructor por defecto
-	 */
-	public Medico() 
-	{
+	
+	private long idEmpleado;
+	
+	private String tipoid;
+	
+	private String nombre;
+
+	public Medico(String especialidad, long nRegistroMedico, long idEmpleado, String tipoid, String nombre) {
 		super();
-		this.especialidad = "";
-		this.nRegistroMedico = 0;
+		this.especialidad = especialidad;
+		this.nRegistroMedico = nRegistroMedico;
+		this.idEmpleado = idEmpleado;
+		this.tipoid = tipoid;
+		this.nombre = nombre;
 	}
 
-	/**
-	 * Constructor con valores
-	 */
-	public Medico(long id, String pTipoId, String pNombre, String pEspecialidad, int pNRegistroMedico) 
-	{
-		super(id, pTipoId, pNombre);
-		this.especialidad = pEspecialidad;
-		this.nRegistroMedico = pNRegistroMedico;
-	}
-
-
-	public String getTipo() {
+	public String getEspecialidad() {
 		return especialidad;
 	}
 
-	public void setTipo(String tipo) {
-		this.especialidad = tipo;
+	public void setEspecialidad(String especialidad) {
+		this.especialidad = especialidad;
 	}
-	
 
-	
-	public long getRegistroMedico() {
+	public long getnRegistroMedico() {
 		return nRegistroMedico;
 	}
 
-	public void setRegistroMedico(long pRegistroMedico) {
-		this.nRegistroMedico = pRegistroMedico;
+	public void setnRegistroMedico(long nRegistroMedico) {
+		this.nRegistroMedico = nRegistroMedico;
 	}
 
+	public long getIdEmpleado() {
+		return idEmpleado;
+	}
 
-	/**
-	 * @return Una cadena de caracteres con la información del servicio de salud
-	 */
+	public void setIdEmpleado(long idEmpleado) {
+		this.idEmpleado = idEmpleado;
+	}
+
+	public String getTipoid() {
+		return tipoid;
+	}
+
+	public void setTipoid(String tipoid) {
+		this.tipoid = tipoid;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
 	@Override
-	public String toString() 
-	{
-		return "Medico [id=" + super.getId() + ", tipo=" + especialidad+ ", equipo=" + nRegistroMedico+ "]";
+	public String toString() {
+		return "Medico [especialidad=" + especialidad + ", nRegistroMedico=" + nRegistroMedico + ", idEmpleado="
+				+ idEmpleado + ", tipoid=" + tipoid + ", nombre=" + nombre + "]";
 	}
+		
+	
+
+	
+
+	
 
 }

@@ -22,20 +22,20 @@ import java.sql.Date;
  *
  * @author Germán Bravo
  */
-public class ServicioSalud implements VOServicioSalud
+public class ServicioSalud 
 {
 	/* ****************************************************************
 	 * 			Atributos
 	 *****************************************************************/
 	/**
-	 * El identificador del tipo de bebida
+	 * El identificador del horario de bebida
 	 */
 	private long id;
 
 	/**
-	 * El nombre del tipo de bebida
+	 * El nombre del horario de bebida
 	 */
-	private String tipo;
+	private Date horario;
 	
 	public int capacidad;
 	
@@ -44,32 +44,23 @@ public class ServicioSalud implements VOServicioSalud
 	/* ****************************************************************
 	 * 			Métodos
 	 *****************************************************************/
-	/**
-	 * Constructor por defecto
-	 */
-	public ServicioSalud() 
-	{
-		this.id = 0;
-		this.tipo = "";
-		this.capacidad = 0;
-		this.idIPS = 0;
-	}
+	
 
 	/**
 	 * Constructor con valores
-	 * @param id - El identificador del tipo de bebida
-	 * @param nombre - El nombre del tipo de bebida
+	 * @param id - El identificador del horario de bebida
+	 * @param nombre - El nombre del horario de bebida
 	 */
-	public ServicioSalud(long id, String tipo, int capacidad, long pServSalud) 
+	public ServicioSalud(long id, Date horario, int capacidad, long pServSalud) 
 	{
 		this.id = id;
-		this.tipo = tipo;
+		this.horario = horario;
 		this.capacidad = capacidad;
 		this.idIPS = pServSalud;
 	}
 
 	/**
-	 * @return El id del tipo de bebida
+	 * @return El id del horario de bebida
 	 */
 	public long getId() 
 	{
@@ -77,19 +68,19 @@ public class ServicioSalud implements VOServicioSalud
 	}
 
 	/**
-	 * @param id - El nuevo id del tipo de bebida
+	 * @param id - El nuevo id del horario de bebida
 	 */
 	public void setId(long id) 
 	{
 		this.id = id;
 	}
 
-	public String getTipo() {
-		return tipo;
+	public Date gethorario() {
+		return horario;
 	}
 
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
+	public void sethorario(Date horario) {
+		this.horario = horario;
 	}
 
 	public int getCapacidad() {
@@ -115,8 +106,10 @@ public class ServicioSalud implements VOServicioSalud
 	@Override
 	public String toString() 
 	{
-		return "ServicioSalud [id=" + id + ", tipo=" + tipo+ ", capacidad=" + capacidad+ ", idIPS=" + idIPS + "]";
+		return "ServicioSalud [id=" + id + ", horario=" + horario+ ", capacidad=" + capacidad+ ", idIPS=" + idIPS + "]";
 	}
+
+	
 
 	
 

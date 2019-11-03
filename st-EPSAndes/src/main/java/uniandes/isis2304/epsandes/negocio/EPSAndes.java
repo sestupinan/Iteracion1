@@ -159,6 +159,69 @@ public class EPSAndes
 					controller.mostrarUsoServiciosAfiliadoDado(pFechaInicial4, pFechaFinal4, pUsuarioId);
 
 					break;
+					
+				case 6:
+
+					//Registrar roles de usuarios
+					
+					break;
+					
+				case 7:
+
+					System.out.println("Inserte el id");
+					long idUsuario = sc.nextLong();
+					System.out.println("Inserte el tipo");
+					String tipoUsuario = sc.next();
+					System.out.println("Inserte el nombre");
+					String nombreUsuario = sc.next();
+					System.out.println("Inserte la fecha de nacimiento");
+					Timestamp fechaUsuario = new Timestamp(sc.nextLong());
+
+					controller.registrarUsuario(idUsuario, tipoUsuario, nombreUsuario, fechaUsuario);
+
+					break;
+					
+				case 8:
+
+					System.out.println("Inserte las caracteristicas");
+					String caracteristicasIPS = sc.next();
+					System.out.println("Inserte el id de la IPS");
+					long idIPS = sc.nextLong();
+					System.out.println("Inserte el tipo de IPS");
+					String tipoIPS = sc.next();
+					System.out.println("Inserte la localización");
+					String localizacionIPS = sc.next();
+
+					controller.registrarIPS(caracteristicasIPS, idIPS, tipoIPS, localizacionIPS);
+					break;
+					
+				case 9:
+
+					System.out.println("Inserte el id del medico");
+					long idMedico = sc.nextLong();
+					System.out.println("Inserte el tipo de medico");
+					String tipoMedico = sc.next();
+					System.out.println("Inserte el nombre del medico");
+					String nombreMedico = sc.next();
+					System.out.println("Inserte la especialidad del medico");
+					String especialidadMedico = sc.next();
+					System.out.println("Inserte el numero de registro del medico");
+					int numeroRegistro = sc.nextInt();
+
+					controller.registrarMedico(idMedico, tipoMedico, nombreMedico, especialidadMedico, numeroRegistro);
+					break;
+					
+				case 10:
+
+					//Registrar afiliado
+					
+					break;
+					
+				case 11:
+
+					//REGISTRAR UN SERVICIO DE SALUD PRESTADO POR UNA IPS
+
+					break;
 				}
 
 				break;

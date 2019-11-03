@@ -20,38 +20,22 @@ public class Usan
 	
 	private int estado;
 	
+	private long idOrden;
 	/* ****************************************************************
 	 * 			Métodos
 	 *****************************************************************/
-	/**
-	 * Constructor por defecto
-	 */
-	public Usan() 
-	{
-		this.idUsuario = 0;
-		this.idServSalud = 0;
-		this.fechaReserva = null;
-		this.fechaAtencion = null;
-		this.idRecepcionista = 0;
-		this.estado = 0;
-	}
 
-	/**
-	 * Constructor con valores
-	 */
-	public Usan(long id, long idServSalud, Timestamp pFechaReserva,Timestamp pFechaAtencion, long pNombre, int pEstado) 
-	{
-		this.idUsuario = id;
+	public Usan(long idUsuario, long idServSalud, Timestamp fechaReserva, Timestamp fechaAtencion, long idRecepcionista,
+			int estado, long idOrden) {
+		this.idUsuario = idUsuario;
 		this.idServSalud = idServSalud;
-		this.fechaReserva = pFechaReserva;
-		this.fechaAtencion = pFechaAtencion;
-		this.idRecepcionista = pNombre;
-		this.estado = pEstado;
+		this.fechaReserva = fechaReserva;
+		this.fechaAtencion = fechaAtencion;
+		this.idRecepcionista = idRecepcionista;
+		this.estado = estado;
+		this.idOrden = idOrden;
 	}
-
-
-
-
+	
 	public long getIdUsuario() {
 		return idUsuario;
 	}
@@ -99,14 +83,22 @@ public class Usan
 	public void setEstado(int estado) {
 		this.estado = estado;
 	}
-
-	/**
-	 * @return Una cadena de caracteres con la información del servicio de salud
-	 */
-	@Override
-	public String toString() 
-	{
-		return "ProcedimientoEspecializado [idUsuario=" + idUsuario + ", idServSalud=" + idServSalud+ ", fechaReserva=" + fechaReserva+ ", fechaAtencion=" + fechaAtencion+ ", idRecepcionista=" + idRecepcionista +", estado=" + estado + "]";
+	
+	public long getIdOrden() {
+		return idOrden;
 	}
+
+	public void setIdOrden(long idOrden) {
+		this.idOrden = idOrden;
+	}
+
+	@Override
+	public String toString() {
+		return "Usan [idUsuario=" + idUsuario + ", idServSalud=" + idServSalud + ", fechaReserva=" + fechaReserva
+				+ ", fechaAtencion=" + fechaAtencion + ", idRecepcionista=" + idRecepcionista + ", estado=" + estado
+				+ ", idOrden=" + idOrden + "]";
+	}
+
+	
 
 }

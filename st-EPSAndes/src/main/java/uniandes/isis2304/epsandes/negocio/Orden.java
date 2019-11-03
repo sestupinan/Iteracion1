@@ -15,6 +15,7 @@
 
 package uniandes.isis2304.epsandes.negocio;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 /**
@@ -27,7 +28,7 @@ import java.sql.Timestamp;
  * 
  * @author Germán Bravo
  */
-public class Orden implements VOOrden
+public class Orden 
 {
 	/* ****************************************************************
 	 * 			Atributos
@@ -37,96 +38,68 @@ public class Orden implements VOOrden
 	 */
 	private long idOrden;
 	
-	/**
-	 * El horario en que se realizó la visita (DIURNO, NOCTURNO, TODOS)
-	 */
-	private String medicamentos;
+	private String recetaMedica;
 	
+	private Date fecha;
 	
-	private long idServSalud;
+	private long idMedico;
+	
+	private long idUsuario;
 
-	/* ****************************************************************
-	 * 			Métodos
-	 *****************************************************************/
-	/**
-	 * Constructor por defecto
-	 */
-	public Orden() 
-	{
-		this.idOrden = 0;
-		this.medicamentos = "";
-		this.idServSalud = 0;
-	}
-
-	/**
-	 * Constructor con valores
-	 * @param idBebedor - El identificador del b ebedor. Debe existir un bebedor con dicho identificador
-	 * @param idBar - El identificador del bar. Debe exixtir un bar con dicho identificador
-	 * @param fechaVisita - La fecha en la cual se realiza la visita
-	 * @param pMedicamentos - El horario en el que el bebedor vista el bar (DIURNO, NOCTURNO, TODOS)
-	 */
-	public Orden(long idOrden, String pMedicamentos, long pIdServSalud) 
-	{
+	public Orden(long idOrden, String recetaMedica, Date fecha, long idMedico, long idUsuario) {
+		
 		this.idOrden = idOrden;
-		this.medicamentos = pMedicamentos;
-		this.idServSalud = pIdServSalud;
+		this.recetaMedica = recetaMedica;
+		this.fecha = fecha;
+		this.idMedico = idMedico;
+		this.idUsuario = idUsuario;
 	}
 
-	/**
-	 * @return El idBebedor
-	 */
-	public long getIdOrden() 
-	{
+	public long getIdOrden() {
 		return idOrden;
 	}
 
-	/**
-	 * @param idBebedor - El nuevo idBebedor. Debe existir un bebedor con dicho identificador
-	 */
-	public void setIdOrden(long idBebedor) 
-	{
-		this.idOrden = idBebedor;
+	public void setIdOrden(long idOrden) {
+		this.idOrden = idOrden;
 	}
 
-	/**
-	 * @return El horario
-	 */
-	public String getmedicamentos() 
-	{
-		return medicamentos;
+	public String getRecetaMedica() {
+		return recetaMedica;
 	}
 
-	/**
-	 * @param pmedicamentos - El nuevo horario en que se realizó la visita (DIURNO, NOCTURNO, TODOS)
-	 */
-	public void setmedicamentos(String pmedicamentos) 
-	{
-		this.medicamentos = pmedicamentos;
+	public void setRecetaMedica(String recetaMedica) {
+		this.recetaMedica = recetaMedica;
+	}
+
+	public Date getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
+
+	public long getIdMedico() {
+		return idMedico;
+	}
+
+	public void setIdMedico(long idMedico) {
+		this.idMedico = idMedico;
+	}
+
+	public long getIdUsuario() {
+		return idUsuario;
+	}
+
+	public void setIdUsuario(long idUsuario) {
+		this.idUsuario = idUsuario;
+	}
+
+	@Override
+	public String toString() {
+		return "Orden [idOrden=" + idOrden + ", recetaMedica=" + recetaMedica + ", fecha=" + fecha + ", idMedico="
+				+ idMedico + ", idUsuario=" + idUsuario + "]";
 	}
 	
-	/**
-	 * @return El idBar
-	 */
-	public long getIdServSalud() 
-	{
-		return idServSalud;
-	}
-
-	/**
-	 * @param idBar - El nuevo idBar. Debe exixtir un bar con dicho identificador
-	 */
-	public void setIdServSalud(long idBar) 
-	{	
-		this.idServSalud = idBar;
-	}
-
-	/** 
-	 * @return Una cadena con la información básica
-	 */
-	@Override
-	public String toString() 
-	{
-		return "Visitan [idOrdenitalizacion=" + idOrden +  ", Medicamentos="
-				+ medicamentos + ", idServSalud=" + idServSalud+ "]";
-	}
+	
 }

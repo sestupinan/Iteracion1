@@ -26,6 +26,12 @@ public class EPSAndesview {
 		System.out.println("3. MOSTRAR EL ÍNDICE DE USO DE CADA UNO DE LOS SERVICIOS PROVISTOS");
 		System.out.println("4. MOSTRAR LOS SERVICIOS QUE CUMPLEN CON CIERTA CARACTERÍSTICA");
 		System.out.println("5. MOSTRAR LA UTILIZACIÓN DE SERVICIOS DE EPSANDES POR UN AFILIADO DADO, EN UN RANGO DE FECHAS INDICADO");
+		System.out.println("6. REGISTRAR ROLES DE USUARIOS");
+		System.out.println("7. REGISTRAR USUARIO");
+		System.out.println("8. REGISTRAR IPS");
+		System.out.println("9. REGISTRAR MÉDICO");
+		System.out.println("10. REGISTRAR AFILIADO");
+		System.out.println("11. REGISTRAR UN SERVICIO DE SALUD PRESTADO POR UNA IPS");
 		System.out.println("");
 		System.out.println("Digite el número de opción para ejecutar la tarea, luego presione enter: (Ej., 1):");
 

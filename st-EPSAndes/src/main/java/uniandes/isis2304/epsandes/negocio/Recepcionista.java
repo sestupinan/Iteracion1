@@ -4,19 +4,47 @@ import java.sql.Timestamp;
 
 public class Recepcionista extends Empleado{
 	
-	/**
-	 * Constructor por defecto
-	 */
-	public Recepcionista() 
-	{
+	private String tipo;
+	
+	private String nombre;
+	
+	private long idEmpleado;
+
+	public Recepcionista(String tipo, String nombre, long idEmpleado) {
 		super();
+		this.tipo = tipo;
+		this.nombre = nombre;
+		this.idEmpleado = idEmpleado;
 	}
 
-	/**
-	 * Constructor con valores
-	 */
-	public Recepcionista(Long id, String tipo, String pNombre) 
-	{
-		super(id, tipo, pNombre);
+	public String getTipo() {
+		return tipo;
 	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public long getIdEmpleado() {
+		return idEmpleado;
+	}
+
+	public void setIdEmpleado(long idEmpleado) {
+		this.idEmpleado = idEmpleado;
+	}
+
+	@Override
+	public String toString() {
+		return "Recepcionista [tipo=" + tipo + ", nombre=" + nombre + ", idEmpleado=" + idEmpleado + "]";
+	}
+	
+	
 }

@@ -45,7 +45,7 @@ public class Hospitalizacion implements VOHospitalizacion
 	 */
 	private String estadoSalud;
 	
-	private long idServSalud;
+	private int visitas;
 
 	/* ****************************************************************
 	 * 			Métodos
@@ -58,7 +58,7 @@ public class Hospitalizacion implements VOHospitalizacion
 		this.id = 0;
 		this.idIPS = 0;
 		this.estadoSalud = "";
-		this.idServSalud = 0;
+		this.visitas = 0;
 	}
 
 	/**
@@ -67,12 +67,12 @@ public class Hospitalizacion implements VOHospitalizacion
 	 * @param idBebida - El identificador de la bebida. Debe existir una bebida con dicho identificador
 	 * @param horario - El horario en el que el bar sirve la bebida (DIURNO, NOCTURNO, TODOS)
 	 */
-	public Hospitalizacion (long id, long idIPS, String estadoSalud, long idSerSalud) 
+	public Hospitalizacion (long id, long idIPS, String estadoSalud, int visitas) 
 	{
 		this.id = id;
 		this.idIPS = idIPS;
 		this.estadoSalud = estadoSalud;
-		this.idServSalud = idSerSalud;
+		this.visitas = visitas;
 	}
 
 	public long getId() {
@@ -100,11 +100,11 @@ public class Hospitalizacion implements VOHospitalizacion
 	}
 
 	public long getIdConsultaControl() {
-		return idServSalud;
+		return visitas;
 	}
 
-	public void setIdConsultaControl(long idConsultaControl) {
-		this.idServSalud = idConsultaControl;
+	public void setIdConsultaControl(int visitas) {
+		this.visitas = visitas;
 	}
 	
 	/** 
