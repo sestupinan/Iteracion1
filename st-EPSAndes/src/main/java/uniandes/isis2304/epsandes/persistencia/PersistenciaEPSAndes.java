@@ -847,7 +847,230 @@ public class PersistenciaEPSAndes
 
 	}
 
+//***************ITERACION 2***************************
+	
+	//RF10
+	/**
+	 * 
+	 * @param pidCampania 
+	 * @param pfechainicio
+	 * @param pfechafin
+	 * @param pnombrecampania
+	 * @param idsServ ids de servicios a reservar
+	 * @param cantReservar cantidad a reservar de cada servicio
+	 */
+	public List<Object> registrarCampania( Long pidCampania, Timestamp pfechainicio, Timestamp pfechafin, String pnombrecampania, int[] idsServ, int[] cantReservar)
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		List<Object> h = null;
+		try
+		{
+			tx.begin();
+			//Verifica disponibilidad
+			Query q = pm.newQuery(SQL, "INSERT INTO campaniaprevencion (\r\n" + 
+					"    id,\r\n" + 
+					"    fechainicio,\r\n" + 
+					"    fechafin,\r\n" + 
+					"    nombrecampania\r\n" + 
+					") VALUES (\r\n" + 
+					    pidCampania+",\r\n" + 
+					    pfechainicio+",\r\n" + 
+					    pfechafin+",\r\n" + 
+					    pnombrecampania+"\r\n" + 
+					");");
+			tx.commit();
+			for (int i = 0; i < idsServ.length; i++) {
+				Query p = pm.newQuery(SQL, "INSERT INTO reservan\r\n" + 
+						"(SELECT serviciosalud.idservsalud,"+ pidCampania+","+ cantReservar[i]+"\r\n" + 
+						"FROM serviciosalud\r\n" + 
+						"WHERE idservsalud ="+ idsServ[i]+"AND capacidad>="+cantReservar[i]+"\r\n" + 
+						";");
+				tx.commit();
+				Query r = pm.newQuery(SQL, "UPDATE serviciosalud\r\n" + 
+						"SET capacidad=capacidad-"+cantReservar[i]+"\r\n" + 
+						"WHERE idservsalud="+idsServ[i]+";");
+				tx.commit();
+			}
+			
+			Query s = pm.newQuery(SQL, "SELECT reservan.idcampaniaprev, reservan.idservsalud, serviciosalud.nombre, reservan.cantidadreservados, serviciosalud.horario\r\n" + 
+					"FROM reservan JOIN serviciosalud on serviciosalud.idservsalud = reservan.idservsalud\r\n" + 
+					"WHERE reservan.idcampaniaprev = "+pidCampania+";");
+			h = s.executeList();
 
+			log.trace ("Registro de la prestacion de un servicio de salud");
+			return h;
+		}
+		catch (Exception e)
+		{
+			//	        	e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+		return h;
+	}
+	
+	//RF11 Aca hay dos casos, uno en el que se quiere liberar unos servicios en especifico y otro en el que se borra toda la campania
+	//Caso especifico
+	public void cancelarServCampaniaEspec(Long[] pIdServSalud, long pIdCampania)
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			//Verifica disponibilidad
+			for (int i = 0; i < pIdServSalud.length; i++) {
+				Query q = pm.newQuery(SQL, "DELETE FROM reservan\r\n" + 
+						"WHERE idcampaniaprev ="+ pIdCampania+" AND idservsalud="+pIdServSalud+";");
+				tx.commit();
+			}		
+			log.trace ("Registro de la prestacion de un servicio de salud");
+
+		}
+		catch (Exception e)
+		{
+			//	        	e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+	}	
+	
+	//Caso general
+	public void cancelarServCampania(long pIdCampania)
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			//Verifica disponibilidad
+
+			Query q = pm.newQuery(SQL, "DELETE FROM reservan\r\n" + 
+					"WHERE idcampaniaprev ="+ pIdCampania+";");
+			tx.commit();
+			Query p = pm.newQuery(SQL, "DELETE FROM campaniaprevencion\r\n" + 
+					"WHERE id="+pIdCampania+";");
+			tx.commit();
+
+			log.trace ("Registro de la prestacion de un servicio de salud");
+
+		}
+		catch (Exception e)
+		{
+			//	        	e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+	}
+	
+	
+	//RF12
+	public void inhabilitarServ(Long[] pidservsalud, Timestamp[] pfechainicio, Timestamp[] pfechafin, Long[] pidips, String[] pcausa)
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			//Verifica disponibilidad
+			for (int i = 0; i < pidservsalud.length; i++) 
+			{
+				Query q = pm.newQuery(SQL, "INSERT INTO nodisponibilidad (\r\n" + 
+						"    idservsalud,\r\n" + 
+						"    fechainicio,\r\n" + 
+						"    idips,\r\n" + 
+						"    causa,\r\n" + 
+						"    fechafin\r\n" + 
+						") VALUES (\r\n" + 
+						    pidservsalud+",\r\n" + 
+						    pfechainicio+",\r\n" + 
+						    pidips+",\r\n" + 
+						    pcausa+",\r\n" + 
+						    pfechafin+"\r\n" + 
+						");");
+				tx.commit();
+				Query p = pm.newQuery(SQL, "update serviciosalud\r\n" + 
+						"set estado=0\r\n" + 
+						"where idservsalud ="+ pidservsalud+";");
+				tx.commit();
+			}		
+
+			log.trace ("Registro de la prestacion de un servicio de salud");
+
+		}
+		catch (Exception e)
+		{
+			//	        	e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+	}
+	
+	
+	//RF13
+	public void habilitarServ(Long[] pidservsalud)
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			//Verifica disponibilidad
+			for (int i = 0; i < pidservsalud.length; i++) 
+			{
+				Query q = pm.newQuery(SQL, "update serviciosalud\r\n" + 
+						"set estado=1\r\n" + 
+						"where idservsalud ="+ pidservsalud[i]+";");
+				tx.commit();
+			}		
+
+			log.trace ("Registro de la prestacion de un servicio de salud");
+
+		}
+		catch (Exception e)
+		{
+			//	        	e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+	}
+	
 
 	/**
 	 * Elimina todas las tuplas de todas las tablas de la base de datos de Parranderos
