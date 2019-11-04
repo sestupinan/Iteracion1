@@ -1,4 +1,5 @@
 /**~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ /**~~~~~~~~~~~~~~~~~~~~~~~
  * Universidad	de	los	Andes	(Bogotá	- Colombia)
  * Departamento	de	Ingeniería	de	Sistemas	y	Computación
  * Licenciado	bajo	el	esquema	Academic Free License versión 2.1
@@ -10,7 +11,7 @@
  * Julio de 2018
  * 
  * Revisado por: Claudia Jiménez, Christian Ariza
- * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * ~~~~~~~~~~~~~~~~~~~~~~~~
  */
 
 package uniandes.isis2304.epsandes.negocio;
@@ -39,25 +40,25 @@ import view.EPSAndesview;
 public class EPSAndes 
 {
 	private EPSAndesview view;
-	/* ****************************************************************
+	/* **********************
 	 * 			Constantes
-	 *****************************************************************/
+	 ***********************/
 	/**
 	 * Logger para escribir la traza de la ejecución
 	 */
 	private static Logger log = Logger.getLogger(EPSAndes.class.getName());
 
-	/* ****************************************************************
+	/* **********************
 	 * 			Atributos
-	 *****************************************************************/
+	 ***********************/
 	/**
 	 * El manejador de persistencia
 	 */
 	private PersistenciaEPSAndes pp;
 
-	/* ****************************************************************
+	/* **********************
 	 * 			Métodos
-	 *****************************************************************/
+	 ***********************/
 	/**
 	 * El constructor por defecto
 	 */
@@ -918,17 +919,29 @@ public class EPSAndes
 		pp.adicionarRecepcionista(pCaracteristicas, id, tipo, pNombre);
 	}
 
+<<<<<<< HEAD
 	public IPS registrarIPS(String pCaracteristicas, Long id, String tipo, String pLocalizacion)
+=======
+	public void registrarIPS(String pCaracteristicas, Long id, String tipo, String pLocalizacion)
+>>>>>>> ff9a850672271f2c2bc2254a7156d6e6f3ed4f58
 	{
 		return pp.adicionarIPS(pCaracteristicas, id, tipo, pLocalizacion);
 	}
 
+<<<<<<< HEAD
 	public Medico registrarMedico(Long id, String tipo, String pNombre, String pEspecialidad, int pNRegistroMedico)
+=======
+	public void registrarMedico(Long id, String tipo, String pNombre, String pEspecialidad, int pNRegistroMedico)
+>>>>>>> ff9a850672271f2c2bc2254a7156d6e6f3ed4f58
 	{
 		return pp.adicionarMedico(id, tipo, pNombre, pEspecialidad, pNRegistroMedico);
 	}
 
+<<<<<<< HEAD
 	public Usuario registrarUsuario(Long id, String tipo, String pNombre, Timestamp pFechaNacimiento)
+=======
+	public void registrarUsuario(Long id, String tipo, String pNombre, Timestamp pFechaNacimiento)
+>>>>>>> ff9a850672271f2c2bc2254a7156d6e6f3ed4f58
 	{
 		return pp.adicionarUsuario(id, tipo, pNombre, pFechaNacimiento);
 	}
@@ -1023,8 +1036,16 @@ public class EPSAndes
 		pp.encontrarServiciosPocaDemanda();
 	}
 	
+<<<<<<< HEAD
 	public ServicioSalud adicionarServSalud(long id, String tipo, int capacidad, long pServSalud)
 	{
 		return pp.adicionarServSalud(id, tipo, capacidad, pServSalud);
 	}
 }
+=======
+	public void adicionarServSalud(long id, String tipo, int capacidad, long pServSalud)
+	{
+		pp.adicionarServSalud(id, tipo, capacidad, pServSalud);
+	}
+}
+>>>>>>> ff9a850672271f2c2bc2254a7156d6e6f3ed4f58
