@@ -171,35 +171,35 @@ public class EPSAndesDemo {
 		}
 	}
 	
-	public void demoServicioSalud( )
+	public void demoGerente( )
 	{
 		try 
 		{
 			// Ejecución de la demo y recolección de los resultados
 			// ATENCIÓN: En una aplicación real, los datos JAMÁS están en el código
 
-			Long idServicioSalud = (long) 123456789;
-			String tipoServicioSalud = "Cita medica";
-			String
-			long pServSalud = 918273654;
-			boolean errorServicioSalud= false;
+			Long idGerente = (long) 123456789;
+			String tipoGerente = "Cita medica";
+			String pReporte = "Todo el gerente";
+			String nombreGerente = "Andres";
+			boolean errorGerente= false;
 
-			ServicioSalud servicioSalud = epsAndes.registrarGerente(pReporte, id, tipo, pNombre);
-			if (servicioSalud == null)
+			Gerente Gerente = epsAndes.registrarGerente(pReporte, idGerente, tipoGerente, nombreGerente);
+			if (Gerente == null)
 			{
-				errorServicioSalud = true;
+				errorGerente = true;
 			}
 
 			// Generación de la cadena de caracteres con la traza de la ejecución de la demo
 			String resultado = "Demo de creación y listado de IPS\n\n";
 			resultado += "\n\n************ Generando datos de prueba ************ \n";
-			if (errorServicioSalud)
+			if (errorGerente)
 			{
-				resultado += "*** Exception creando ServicioSalud !!\n";
-				resultado += "*** Es probable que ese ServicioSalud ya existiera y hay restricción de UNICIDAD sobre el id de el ServicioSalud\n";
+				resultado += "*** Exception creando Gerente !!\n";
+				resultado += "*** Es probable que ese Gerente ya existiera y hay restricción de UNICIDAD sobre el id de el Gerente\n";
 				resultado += "*** Revise el log de EPS Andes para más detalles\n";
 			}
-			resultado += "Adicionado la ips con el id: " + idServicioSalud + "\n";
+			resultado += "Adicionado la ips con el id: " + idGerente + "\n";
 			resultado += "\n Demo terminada";
 
 			System.out.println(resultado);

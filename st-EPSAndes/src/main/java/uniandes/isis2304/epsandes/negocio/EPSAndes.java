@@ -904,9 +904,9 @@ public class EPSAndes
 		return null;
 	}
 
-	public void registrarGerente(String pReporte, Long id, String tipo, String pNombre)
+	public Gerente registrarGerente(String pReporte, Long id, String tipo, String pNombre)
 	{
-		pp.adicionarGerente(pReporte, id, tipo, pNombre);
+		return pp.adicionarGerente(pReporte, id, tipo, pNombre);
 	}
 
 	public void registrarAdmin(String pCaracteristicas, Long id, String tipo, String pNombre)
@@ -919,29 +919,22 @@ public class EPSAndes
 		pp.adicionarRecepcionista(pCaracteristicas, id, tipo, pNombre);
 	}
 
-<<<<<<< HEAD
+
 	public IPS registrarIPS(String pCaracteristicas, Long id, String tipo, String pLocalizacion)
-=======
-	public void registrarIPS(String pCaracteristicas, Long id, String tipo, String pLocalizacion)
->>>>>>> ff9a850672271f2c2bc2254a7156d6e6f3ed4f58
+
 	{
 		return pp.adicionarIPS(pCaracteristicas, id, tipo, pLocalizacion);
 	}
 
-<<<<<<< HEAD
+
 	public Medico registrarMedico(Long id, String tipo, String pNombre, String pEspecialidad, int pNRegistroMedico)
-=======
-	public void registrarMedico(Long id, String tipo, String pNombre, String pEspecialidad, int pNRegistroMedico)
->>>>>>> ff9a850672271f2c2bc2254a7156d6e6f3ed4f58
 	{
 		return pp.adicionarMedico(id, tipo, pNombre, pEspecialidad, pNRegistroMedico);
 	}
 
-<<<<<<< HEAD
+
 	public Usuario registrarUsuario(Long id, String tipo, String pNombre, Timestamp pFechaNacimiento)
-=======
-	public void registrarUsuario(Long id, String tipo, String pNombre, Timestamp pFechaNacimiento)
->>>>>>> ff9a850672271f2c2bc2254a7156d6e6f3ed4f58
+
 	{
 		return pp.adicionarUsuario(id, tipo, pNombre, pFechaNacimiento);
 	}
@@ -1036,16 +1029,11 @@ public class EPSAndes
 		pp.encontrarServiciosPocaDemanda();
 	}
 	
-<<<<<<< HEAD
+
 	public ServicioSalud adicionarServSalud(long id, String tipo, int capacidad, long pServSalud)
 	{
 		return pp.adicionarServSalud(id, tipo, capacidad, pServSalud);
 	}
+	
 }
-=======
-	public void adicionarServSalud(long id, String tipo, int capacidad, long pServSalud)
-	{
-		pp.adicionarServSalud(id, tipo, capacidad, pServSalud);
-	}
-}
->>>>>>> ff9a850672271f2c2bc2254a7156d6e6f3ed4f58
+
