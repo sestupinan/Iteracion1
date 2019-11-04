@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import uniandes.isis2304.epsandes.negocio.EPSAndes;
+import uniandes.isis2304.epsandes.negocio.Gerente;
 import uniandes.isis2304.epsandes.negocio.IPS;
 import uniandes.isis2304.epsandes.negocio.Medico;
 import uniandes.isis2304.epsandes.negocio.ServicioSalud;
@@ -181,10 +182,10 @@ public class EPSAndesDemo {
 			Long idGerente = (long) 123456789;
 			String tipoGerente = "Cita medica";
 			String pReporte = "Todo el gerente";
-			String nombreGerente = "Andres";
+			String nombre = "Andres";
 			boolean errorGerente= false;
 
-			Gerente Gerente = epsAndes.registrarGerente(pReporte, idGerente, tipoGerente, nombreGerente);
+			Gerente Gerente = epsAndes.registrarGerente(pReporte, idGerente, tipoGerente, nombre);
 			if (Gerente == null)
 			{
 				errorGerente = true;
