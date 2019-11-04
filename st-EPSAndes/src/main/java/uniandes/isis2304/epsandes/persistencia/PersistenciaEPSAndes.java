@@ -657,7 +657,7 @@ public class PersistenciaEPSAndes
 		}
 		
 		//RF6 Registrar servicio salud
-		public Medico adicionarServSalud(long id, String tipo, int capacidad, long pServSalud)
+		public ServicioSalud adicionarServSalud(long id, String tipo, int capacidad, long pServSalud)
 		{
 			PersistenceManager pm = pmf.getPersistenceManager();
 	        Transaction tx=pm.currentTransaction();
