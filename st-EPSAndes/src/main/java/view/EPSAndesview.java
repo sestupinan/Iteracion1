@@ -26,12 +26,13 @@ public class EPSAndesview {
 		System.out.println("3. MOSTRAR EL ÍNDICE DE USO DE CADA UNO DE LOS SERVICIOS PROVISTOS");
 		System.out.println("4. MOSTRAR LOS SERVICIOS QUE CUMPLEN CON CIERTA CARACTERÍSTICA");
 		System.out.println("5. MOSTRAR LA UTILIZACIÓN DE SERVICIOS DE EPSANDES POR UN AFILIADO DADO, EN UN RANGO DE FECHAS INDICADO");
-		System.out.println("6. REGISTRAR ROLES DE USUARIOS");
-		System.out.println("7. REGISTRAR USUARIO");
-		System.out.println("8. REGISTRAR IPS");
-		System.out.println("9. REGISTRAR MÉDICO");
-		System.out.println("10. REGISTRAR AFILIADO");
-		System.out.println("11. REGISTRAR UN SERVICIO DE SALUD PRESTADO POR UNA IPS");
+		System.out.println("6. REGISTRAR USUARIOS");
+		System.out.println("7. REGISTRAR IPS");
+		System.out.println("8. REGISTRAR UN SERVICIO DE SALUD PRESTADO POR UNA IPS");
+		System.out.println("9. REGISTRAR CAMPAÑA");
+		System.out.println("10. CANCELAR SERVICIOS DE LA CAMPAÑA");
+		System.out.println("11. DESHABILITAR SERVICIOS DE SALUD");
+		System.out.println("12. REGISTRAR LA REAPERTURA DE SERVICIOS DE SALUD");
 		System.out.println("");
 		System.out.println("Digite el número de opción para ejecutar la tarea, luego presione enter: (Ej., 1):");
 
@@ -76,6 +77,16 @@ public class EPSAndesview {
 		System.out.println("6. REGISTRAR UNA ORDEN DE SERVICIO DE SALUD PARA UN AFILIADO POR PARTE DE UN MÉDICO");
 		System.out.println("7. REALIZAR LA RESERVA DE UN SERVICIO DE SALUD POR PARTE DE UN AFILIADO");
 		System.out.println("8. REGISTRAR LA PRESTACIÓN DE UN SERVICIO DE SALUD A UN AFILIADO POR PARTE DE UNA IPS");
+		System.out.println("9. REGISTRAR CAMPAÑA");
+		System.out.println("10. CANCELAR SERVICIOS DE LA CAMPAÑA");
+		System.out.println("11. DESHABILITAR SERVICIOS DE SALUD");
+		System.out.println("12. REGISTRAR LA REAPERTURA DE SERVICIOS DE SALUD");
+		System.out.println("13. ANALIZAR LA OPERACIÓN DE EPSANDES");
+		System.out.println("14. ENCONTRAR LOS AFILIADOS EXIGENTES");
+		System.out.println("15. ENCONTRAR LOS SERVICIOS QUE NO TIENEN MUCHA DEMANDA");
+		System.out.println("16. REGISTRAR USUARIOS");
+		System.out.println("17. REGISTRAR IPS");
+		System.out.println("18. REGISTRAR UN SERVICIO DE SALUD PRESTADO POR UNA IPS");
 		System.out.println("");
 		System.out.println("Digite el número de opción para ejecutar la tarea, luego presione enter: (Ej., 1):");
 
