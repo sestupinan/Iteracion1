@@ -176,6 +176,14 @@ public class PersistenciaEPSAndes
 		tablas.add ("TRABAJAN");
 		tablas.add ("USAN");
 		tablas.add ("USUARIO");
+		tablas.add("ADMINISTRADOR");
+		tablas.add("CAMPANIAPREVENCION");
+		tablas.add("EXAMENSANGRE");
+		tablas.add("JORNADAVACUNACION");
+		tablas.add("RADIOGRAFIA");
+		tablas.add("NODISPONIBILIDAD");
+		tablas.add("REGISTRAN");
+		tablas.add("RESERVAN");
 }
 
 	/**
@@ -388,6 +396,46 @@ public class PersistenciaEPSAndes
 	public String darTablaUsuario ()
 	{
 		return tablas.get (19);
+	}
+	
+	public String darTablaAdministrador ()
+	{
+		return tablas.get (20);
+	}
+	
+	public String darTablaCampañaPrevencion ()
+	{
+		return tablas.get (21);
+	}
+	
+	public String darTablaExamenSangre ()
+	{
+		return tablas.get (22);
+	}
+	
+	public String darTablaJornadaVacunacion ()
+	{
+		return tablas.get (23);
+	}
+	
+	public String darTablaRadiografia ()
+	{
+		return tablas.get (24);
+	}
+	
+	public String darTablaNoDisponibilidad ()
+	{
+		return tablas.get (25);
+	}
+	
+	public String darTablaRegistran ()
+	{
+		return tablas.get (26);
+	}
+	
+	public String darTablaReservan ()
+	{
+		return tablas.get (27);
 	}
 	
 	/**
@@ -1088,19 +1136,11 @@ public class PersistenciaEPSAndes
 	{
 
 		//Verifica disponibilidad
-		Query q = pmf.getPersistenceManager().newQuery(SQL, "SELECT *\r\n" + 
-				"FROM usuario, \r\n" + 
-				"    (\r\n" + 
-				"    SELECT COUNT(*) c,  usuario.nidentificacion n\r\n" + 
-				"    FROM usan, usuario,\r\n" + 
-				"        (\r\n" + 
-				"        SELECT COUNT(DISTINCT(usan.idservsalud)) co, usan.idusuario \r\n" + 
-				"        FROM usan group by usan.idusuario\r\n" + 
-				"        ) aux2\r\n" + 
-				"    WHERE usan.idusuario = usuario.nidentificacion AND usan.estado=1  AND aux2.co >3\r\n" + 
-				"    GROUP BY usuario.nidentificacion\r\n" + 
-				"    ) aux\r\n" + 
-				"WHERE aux.c > 11 and usuario.nidentificacion=aux.n\r\n" + 
+		Query q = pmf.getPersistenceManager().newQuery(SQL, "SELECT usan.idservsalud,  TO_CHAR(usan.fechareserva, 'WW') unidadtiempo, serviciosalud.nombre, COUNT(*)cuenta\r\n" + 
+				"FROM usan JOIN serviciosalud on serviciosalud.idservsalud=usan.idservsalud\r\n" + 
+				"WHERE usan.estado=0\r\n" + 
+				"GROUP BY usan.idservsalud, TO_CHAR(usan.fechareserva, 'WW'), serviciosalud.nombre\r\n" + 
+				"ORDER BY cuenta desc\r\n" + 
 				";");
 
 		log.trace ("Indice de uso de cada servicio");
@@ -1110,20 +1150,11 @@ public class PersistenciaEPSAndes
 	public void analizarOperacionMayorActividad(String unidadTiempo, Long pIdServSalud)
 	{
 
-		//Verifica disponibilidad
-		Query q = pmf.getPersistenceManager().newQuery(SQL, "SELECT *\r\n" + 
-				"FROM usuario, \r\n" + 
-				"    (\r\n" + 
-				"    SELECT COUNT(*) c,  usuario.nidentificacion n\r\n" + 
-				"    FROM usan, usuario,\r\n" + 
-				"        (\r\n" + 
-				"        SELECT COUNT(DISTINCT(usan.idservsalud)) co, usan.idusuario \r\n" + 
-				"        FROM usan group by usan.idusuario\r\n" + 
-				"        ) aux2\r\n" + 
-				"    WHERE usan.idusuario = usuario.nidentificacion AND usan.estado=1  AND aux2.co >3\r\n" + 
-				"    GROUP BY usuario.nidentificacion\r\n" + 
-				"    ) aux\r\n" + 
-				"WHERE aux.c > 11 and usuario.nidentificacion=aux.n\r\n" + 
+		Query q = pmf.getPersistenceManager().newQuery(SQL, "SELECT usan.idservsalud,  TO_CHAR(usan.fechaatencion, 'WW') unidadtiempo, serviciosalud.nombre, COUNT(*)cuenta\r\n" + 
+				"FROM usan JOIN serviciosalud on serviciosalud.idservsalud=usan.idservsalud\r\n" + 
+				"WHERE usan.estado=1\r\n" + 
+				"GROUP BY usan.idservsalud, TO_CHAR(usan.fechaatencion, 'WW'), serviciosalud.nombre\r\n" + 
+				"ORDER BY cuenta desc\r\n" + 
 				";");
 
 		log.trace ("Indice de uso de cada servicio");
@@ -1133,20 +1164,11 @@ public class PersistenciaEPSAndes
 	public void analizarOperacionMenorDemanda(String unidadTiempo, Long pIdServSalud)
 	{
 
-		//Verifica disponibilidad
-		Query q = pmf.getPersistenceManager().newQuery(SQL, "SELECT *\r\n" + 
-				"FROM usuario, \r\n" + 
-				"    (\r\n" + 
-				"    SELECT COUNT(*) c,  usuario.nidentificacion n\r\n" + 
-				"    FROM usan, usuario,\r\n" + 
-				"        (\r\n" + 
-				"        SELECT COUNT(DISTINCT(usan.idservsalud)) co, usan.idusuario \r\n" + 
-				"        FROM usan group by usan.idusuario\r\n" + 
-				"        ) aux2\r\n" + 
-				"    WHERE usan.idusuario = usuario.nidentificacion AND usan.estado=1  AND aux2.co >3\r\n" + 
-				"    GROUP BY usuario.nidentificacion\r\n" + 
-				"    ) aux\r\n" + 
-				"WHERE aux.c > 11 and usuario.nidentificacion=aux.n\r\n" + 
+		Query q = pmf.getPersistenceManager().newQuery(SQL, "SELECT usan.idservsalud,  TO_CHAR(usan.fechareserva, 'WW') unidadtiempo, serviciosalud.nombre, COUNT(*)cuenta\r\n" + 
+				"FROM usan JOIN serviciosalud on serviciosalud.idservsalud=usan.idservsalud\r\n" + 
+				"WHERE usan.estado=1\r\n" + 
+				"GROUP BY usan.idservsalud, TO_CHAR(usan.fechareserva, 'WW'), serviciosalud.nombre\r\n" + 
+				"ORDER BY cuenta asc\r\n" + 
 				";");
 
 		log.trace ("Indice de uso de cada servicio");
@@ -1158,7 +1180,6 @@ public class PersistenciaEPSAndes
 	public void encontrarAfiliadosExigentes()
 	{
 
-		//Verifica disponibilidad
 		Query q = pmf.getPersistenceManager().newQuery(SQL, "SELECT *\r\n" + 
 				"FROM usuario, \r\n" + 
 				"    (\r\n" + 
