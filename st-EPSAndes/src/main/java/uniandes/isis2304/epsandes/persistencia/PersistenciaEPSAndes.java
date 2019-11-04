@@ -1166,7 +1166,7 @@ public class PersistenciaEPSAndes
 
 		Query q = pmf.getPersistenceManager().newQuery(SQL, "SELECT usan.idservsalud,  TO_CHAR(usan.fechareserva, 'WW') unidadtiempo, serviciosalud.nombre, COUNT(*)cuenta\r\n" + 
 				"FROM usan JOIN serviciosalud on serviciosalud.idservsalud=usan.idservsalud\r\n" + 
-				"WHERE usan.estado=1\r\n" + 
+				"WHERE usan.estado=0\r\n" + 
 				"GROUP BY usan.idservsalud, TO_CHAR(usan.fechareserva, 'WW'), serviciosalud.nombre\r\n" + 
 				"ORDER BY cuenta asc\r\n" + 
 				";");
