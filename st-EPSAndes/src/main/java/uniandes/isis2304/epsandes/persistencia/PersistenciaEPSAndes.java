@@ -830,6 +830,7 @@ public class PersistenciaEPSAndes
 					"WHERE (fechaatencion BETWEEN"+ pFechaInicial+" AND"+ pFechaFinal+") AND estado = 1");
 			q.setResultClass(ServicioSalud.class);
 			log.trace ("Servicios prestados por IPS en rango de fechas");
+			System.out.println(q.executeList());
 			return (List<ServicioSalud>) q.executeList();
 	}
 	
@@ -852,6 +853,7 @@ public class PersistenciaEPSAndes
 			q.setResultClass(ServicioSalud.class);
 			List<String> rta;
 			rta = (List<String>) q.executeList();
+			System.out.println(q.executeList());
 			return rta;
 	}
 
@@ -864,8 +866,8 @@ public class PersistenciaEPSAndes
 					"FROM usan JOIN serviciosalud ON usan.idservsalud = serviciosalud.idservsalud\r\n" + 
 					"WHERE (fechaatencion BETWEEN"+ pFechaInicial+" AND"+ pFechaFinal+") AND estado = 1 \r\n" + 
 					"group by serviciosalud.idservsalud;");
-
-
+			
+			System.out.println(q.executeList());
 			log.trace ("Indice de uso de cada servicio");
 	}
 
@@ -878,7 +880,7 @@ public class PersistenciaEPSAndes
 				"WHERE (fechaatencion BETWEEN pFechaInicial AND pFechaFinal) AND estado = 1 \r\n" + 
 				"group by serviciosalud.idservsalud;");
 
-
+		System.out.println(q.executeList());
 		log.trace ("Indice de uso de cada servicio");
 
 
@@ -889,11 +891,10 @@ public class PersistenciaEPSAndes
 	public void mostrarUsoServiciosAfiliadoDado(long pFechaInicial, Timestamp pFechaFinal, long pUsuarioId)
 	{
 
-		//Verifica disponibilidad
 		Query q = pmf.getPersistenceManager().newQuery(SQL, "SELECT usuario.nombre\r\n" + 
 				"FROM usuario, usan\r\n" + 
 				"WHERE"+ pUsuarioId+" = usuario.nidentificacion AND usan.idusuario = "+pUsuarioId+" AND fechaatencion BETWEEN"+ pFechaInicial+" AND "+pFechaFinal+"");
-
+		System.out.println(q.executeList());
 		log.trace ("Indice de uso de cada servicio");
 
 	}
@@ -949,7 +950,7 @@ public class PersistenciaEPSAndes
 					"FROM reservan JOIN serviciosalud on serviciosalud.idservsalud = reservan.idservsalud\r\n" + 
 					"WHERE reservan.idcampaniaprev = "+pidCampania+";");
 			h = s.executeList();
-
+			System.out.println(s.executeList());
 			log.trace ("Registro de la prestacion de un servicio de salud");
 			return h;
 		}
@@ -1136,13 +1137,13 @@ public class PersistenciaEPSAndes
 	{
 
 		//Verifica disponibilidad
-		Query q = pmf.getPersistenceManager().newQuery(SQL, "SELECT usan.idservsalud,  TO_CHAR(usan.fechareserva, 'WW') unidadtiempo, serviciosalud.nombre, COUNT(*)cuenta\r\n" + 
+		Query q = pmf.getPersistenceManager().newQuery(SQL, "SELECT usan.idservsalud,  TO_CHAR(usan.fechareserva, '"+unidadTiempo+"') unidadtiempo, serviciosalud.nombre, COUNT(*)cuenta\r\n" + 
 				"FROM usan JOIN serviciosalud on serviciosalud.idservsalud=usan.idservsalud\r\n" + 
 				"WHERE usan.estado=0\r\n" + 
-				"GROUP BY usan.idservsalud, TO_CHAR(usan.fechareserva, 'WW'), serviciosalud.nombre\r\n" + 
+				"GROUP BY usan.idservsalud, TO_CHAR(usan.fechareserva, '"+unidadTiempo+"'), serviciosalud.nombre\r\n" + 
 				"ORDER BY cuenta desc\r\n" + 
 				";");
-
+		System.out.println(q.executeList());
 		log.trace ("Indice de uso de cada servicio");
 
 	}
@@ -1150,12 +1151,13 @@ public class PersistenciaEPSAndes
 	public void analizarOperacionMayorActividad(String unidadTiempo, Long pIdServSalud)
 	{
 
-		Query q = pmf.getPersistenceManager().newQuery(SQL, "SELECT usan.idservsalud,  TO_CHAR(usan.fechaatencion, 'WW') unidadtiempo, serviciosalud.nombre, COUNT(*)cuenta\r\n" + 
+		Query q = pmf.getPersistenceManager().newQuery(SQL, "SELECT usan.idservsalud,  TO_CHAR(usan.fechaatencion, '"+unidadTiempo+"') unidadtiempo, serviciosalud.nombre, COUNT(*)cuenta\r\n" + 
 				"FROM usan JOIN serviciosalud on serviciosalud.idservsalud=usan.idservsalud\r\n" + 
 				"WHERE usan.estado=1\r\n" + 
-				"GROUP BY usan.idservsalud, TO_CHAR(usan.fechaatencion, 'WW'), serviciosalud.nombre\r\n" + 
+				"GROUP BY usan.idservsalud, TO_CHAR(usan.fechaatencion, '"+unidadTiempo+"'), serviciosalud.nombre\r\n" + 
 				"ORDER BY cuenta desc\r\n" + 
 				";");
+		System.out.println(q.executeList());
 
 		log.trace ("Indice de uso de cada servicio");
 
@@ -1164,13 +1166,13 @@ public class PersistenciaEPSAndes
 	public void analizarOperacionMenorDemanda(String unidadTiempo, Long pIdServSalud)
 	{
 
-		Query q = pmf.getPersistenceManager().newQuery(SQL, "SELECT usan.idservsalud,  TO_CHAR(usan.fechareserva, 'WW') unidadtiempo, serviciosalud.nombre, COUNT(*)cuenta\r\n" + 
+		Query q = pmf.getPersistenceManager().newQuery(SQL, "SELECT usan.idservsalud,  TO_CHAR(usan.fechareserva, '"+unidadTiempo+"') unidadtiempo, serviciosalud.nombre, COUNT(*)cuenta\r\n" + 
 				"FROM usan JOIN serviciosalud on serviciosalud.idservsalud=usan.idservsalud\r\n" + 
 				"WHERE usan.estado=0\r\n" + 
-				"GROUP BY usan.idservsalud, TO_CHAR(usan.fechareserva, 'WW'), serviciosalud.nombre\r\n" + 
+				"GROUP BY usan.idservsalud, TO_CHAR(usan.fechareserva, '"+unidadTiempo+"'), serviciosalud.nombre\r\n" + 
 				"ORDER BY cuenta asc\r\n" + 
 				";");
-
+		System.out.println(q.executeList());
 		log.trace ("Indice de uso de cada servicio");
 
 	}
@@ -1194,7 +1196,7 @@ public class PersistenciaEPSAndes
 				"    ) aux\r\n" + 
 				"WHERE aux.c > 11 and usuario.nidentificacion=aux.n\r\n" + 
 				";");
-
+		System.out.println(q.executeList());
 		log.trace ("Indice de uso de cada servicio");
 
 	}
@@ -1210,7 +1212,7 @@ public class PersistenciaEPSAndes
 				"group by serviciosalud.idservsalud, serviciosalud.nombre, TO_CHAR(usan.fechareserva, 'WW') \r\n" + 
 				"HAVING COUNT(*)<3\r\n" + 
 				";");
-
+		System.out.println(q.executeList());
 		log.trace ("Indice de uso de cada servicio");
 
 	}
