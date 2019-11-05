@@ -1,4 +1,8 @@
+<<<<<<< HEAD
   package view;
+=======
+package view;
+>>>>>>> 237d758feca90c660840436d194604c196c606d2
 
 public class EPSAndesview {
 
@@ -12,8 +16,12 @@ public class EPSAndesview {
 		System.out.println("3. Afiliado");
 		System.out.println("4. Recepsionista");
 		System.out.println("5. Gerente");
+<<<<<<< HEAD
 		System.out.println("6. Demos");
 		System.out.println("7. Salir");
+=======
+		System.out.println("6. Salir");
+>>>>>>> 237d758feca90c660840436d194604c196c606d2
 		System.out.println("");
 		System.out.println("Digite el número de opción para ejecutar la tarea, luego presione enter: (Ej., 1):");
 
@@ -106,6 +114,7 @@ public class EPSAndesview {
 
 	}
 	
+<<<<<<< HEAD
 	public void printMenuDemo() {
 		System.out.println("---------------------Seleccione requerimiento----------------------");
 		System.out.println("");
@@ -122,6 +131,8 @@ public class EPSAndesview {
 
 	}
 	
+=======
+>>>>>>> 237d758feca90c660840436d194604c196c606d2
 	
 
 	public void printMessage(String mensaje) {
