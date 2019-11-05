@@ -35,6 +35,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import uniandes.isis2304.epsandes.negocio.Administrador;
+import uniandes.isis2304.epsandes.negocio.Auxiliar;
 import uniandes.isis2304.epsandes.negocio.ConsultaControl;
 import uniandes.isis2304.epsandes.negocio.ConsultaMedica;
 import uniandes.isis2304.epsandes.negocio.ConsultaUrgencias;
@@ -1102,7 +1103,7 @@ public class PersistenciaEPSAndes
 			{
 				Query q = pm.newQuery(SQL, "update serviciosalud\r\n" + 
 						"set estado=1\r\n" + 
-						"where idservsalud ="+ pidservsalud[i]+";");
+						"where idservsalud ="+ pidservsalud[i]);
 				tx.commit();
 			}		
 
@@ -1141,8 +1142,7 @@ public class PersistenciaEPSAndes
 				"FROM usan JOIN serviciosalud on serviciosalud.idservsalud=usan.idservsalud\r\n" + 
 				"WHERE usan.estado=0\r\n" + 
 				"GROUP BY usan.idservsalud, TO_CHAR(usan.fechareserva, '"+unidadTiempo+"'), serviciosalud.nombre\r\n" + 
-				"ORDER BY cuenta desc\r\n" + 
-				";");
+				"ORDER BY cuenta desc\r\n" );
 		System.out.println(q.executeList());
 		log.trace ("Indice de uso de cada servicio");
 
@@ -1155,8 +1155,7 @@ public class PersistenciaEPSAndes
 				"FROM usan JOIN serviciosalud on serviciosalud.idservsalud=usan.idservsalud\r\n" + 
 				"WHERE usan.estado=1\r\n" + 
 				"GROUP BY usan.idservsalud, TO_CHAR(usan.fechaatencion, '"+unidadTiempo+"'), serviciosalud.nombre\r\n" + 
-				"ORDER BY cuenta desc\r\n" + 
-				";");
+				"ORDER BY cuenta desc\r\n" );
 		System.out.println(q.executeList());
 
 		log.trace ("Indice de uso de cada servicio");
@@ -1170,8 +1169,8 @@ public class PersistenciaEPSAndes
 				"FROM usan JOIN serviciosalud on serviciosalud.idservsalud=usan.idservsalud\r\n" + 
 				"WHERE usan.estado=0\r\n" + 
 				"GROUP BY usan.idservsalud, TO_CHAR(usan.fechareserva, '"+unidadTiempo+"'), serviciosalud.nombre\r\n" + 
-				"ORDER BY cuenta asc\r\n" + 
-				";");
+				"ORDER BY cuenta asc\r\n"  
+				);
 		System.out.println(q.executeList());
 		log.trace ("Indice de uso de cada servicio");
 
@@ -1194,9 +1193,17 @@ public class PersistenciaEPSAndes
 				"    WHERE usan.idusuario = usuario.nidentificacion AND usan.estado=1  AND aux2.co >3\r\n" + 
 				"    GROUP BY usuario.nidentificacion\r\n" + 
 				"    ) aux\r\n" + 
-				"WHERE aux.c > 11 and usuario.nidentificacion=aux.n\r\n" + 
-				";");
+				"WHERE aux.c > 11 and usuario.nidentificacion=aux.n\r\n" 
+				);
 		System.out.println(q.executeList());
+
+//		q.setResultClass(Auxiliar.class);
+//		List<Auxiliar> l = q.executeList();
+//		System.out.println(l);
+//		for (Auxiliar auxiliar : l) {
+//			System.out.println(auxiliar.toString());
+//
+//		}
 		log.trace ("Indice de uso de cada servicio");
 
 	}
@@ -1210,8 +1217,8 @@ public class PersistenciaEPSAndes
 				"FROM usan, serviciosalud\r\n" + 
 				"WHERE  usan.idservsalud = serviciosalud.idservsalud AND EXTRACT (YEAR FROM usan.fechareserva) = EXTRACT (YEAR FROM SYSDATE) -1\r\n" + 
 				"group by serviciosalud.idservsalud, serviciosalud.nombre, TO_CHAR(usan.fechareserva, 'WW') \r\n" + 
-				"HAVING COUNT(*)<3\r\n" + 
-				";");
+				"HAVING COUNT(*)<3\r\n" 
+				);
 		System.out.println(q.executeList());
 		log.trace ("Indice de uso de cada servicio");
 

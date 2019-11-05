@@ -25,7 +25,7 @@ import java.util.Scanner;
 import org.apache.log4j.Logger;
 import com.google.gson.JsonObject;
 
-
+import uniandes.isis2304.epsandes.interfazDemo.EPSAndesDemo;
 import uniandes.isis2304.epsandes.persistencia.PersistenciaEPSAndes;
 import view.EPSAndesview;
 
@@ -40,6 +40,8 @@ import view.EPSAndesview;
 public class EPSAndes 
 {
 	private EPSAndesview view;
+
+	private EPSAndesDemo demo;
 	/* **********************
 	 * 			Constantes
 	 ***********************/
@@ -66,6 +68,7 @@ public class EPSAndes
 	{
 		pp = PersistenciaEPSAndes.getInstance ();
 		view = new EPSAndesview();
+		demo = new EPSAndesDemo();
 	}
 
 	/**
@@ -273,9 +276,9 @@ public class EPSAndes
 					int capacidadServico = sc.nextInt();
 					System.out.println("Inserte el pServSalud");
 					long pServSalud = sc.nextLong();
-				
+
 					controller.adicionarServSalud(idServicio, tipoServico, capacidadServico, pServSalud);
-					
+
 					break;
 
 
@@ -737,7 +740,7 @@ public class EPSAndes
 					System.out.println("3. Con menor demanda");
 
 					int opcion1 = sc.nextInt();
-					
+
 					System.out.println("Ingrese la unidad de tiempo");
 					String unidadTiempo = sc.next();
 					System.out.println("Ingrese el id del servicio de salud");
@@ -754,22 +757,22 @@ public class EPSAndes
 					{
 						controller.analizarOperacionMenorDemanda(unidadTiempo, idServSalud);
 					}
-					
-					
+
+
 					break;
 
 				case 14:
 
 					controller.encontrarAfiliadosExigentes();
-					
+
 					break;
 
 				case 15:
 
 					controller.encontrarServiciosPocaDemanda();
-					
+
 					break;
-					
+
 				case 16:
 
 					view.printMenuRegistrarUsuario();
@@ -862,7 +865,7 @@ public class EPSAndes
 					System.out.println("Inserte las caracteristicas");
 					String caracteristicasIPS = sc.next();
 					System.out.println("Inserte el id de la IPS");
-					long idIPS = sc.nextLong();
+					Long idIPS = sc.nextLong();
 					System.out.println("Inserte el tipo de IPS");
 					String tipoIPS = sc.next();
 					System.out.println("Inserte la localización");
@@ -882,15 +885,59 @@ public class EPSAndes
 					int capacidadServico = sc.nextInt();
 					System.out.println("Inserte el pServSalud");
 					long pServSalud = sc.nextLong();
-				
+
 					controller.adicionarServSalud(idServicio, tipoServico, capacidadServico, pServSalud);
-					
+
 					break;
 
 				}
 				break;
 
-			case 6:	
+			case 6:
+
+				view.printMenuDemo();
+				int opcion3 = sc.nextInt();
+				switch(opcion3)
+				{
+				case 1:
+					controller.demoAdministrador();
+
+					break;
+				case 2:
+					demo.demoAfiliado();
+
+					break;
+				case 3:
+					demo.demoCampania();
+
+					break;
+				case 4:
+					demo.demoGerente();
+
+					break;
+				case 5:
+					demo.demoIPS();
+
+					break;
+				case 6:
+					demo.demoMedico();
+
+					break;
+				case 7:
+					demo.demoOrden();
+
+					break;
+				case 8:
+					demo.demoRecepcionista();
+
+					break;
+				case 9:
+					demo.demoServicioSalud();
+
+					break;
+				}
+				break;
+			case 7:	
 				fin=true;
 				sc.close();
 				break;
@@ -909,14 +956,14 @@ public class EPSAndes
 		return pp.adicionarGerente(pReporte, id, tipo, pNombre);
 	}
 
-	public void registrarAdmin(String pCaracteristicas, Long id, String tipo, String pNombre)
+	public Administrador registrarAdmin(String pCaracteristicas, Long id, String tipo, String pNombre)
 	{
-		pp.adicionarAdminDatos(pCaracteristicas, id, tipo, pNombre);
+		return pp.adicionarAdminDatos(pCaracteristicas, id, tipo, pNombre);
 	}
 
-	public void registrarRecepcionista(String pCaracteristicas, Long id, String tipo, String pNombre)
+	public Recepcionista registrarRecepcionista(String pCaracteristicas, Long id, String tipo, String pNombre)
 	{
-		pp.adicionarRecepcionista(pCaracteristicas, id, tipo, pNombre);
+		return pp.adicionarRecepcionista(pCaracteristicas, id, tipo, pNombre);
 	}
 
 
@@ -939,9 +986,9 @@ public class EPSAndes
 		return pp.adicionarUsuario(id, tipo, pNombre, pFechaNacimiento);
 	}
 
-	public void registrarOrden(String medicinas, long pIdSusuario, long pIdMedico, int ordenesExtra, Long[] idOrdenesExtra, Long[] idServExtra)
+	public Orden registrarOrden(String medicinas, long pIdSusuario, long pIdMedico, int ordenesExtra, Long[] idOrdenesExtra, Long[] idServExtra)
 	{
-		pp.registrarOrden(medicinas, pIdSusuario, pIdMedico, ordenesExtra, idOrdenesExtra, idServExtra);
+		return pp.registrarOrden(medicinas, pIdSusuario, pIdMedico, ordenesExtra, idOrdenesExtra, idServExtra);
 	}
 
 	public void reservaServMed(Timestamp fechaReserva, long pIdServSalud, long pIps, long pIdUsuario, long pIdOrden)
@@ -979,9 +1026,9 @@ public class EPSAndes
 		pp.mostrarUsoServiciosAfiliadoDado(pFechaInicial, pFechaFinal, pUsuarioId);
 	}
 
-	public void registrarCampania(Long pidCampania, Timestamp pfechainicio, Timestamp pfechafin, String pnombrecampania, int[] idsServ, int[] cantReservar) 
+	public List registrarCampania(Long pidCampania, Timestamp pfechainicio, Timestamp pfechafin, String pnombrecampania, int[] idsServ, int[] cantReservar) 
 	{
-		pp.registrarCampania(pidCampania, pfechainicio, pfechafin, pnombrecampania, idsServ, cantReservar);
+		return pp.registrarCampania(pidCampania, pfechainicio, pfechafin, pnombrecampania, idsServ, cantReservar);
 	}
 
 	public void cancelarServCampaniaEspec(Long[] pIdServSalud, long pIdCampania)
@@ -1028,12 +1075,17 @@ public class EPSAndes
 	{
 		pp.encontrarServiciosPocaDemanda();
 	}
-	
 
 	public ServicioSalud adicionarServSalud(long id, String tipo, int capacidad, long pServSalud)
 	{
 		return pp.adicionarServSalud(id, tipo, capacidad, pServSalud);
+
 	}
-	
+
+	public void demoAdministrador()
+	{
+		demo.demoAdministrador();
+	}
+
 }
 
