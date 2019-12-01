@@ -2,13 +2,13 @@ package uniandes.isis2304.epsandes.negocio;
 
 import java.sql.Date;
 
-public class CampañaPrevencion {
+public class CampañaPrevencion implements VOCampañaPrevencion {
 
-	private long id;
+	public long id;
 
-	private Date fechaInicio;
+	public Date fechaInicio;
 	
-	private Date column1;
+	public Date column1;
 	
 	public CampañaPrevencion(long id, Date fechaInicio, Date column1) {
 	

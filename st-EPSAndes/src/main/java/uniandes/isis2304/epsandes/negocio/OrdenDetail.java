@@ -1,15 +1,15 @@
 package uniandes.isis2304.epsandes.negocio;
 
-public class OrdenDetail {
+public class OrdenDetail implements VOOrdenDetail {
 	/* ****************************************************************
 	 * 			Atributos
 	 *****************************************************************/
 	/**
 	 * El identificador del bebedor que realiza la visita
 	 */
-	private long ordenId;
+	public long ordenId;
 	
-	private long servSaludId;
+	public long servSaludId;
 
 	/* ****************************************************************
 	 * 			Métodos

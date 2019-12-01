@@ -1,10 +1,10 @@
 package uniandes.isis2304.epsandes.negocio;
 
-public class ConsultaOdontologica {
+public class ConsultaOdontologica implements VOConsultaOdontologica{
 	
-	private long id;
+	public long id;
 	
-	private long idServicioSalud;
+	public long idServicioSalud;
 
 	public ConsultaOdontologica(long id, long idServicioSalud) {
 		this.id = id;

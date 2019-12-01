@@ -1,6 +1,6 @@
 package uniandes.isis2304.epsandes.negocio;
 
-public class JornadaVacunacion {
+public class JornadaVacunacion implements VOJornadaVacunacion{
 
 	private long id;
 	

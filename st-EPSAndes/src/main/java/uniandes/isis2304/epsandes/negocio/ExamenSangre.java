@@ -1,6 +1,6 @@
 package uniandes.isis2304.epsandes.negocio;
 
-public class ExamenSangre {
+public class ExamenSangre implements VOExamenSangre{
 
 	private long id;
 	

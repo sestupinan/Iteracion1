@@ -1,6 +1,6 @@
 package uniandes.isis2304.epsandes.negocio;
 
-public class Atienden {
+public class Atienden implements VOAtienden{
 	/* ****************************************************************
 	* 			Atributos
 	 *****************************************************************/

@@ -1,6 +1,6 @@
 package uniandes.isis2304.epsandes.negocio;
 
-public class Reservan {
+public class Reservan implements VOReservan{
 	
 	public long idServicioSalud;
 	

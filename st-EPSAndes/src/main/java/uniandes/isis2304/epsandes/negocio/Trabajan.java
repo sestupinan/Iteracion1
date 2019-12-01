@@ -2,14 +2,14 @@ package uniandes.isis2304.epsandes.negocio;
 
 import java.sql.Timestamp;
 
-public class Trabajan {
+public class Trabajan implements VOTrabajan{
 	/* ****************************************************************
 	* 			Atributos
 	 *****************************************************************/
 
-	private long idMedico;
+	public long idMedico;
 
-	private long idIPS;
+	public long idIPS;
 	
 
 	

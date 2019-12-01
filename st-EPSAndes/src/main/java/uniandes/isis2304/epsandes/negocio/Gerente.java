@@ -2,12 +2,12 @@ package uniandes.isis2304.epsandes.negocio;
 
 import java.sql.Timestamp;
 
-public class Gerente extends Empleado{
+public class Gerente extends Empleado implements VOGerente{
 	/* ****************************************************************
 	* 			Atributos
 	 *****************************************************************/
 
-	private String reporte;
+	public String reporte;
 
 	
 

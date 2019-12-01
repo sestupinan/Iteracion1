@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 import oracle.sql.TIMESTAMP;
 
-public class Auxiliar {
+public class Auxiliar implements VOAuxiliar{
 
 	public BigDecimal nidentificacion;
 	public String nombre;

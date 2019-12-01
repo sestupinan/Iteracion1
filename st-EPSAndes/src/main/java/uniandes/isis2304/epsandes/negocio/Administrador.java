@@ -2,7 +2,7 @@ package uniandes.isis2304.epsandes.negocio;
 
 import java.sql.Timestamp;
 
-public class Administrador extends Empleado
+public class Administrador extends Empleado implements VOAdministrador
 {
 	/* ****************************************************************
 	* 			Atributos

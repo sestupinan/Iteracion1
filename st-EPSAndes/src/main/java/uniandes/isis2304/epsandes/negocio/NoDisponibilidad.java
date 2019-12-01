@@ -2,7 +2,7 @@ package uniandes.isis2304.epsandes.negocio;
 
 import java.sql.Date;
 
-public class NoDisponibilidad {
+public class NoDisponibilidad implements VONoDisponibilidad {
 
 	private long idServicioSalud;
 	

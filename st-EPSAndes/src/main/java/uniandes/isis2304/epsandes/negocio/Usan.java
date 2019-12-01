@@ -2,25 +2,25 @@ package uniandes.isis2304.epsandes.negocio;
 
 import java.sql.Timestamp;
 
-public class Usan 
+public class Usan implements VOUsan
 {
 	/* ****************************************************************
 	* 			Atributos
 	 *****************************************************************/
 
-	private long idUsuario;
+	public long idUsuario;
 
-	private long idServSalud;
+	public long idServSalud;
 	
-	private Timestamp fechaReserva;
+	public Timestamp fechaReserva;
 	
-	private Timestamp fechaAtencion;
+	public Timestamp fechaAtencion;
 	
-	private long idRecepcionista;
+	public long idRecepcionista;
 	
-	private int estado;
+	public int estado;
 	
-	private long idOrden;
+	public long idOrden;
 	/* ****************************************************************
 	 * 			Métodos
 	 *****************************************************************/

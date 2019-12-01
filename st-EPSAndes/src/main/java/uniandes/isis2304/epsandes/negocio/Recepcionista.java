@@ -2,13 +2,13 @@ package uniandes.isis2304.epsandes.negocio;
 
 import java.sql.Timestamp;
 
-public class Recepcionista extends Empleado{
+public class Recepcionista extends Empleado implements VORecepcionista{
 	
-	private String tipo;
+	public String tipo;
 	
-	private String nombre;
+	public String nombre;
 	
-	private long idEmpleado;
+	public long idEmpleado;
 
 	public Recepcionista(String tipo, String nombre, long idEmpleado) {
 		super();

@@ -25,26 +25,15 @@ import java.sql.Date;
  */
 public interface VOServicioSalud 
 {
-	/* ****************************************************************
-	 * 			Métodos
-	 *****************************************************************/
-	/**
-	 * @return El id del tipo de bebida
-	 */
 	public long getId();
 
-	/**
-	 * @return El nombre del tipo de bebida
-	 */
-	public String getTipo();
+	public Date gethorario();
 
 	public int getCapacidad();
 	
-	/**
-	 * @return Una cadena de caracteres con la información del tipo de bebida
-	 */
+	public long getIdIPS();
+	
 	@Override
-	public String toString(); 
-
+	public String toString();
 	
 }

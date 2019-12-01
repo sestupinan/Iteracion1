@@ -15,6 +15,7 @@
 
 package uniandes.isis2304.epsandes.negocio;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 /**
@@ -28,23 +29,16 @@ public interface VOOrden
 	/* ****************************************************************
 	 * 			Métodos
 	 *****************************************************************/
-
-	/**
-	 * @return El idBar
-	 */
 	public long getIdOrden();
-
-
-	/**
-	 * @return El horario
-	 */
-	public String getmedicamentos();
 	
-	public long getIdServSalud();
+	public String getRecetaMedica();
 
-	/** 
-	 * @return Una cadena con la información básica
-	 */
+	public Date getFecha();
+
+	public long getIdMedico();
+
+	public long getIdUsuario();
+	
 	@Override
 	public String toString();
 

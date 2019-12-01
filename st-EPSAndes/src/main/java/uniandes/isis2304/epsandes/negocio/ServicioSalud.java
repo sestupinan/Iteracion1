@@ -22,7 +22,7 @@ import java.sql.Date;
  *
  * @author Germán Bravo
  */
-public class ServicioSalud 
+public class ServicioSalud implements VOServicioSalud
 {
 	/* ****************************************************************
 	 * 			Atributos
@@ -30,16 +30,16 @@ public class ServicioSalud
 	/**
 	 * El identificador del horario de bebida
 	 */
-	private long id;
+	public long id;
 
 	/**
 	 * El nombre del horario de bebida
 	 */
-	private Date horario;
+	public Date horario;
 	
 	public int capacidad;
 	
-	private long idIPS;
+	public long idIPS;
 	
 	/* ****************************************************************
 	 * 			Métodos

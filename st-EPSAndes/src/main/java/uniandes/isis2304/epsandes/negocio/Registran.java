@@ -1,6 +1,6 @@
 package uniandes.isis2304.epsandes.negocio;
 
-public class Registran {
+public class Registran implements VORegistran{
 
 	public long idUsuario;
 	
