@@ -11,7 +11,7 @@ public class Usuario implements VOUsuario
 	* 			Atributos
 	 *****************************************************************/
 
-	private long nIdentidad;
+	private long nIdentificacion;
 
 	private String tipoId;
 	
@@ -27,7 +27,7 @@ public class Usuario implements VOUsuario
 	 */
 	public Usuario() 
 	{
-		this.nIdentidad = 0;
+		this.nIdentificacion = 0;
 		this.tipoId = "";
 		this.fechaNacimiento = null;
 		this.nombre = "";
@@ -38,7 +38,7 @@ public class Usuario implements VOUsuario
 	 */
 	public Usuario(long id, String tipo, Timestamp pFechaNacimiento, String pNombre) 
 	{
-		this.nIdentidad = id;
+		this.nIdentificacion = id;
 		this.tipoId = tipo;
 		this.fechaNacimiento = pFechaNacimiento;
 		this.nombre = pNombre;
@@ -47,12 +47,12 @@ public class Usuario implements VOUsuario
 
 	public long getId() 
 	{
-		return nIdentidad;
+		return nIdentificacion;
 	}
 
 	public void setId(long id) 
 	{
-		this.nIdentidad = id;
+		this.nIdentificacion = id;
 	}
 
 	public String getTipo() {
@@ -87,7 +87,7 @@ public class Usuario implements VOUsuario
 	@Override
 	public String toString() 
 	{
-		return "ProcedimientoEspecializado [nIdentidad=" + nIdentidad + ", tipoId=" + tipoId+ ", fechaNacimiento=" + fechaNacimiento+ ", nombre=" + nombre + "]";
+		return "ProcedimientoEspecializado [nIdentificacion=" + nIdentificacion + ", tipoId=" + tipoId+ ", fechaNacimiento=" + fechaNacimiento+ ", nombre=" + nombre + "]";
 	}
 
 	

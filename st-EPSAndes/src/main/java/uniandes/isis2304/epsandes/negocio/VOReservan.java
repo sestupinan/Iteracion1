@@ -2,10 +2,12 @@ package uniandes.isis2304.epsandes.negocio;
 
 public interface VOReservan {
 	
-	public long getIdServicioSalud();
+	public long getIdServSalud();
+	
+	public long getIdCampaniaPrev();
 
-	public long getIdCampañaPreventiva();
-
+	public int getCantidadreservados();
+	
 	@Override
 	public String toString();
 

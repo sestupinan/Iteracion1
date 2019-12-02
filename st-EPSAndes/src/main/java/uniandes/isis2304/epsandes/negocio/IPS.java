@@ -6,11 +6,11 @@ public class IPS implements VOIPS
 	* 			Atributos
 	 *****************************************************************/
 
-	private long id;
+	public long idIPS;
 
-	private String tipo;
+	public String tipo;
 	
-	private String localizacion;
+	public String localizacion;
 	
 	
 	/* ****************************************************************
@@ -21,7 +21,7 @@ public class IPS implements VOIPS
 	 */
 	public IPS() 
 	{
-		this.id = 0;
+		this.idIPS = 0;
 		this.tipo = "";
 		this.localizacion = "";
 	}
@@ -31,7 +31,7 @@ public class IPS implements VOIPS
 	 */
 	public IPS(long id, String tipo, String pLocalizacion) 
 	{
-		this.id = id;
+		this.idIPS = id;
 		this.tipo = tipo;
 		this.localizacion = pLocalizacion;
 	}
@@ -39,12 +39,12 @@ public class IPS implements VOIPS
 
 	public long getId() 
 	{
-		return id;
+		return idIPS;
 	}
 
 	public void setId(long id) 
 	{
-		this.id = id;
+		this.idIPS = id;
 	}
 
 	public String getTipo() {
@@ -72,7 +72,7 @@ public class IPS implements VOIPS
 	@Override
 	public String toString() 
 	{
-		return "ProcedimientoEspecializado [id=" + id + ", tipo=" + tipo+ ", localizacion=" + localizacion + "]";
+		return "ProcedimientoEspecializado [id=" + idIPS + ", tipo=" + tipo+ ", localizacion=" + localizacion + "]";
 	}
 
 	

@@ -6,7 +6,7 @@ public class ExamenDiagnostico implements VOExamenDiagnostico
 	* 			Atributos
 	 *****************************************************************/
 
-	private long id;
+	private long idExDiagnostico;
 
 	private String resultado;
 	
@@ -22,7 +22,7 @@ public class ExamenDiagnostico implements VOExamenDiagnostico
 	 */
 	public ExamenDiagnostico() 
 	{
-		this.id = 0;
+		this.idExDiagnostico = 0;
 		this.resultado = "";
 		this.diagnostico = "";
 		this.idServSalud = 0;
@@ -33,7 +33,7 @@ public class ExamenDiagnostico implements VOExamenDiagnostico
 	 */
 	public ExamenDiagnostico(long id, String pResultado, String pDiagnostico, long pServSalud) 
 	{
-		this.id = id;
+		this.idExDiagnostico = id;
 		this.resultado = pResultado;
 		this.diagnostico = pDiagnostico;
 		this.idServSalud = pServSalud;
@@ -42,12 +42,12 @@ public class ExamenDiagnostico implements VOExamenDiagnostico
 
 	public long getId() 
 	{
-		return id;
+		return idExDiagnostico;
 	}
 
 	public void setId(long id) 
 	{
-		this.id = id;
+		this.idExDiagnostico = id;
 	}
 
 	public String getTipo() {
@@ -82,7 +82,7 @@ public class ExamenDiagnostico implements VOExamenDiagnostico
 	@Override
 	public String toString() 
 	{
-		return "ProcedimientoEspecializado [id=" + id + ", resultado=" + resultado+ ", diagnostico=" + diagnostico+ ", idServSalud=" + idServSalud + "]";
+		return "ProcedimientoEspecializado [id=" + idExDiagnostico + ", resultado=" + resultado+ ", diagnostico=" + diagnostico+ ", idServSalud=" + idServSalud + "]";
 	}
 
 	

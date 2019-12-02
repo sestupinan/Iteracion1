@@ -30,7 +30,7 @@ public class ServicioSalud implements VOServicioSalud
 	/**
 	 * El identificador del horario de bebida
 	 */
-	public long id;
+	public long idServSalud;
 
 	/**
 	 * El nombre del horario de bebida
@@ -53,7 +53,7 @@ public class ServicioSalud implements VOServicioSalud
 	 */
 	public ServicioSalud(long id, Date horario, int capacidad, long pServSalud) 
 	{
-		this.id = id;
+		this.idServSalud = id;
 		this.horario = horario;
 		this.capacidad = capacidad;
 		this.idIPS = pServSalud;
@@ -64,7 +64,7 @@ public class ServicioSalud implements VOServicioSalud
 	 */
 	public long getId() 
 	{
-		return id;
+		return idServSalud;
 	}
 
 	/**
@@ -72,7 +72,7 @@ public class ServicioSalud implements VOServicioSalud
 	 */
 	public void setId(long id) 
 	{
-		this.id = id;
+		this.idServSalud = id;
 	}
 
 	public Date gethorario() {
@@ -106,7 +106,7 @@ public class ServicioSalud implements VOServicioSalud
 	@Override
 	public String toString() 
 	{
-		return "ServicioSalud [id=" + id + ", horario=" + horario+ ", capacidad=" + capacidad+ ", idIPS=" + idIPS + "]";
+		return "ServicioSalud [id=" + idServSalud + ", horario=" + horario+ ", capacidad=" + capacidad+ ", idIPS=" + idIPS + "]";
 	}
 
 	

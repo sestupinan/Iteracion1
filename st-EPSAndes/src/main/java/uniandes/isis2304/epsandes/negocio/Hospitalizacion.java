@@ -33,19 +33,21 @@ public class Hospitalizacion implements VOHospitalizacion
 	/**
 	 * El identificador de la hospitalizacion
 	 */
-	private long id;
+	public long idHosp;
 	
 	/**
 	 * El identificador de la bebida que es servida en el bar
 	 */
-	private long idIPS;
+	public long IPS;
 	
 	/**
 	 * El horario en que sirve la bebida en el bar (BUENO, REGULAR, MALO, CRITICO)
 	 */
-	private String estadoSalud;
+	public String estadoSalud;
 	
-	private int visitas;
+	public int visitas;
+	
+	public long idServSalud;
 
 	/* ****************************************************************
 	 * 			Métodos
@@ -55,10 +57,11 @@ public class Hospitalizacion implements VOHospitalizacion
 	 */
 	public Hospitalizacion () 
 	{
-		this.id = 0;
-		this.idIPS = 0;
+		this.idHosp = 0;
+		this.IPS = 0;
 		this.estadoSalud = "";
 		this.visitas = 0;
+		this.idServSalud = 0;
 	}
 
 	/**
@@ -67,28 +70,29 @@ public class Hospitalizacion implements VOHospitalizacion
 	 * @param idBebida - El identificador de la bebida. Debe existir una bebida con dicho identificador
 	 * @param horario - El horario en el que el bar sirve la bebida (DIURNO, NOCTURNO, TODOS)
 	 */
-	public Hospitalizacion (long id, long idIPS, String estadoSalud, int visitas) 
+	public Hospitalizacion (long id, long IPS, String estadoSalud, int visitas, long idSer) 
 	{
-		this.id = id;
-		this.idIPS = idIPS;
+		this.idHosp = id;
+		this.IPS = IPS;
 		this.estadoSalud = estadoSalud;
 		this.visitas = visitas;
+		this.idServSalud = idSer;
 	}
 
 	public long getId() {
-		return id;
+		return idHosp;
 	}
 
 	public void setId(long id) {
-		this.id = id;
+		this.idHosp = id;
 	}
 
 	public long getIdIPS() {
-		return idIPS;
+		return IPS;
 	}
 
-	public void setIdIPS(long idIPS) {
-		this.idIPS = idIPS;
+	public void setIdIPS(long IPS) {
+		this.IPS = IPS;
 	}
 
 	public String getEstadoSalud() {
@@ -107,13 +111,14 @@ public class Hospitalizacion implements VOHospitalizacion
 		this.visitas = visitas;
 	}
 	
+	
 	/** 
 	 * @return Una cadena con la información básica
 	 */
 	@Override
 	public String toString() 
 	{
-		return "Sirven [idBar=" + id + ", idBebida=" + idIPS + ", horario=" + estadoSalud + "]";
+		return "Sirven [idBar=" + idHosp + ", idBebida=" + IPS + ", horario=" + estadoSalud + "]";
 	}
 
 }

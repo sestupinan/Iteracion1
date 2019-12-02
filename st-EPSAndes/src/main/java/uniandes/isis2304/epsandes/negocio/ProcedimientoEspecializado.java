@@ -6,13 +6,13 @@ public class ProcedimientoEspecializado implements VOProcedimientoEspecializado
 	* 			Atributos
 	 *****************************************************************/
 
-	private long id;
+	public long idProcesp;
 
-	private String tipo;
+	public String tipo;
 	
-	private String equipo;
+	public String equipos;
 	
-	private long idServSalud;
+	public long idServSalud;
 	
 	/* ****************************************************************
 	 * 			Métodos
@@ -22,9 +22,9 @@ public class ProcedimientoEspecializado implements VOProcedimientoEspecializado
 	 */
 	public ProcedimientoEspecializado() 
 	{
-		this.id = 0;
+		this.idProcesp = 0;
 		this.tipo = "";
-		this.equipo = "";
+		this.equipos = "";
 		this.idServSalud = 0;
 	}
 
@@ -33,21 +33,21 @@ public class ProcedimientoEspecializado implements VOProcedimientoEspecializado
 	 */
 	public ProcedimientoEspecializado(long id, String tipo, String pEquipo, long pServSalud) 
 	{
-		this.id = id;
+		this.idProcesp = id;
 		this.tipo = tipo;
-		this.equipo = pEquipo;
+		this.equipos = pEquipo;
 		this.idServSalud = pServSalud;
 	}
 
 
 	public long getId() 
 	{
-		return id;
+		return idProcesp;
 	}
 
 	public void setId(long id) 
 	{
-		this.id = id;
+		this.idProcesp = id;
 	}
 
 	public String getTipo() {
@@ -61,11 +61,11 @@ public class ProcedimientoEspecializado implements VOProcedimientoEspecializado
 
 	
 	public String getEquipo() {
-		return equipo;
+		return equipos;
 	}
 
-	public void setEquipo(String equipo) {
-		this.equipo = equipo;
+	public void setEquipo(String equipos) {
+		this.equipos = equipos;
 	}
 
 	public long getIdServSalud() {
@@ -82,7 +82,7 @@ public class ProcedimientoEspecializado implements VOProcedimientoEspecializado
 	@Override
 	public String toString() 
 	{
-		return "ProcedimientoEspecializado [id=" + id + ", tipo=" + tipo+ ", equipo=" + equipo+ ", idServSalud=" + idServSalud + "]";
+		return "ProcedimientoEspecializado [id=" + idProcesp + ", tipo=" + tipo+ ", equipos=" + equipos+ ", idServSalud=" + idServSalud + "]";
 	}
 
 	

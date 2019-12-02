@@ -32,7 +32,7 @@ public class ConsultaUrgencias implements VOConsultaUrgencias
 	/**
 	 * El identificador ÚNICO de la consulta de urgencias
 	 */
-	private Long id;	
+	private Long idConsUrgen;	
 	
 	/**
 	 * El triage de la consulta de urgencias
@@ -55,7 +55,7 @@ public class ConsultaUrgencias implements VOConsultaUrgencias
 	/**
 	 * El estado de dada de alta de la consulta de urgencias 
 	 */
-	private Boolean dadoDeAlta;
+	private Boolean dadaAlta;
 	
 	/* ****************************************************************
 	 * 			Métodos
@@ -65,11 +65,11 @@ public class ConsultaUrgencias implements VOConsultaUrgencias
 	 */
 	public ConsultaUrgencias() 
 	{
-		this.id = 0L;
+		this.idConsUrgen = 0L;
 		this.triage = "";
 		this.idMedico = 0L;
 		this.idServSalud = 0L;
-		this.dadoDeAlta = false;
+		this.dadaAlta = false;
 	}
 
 	/**
@@ -79,13 +79,13 @@ public class ConsultaUrgencias implements VOConsultaUrgencias
 	 * @param idMedico - El idMedico de la consulta de urgencias
 	 * @param idExamenDiagnostico - El idExamenDiagnostico de la consulta de urgencias 
 	 */
-	public ConsultaUrgencias(long id, String triage, long idMedico, long idServSalud, boolean dadoDeAlta) 
+	public ConsultaUrgencias(long id, String triage, long idMedico, long idServSalud, boolean dadaAlta) 
 	{
-		this.id = id;
+		this.idConsUrgen = id;
 		this.triage = triage;
 		this.idMedico = idMedico;
 		this.idServSalud = idServSalud;	
-		this.dadoDeAlta = dadoDeAlta;
+		this.dadaAlta = dadaAlta;
 	}
 
 	/**
@@ -93,7 +93,7 @@ public class ConsultaUrgencias implements VOConsultaUrgencias
 	 */
 	public Long getId() 
 	{
-		return id;
+		return idConsUrgen;
 	}
 
 	/**
@@ -101,7 +101,7 @@ public class ConsultaUrgencias implements VOConsultaUrgencias
 	 */
 	public void setId(Long id) 
 	{
-		this.id = id;
+		this.idConsUrgen = id;
 	}
 
 	/**
@@ -158,15 +158,15 @@ public class ConsultaUrgencias implements VOConsultaUrgencias
 	 */
 	public Boolean getDadoDeAlta() 
 	{
-		return dadoDeAlta;
+		return dadaAlta;
 	}
 
 	/**
-	 * @param dadoDeAlta - El nuevo estado de dada de alta de la consulta de urgencias
+	 * @param dadaAlta - El nuevo estado de dada de alta de la consulta de urgencias
 	 */
-	public void setDadoDeAlta(boolean dadoDeAlta) 
+	public void setDadoDeAlta(boolean dadaAlta) 
 	{
-		this.dadoDeAlta = dadoDeAlta;
+		this.dadaAlta = dadaAlta;
 	}
 
 
@@ -176,7 +176,7 @@ public class ConsultaUrgencias implements VOConsultaUrgencias
 	@Override
 	public String toString() 
 	{
-		return "Bebedor [id=" + id + ", triage=" + triage + ", idMedico=" + idMedico + ", dadoDeAlta=" + dadoDeAlta + "]";
+		return "Bebedor [id=" + idConsUrgen + ", triage=" + triage + ", idMedico=" + idMedico + ", dadaAlta=" + dadaAlta + "]";
 	}
 
 

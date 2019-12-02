@@ -32,7 +32,7 @@ public class ConsultaControl implements VOConsultaControl
 	/**
 	 * El identificador de la consulta de control
 	 */
-	private long id;
+	private long idConsCont;
 
 	/**
 	 * La efectividad de la consulta de control
@@ -43,7 +43,7 @@ public class ConsultaControl implements VOConsultaControl
 	
 	private String tratamiento;
 	
-	private Long idHospitalizacion;
+	private Long idHospitaliz;
 	
 	private Long idServSalud;
 
@@ -55,11 +55,11 @@ public class ConsultaControl implements VOConsultaControl
 	 */
 	public ConsultaControl() 
 	{
-		this.id = 0;
+		this.idConsCont = 0;
 		this.efectividad = "";
 		this.resultado = "";
 		this.tratamiento = "";
-		this.idHospitalizacion = 0L;
+		this.idHospitaliz = 0L;
 		this.idServSalud = 0L;
 	}
 
@@ -70,23 +70,23 @@ public class ConsultaControl implements VOConsultaControl
 	 */
 	public ConsultaControl(long id, String efectividad, String resultado, String tratamiento, long idHosp, long idServSalud) 
 	{
-		this.id = id;
+		this.idConsCont = id;
 		this.efectividad = efectividad;
 		this.resultado = "";
 		this.tratamiento = "";
-		this.idHospitalizacion = idHosp;
+		this.idHospitaliz = idHosp;
 		this.idServSalud = idServSalud;
 	}
 	
 	
 	public long getId() {
 		// TODO Auto-generated method stub
-		return id;
+		return idConsCont;
 	}
 
 	public void setId(long id) 
 	{
-		this.id = id;
+		this.idConsCont = id;
 	}
 
 	public String getEfectividad() {
@@ -121,11 +121,11 @@ public class ConsultaControl implements VOConsultaControl
 
 	
 	public Long getIdHospitalizacion() {
-		return idHospitalizacion;
+		return idHospitaliz;
 	}
 
 	public void setIdHospitalizacion(Long idHospitalizacion) {
-		this.idHospitalizacion = idHospitalizacion;
+		this.idHospitaliz = idHospitalizacion;
 	}
 
 	public Long getIdServSalud() {
@@ -142,6 +142,6 @@ public class ConsultaControl implements VOConsultaControl
 	@Override
 	public String toString() 
 	{
-		return "Consulta de control [id=" + id + ", efectividad=" + efectividad + "]";
+		return "Consulta de control [id=" + idConsCont + ", efectividad=" + efectividad + "]";
 	}
 }
