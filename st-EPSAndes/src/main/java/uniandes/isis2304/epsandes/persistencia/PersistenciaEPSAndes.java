@@ -504,19 +504,19 @@ public class PersistenciaEPSAndes
         }
 	}
 	
-	public Administrador adicionarAdminDatos(String pCaracteristicas, Long id, String tipo, String pNombre)
+	public Administrador adicionarAdminDatos(String pCaracteristicas, Long idEmpleado, Long idAdministrador)
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx=pm.currentTransaction();
         try
         {
             tx.begin();
-            long tuplasInsertadas = sqlAdministrador.adicionarAdmin(pm, pCaracteristicas, id, tipo, pNombre);
+            long tuplasInsertadas = sqlAdministrador.adicionarAdmin(pm, pCaracteristicas, idEmpleado, idAdministrador);
             tx.commit();
             
-            log.trace ("Inserción del admin de datos: " + id + ": " + tuplasInsertadas + " tuplas insertadas");
+            log.trace ("Inserción del admin de datos: " + idAdministrador + ": " + tuplasInsertadas + " tuplas insertadas");
             
-            return new Administrador(pCaracteristicas, pNombre, tipo, id);
+            return new Administrador(pCaracteristicas, idEmpleado, idAdministrador);
         }
         catch (Exception e)
         {

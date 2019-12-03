@@ -191,13 +191,10 @@ public class EPSAndes
 						String pCaracteristicas = sc.next();
 						System.out.println("Inserte el id del administrador");
 						long idAdministrador = sc.nextLong();
-						System.out.println("Inserte el tipo de administrador");
-						String tipoAdministrador = sc.next();
-						System.out.println("Inserte el nombre del administrador");
-						String nombreAdministrador = sc.next();
-
-						controller.registrarAdmin(pCaracteristicas, idAdministrador, tipoAdministrador, nombreAdministrador);
-
+						System.out.println("Inserte el id del empleado");
+						long idEmp = sc.nextLong();
+				
+						controller.registrarAdmin(pCaracteristicas, idAdministrador, idEmp);
 						break;
 
 					case 3:
@@ -800,12 +797,10 @@ public class EPSAndes
 						String pCaracteristicas = sc.next();
 						System.out.println("Inserte el id del administrador");
 						long idAdministrador = sc.nextLong();
-						System.out.println("Inserte el tipo de administrador");
-						String tipoAdministrador = sc.next();
-						System.out.println("Inserte el nombre del administrador");
-						String nombreAdministrador = sc.next();
-
-						controller.registrarAdmin(pCaracteristicas, idAdministrador, tipoAdministrador, nombreAdministrador);
+						System.out.println("Inserte el id del empleado");
+						long idEmp = sc.nextLong();
+				
+						controller.registrarAdmin(pCaracteristicas, idAdministrador, idEmp);
 
 						break;
 
@@ -904,7 +899,7 @@ public class EPSAndes
 					System.out.println("Inserte las IPS");
 					String ips = sc.next();
 					System.out.println("Agrupamiento");
-					System.out.println("Mostrar datos por 1. agrupamiento u 2. ordenamiento");
+					System.out.println("Mostrar datos por 1. agrupamiento, 2. ordenamiento, 3. Los dos");
 					int agruOrd = sc.nextInt();
 					System.out.println("Inserte rango de fechas de nacimiento");
 					System.out.println("Inserte fecha de inicio");
@@ -938,7 +933,7 @@ public class EPSAndes
 					System.out.println("Inserte las IPS");
 					String ips2 = sc.next();
 					System.out.println("Agrupamiento");
-					System.out.println("Mostrar datos por 1. agrupamiento u 2. ordenamiento");
+					System.out.println("Mostrar datos por 1. agrupamiento, 2. ordenamiento, 3. Los dos");
 					int agruOrd2 = sc.nextInt();
 					System.out.println("Inserte rango de fechas de nacimiento");
 					System.out.println("Inserte fecha de inicio");
@@ -1036,9 +1031,9 @@ public class EPSAndes
 		return pp.adicionarGerente(pReporte, id, tipo, pNombre);
 	}
 
-	public Administrador registrarAdmin(String pCaracteristicas, Long id, String tipo, String pNombre)
+	public Administrador registrarAdmin(String pCaracteristicas, Long idAdm, Long idEmp)
 	{
-		return pp.adicionarAdminDatos(pCaracteristicas, id, tipo, pNombre);
+		return pp.adicionarAdminDatos(pCaracteristicas, idAdm, idEmp);
 	}
 
 	public Recepcionista registrarRecepcionista(String pCaracteristicas, Long id, String tipo, String pNombre)

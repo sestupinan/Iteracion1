@@ -40,10 +40,10 @@ public class SQLAdministrador
 		this.pp = pp;
 	}
 	
-	public long adicionarAdmin (PersistenceManager pm, String pReporte, Long id, String tipo, String pNombre) 
+	public long adicionarAdmin (PersistenceManager pm, String pReporte, Long idAdmin, Long idEmp) 
 	{
 		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaAdministrador () + "(reporte) values (?)");
-		q.setParameters(pReporte,  id,  tipo,  pNombre);
+		q.setParameters(pReporte,  idAdmin,  idEmp);
 		return (long) q.executeUnique();
 	}
 
