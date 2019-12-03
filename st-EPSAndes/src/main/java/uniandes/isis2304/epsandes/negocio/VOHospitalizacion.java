@@ -26,26 +26,16 @@ public interface VOHospitalizacion
 	/* ****************************************************************
 	 * 			Métodos
 	 *****************************************************************/
-	/**
-	 * @return El idBar
-	 */
-	public long getId();
+	public long getIdHosp();
 
-	/**
-	 * @return El idBebida
-	 */
-	public long getIdIPS();
+	public long getIPS();
 
-	/**
-	 * @return El horario en que el bar sirve la bebida
-	 */
 	public String getEstadoSalud();
 
-	public long getIdConsultaControl();
-	
-	/** 
-	 * @return Una cadena con la información básica
-	 */
+	public int getVisitas();
+
+	public long getIdServSalud();
+
 	@Override
 	public String toString();
 
