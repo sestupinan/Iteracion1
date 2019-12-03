@@ -79,20 +79,21 @@ public class Hospitalizacion implements VOHospitalizacion
 		this.idServSalud = idSer;
 	}
 
-	public long getId() {
+	
+	public long getIdHosp() {
 		return idHosp;
 	}
 
-	public void setId(long id) {
-		this.idHosp = id;
+	public void setIdHosp(long idHosp) {
+		this.idHosp = idHosp;
 	}
 
-	public long getIdIPS() {
+	public long getIPS() {
 		return IPS;
 	}
 
-	public void setIdIPS(long IPS) {
-		this.IPS = IPS;
+	public void setIPS(long iPS) {
+		IPS = iPS;
 	}
 
 	public String getEstadoSalud() {
@@ -103,22 +104,31 @@ public class Hospitalizacion implements VOHospitalizacion
 		this.estadoSalud = estadoSalud;
 	}
 
-	public long getIdConsultaControl() {
+	public int getVisitas() {
 		return visitas;
 	}
 
-	public void setIdConsultaControl(int visitas) {
+	public void setVisitas(int visitas) {
 		this.visitas = visitas;
 	}
-	
-	
+
+	public long getIdServSalud() {
+		return idServSalud;
+	}
+
+	public void setIdServSalud(long idServSalud) {
+		this.idServSalud = idServSalud;
+	}
+
+	@Override
+	public String toString() {
+		return "Hospitalizacion [idHosp=" + idHosp + ", IPS=" + IPS + ", estadoSalud=" + estadoSalud + ", visitas="
+				+ visitas + ", idServSalud=" + idServSalud + "]";
+	}
+
 	/** 
 	 * @return Una cadena con la información básica
 	 */
-	@Override
-	public String toString() 
-	{
-		return "Sirven [idBar=" + idHosp + ", idBebida=" + IPS + ", horario=" + estadoSalud + "]";
-	}
+	
 
 }

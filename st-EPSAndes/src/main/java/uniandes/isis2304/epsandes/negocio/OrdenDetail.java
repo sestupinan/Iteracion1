@@ -9,7 +9,7 @@ public class OrdenDetail implements VOOrdenDetail {
 	 */
 	public long ordenId;
 	
-	public long servSaludId;
+	public long servicioId;
 
 	/* ****************************************************************
 	 * 			Métodos
@@ -20,7 +20,7 @@ public class OrdenDetail implements VOOrdenDetail {
 	public OrdenDetail() 
 	{
 		this.ordenId = 0;
-		this.servSaludId = 0;
+		this.servicioId = 0;
 	}
 
 	/**
@@ -33,7 +33,7 @@ public class OrdenDetail implements VOOrdenDetail {
 	public OrdenDetail(long idOrden, long pIdServSalud) 
 	{
 		this.ordenId = idOrden;
-		this.servSaludId = pIdServSalud;
+		this.servicioId = pIdServSalud;
 	}
 
 	/**
@@ -57,7 +57,7 @@ public class OrdenDetail implements VOOrdenDetail {
 	 */
 	public long getIdServSalud() 
 	{
-		return servSaludId;
+		return servicioId;
 	}
 
 	/**
@@ -65,7 +65,7 @@ public class OrdenDetail implements VOOrdenDetail {
 	 */
 	public void setIdServSalud(long idBar) 
 	{	
-		this.servSaludId = idBar;
+		this.servicioId = idBar;
 	}
 
 	/** 
@@ -74,6 +74,6 @@ public class OrdenDetail implements VOOrdenDetail {
 	@Override
 	public String toString() 
 	{
-		return "Visitan [idOrdenitalizacion=" + ordenId + "idServSalud=" + servSaludId+ "]";
+		return "Visitan [idOrdenitalizacion=" + ordenId + "idServSalud=" + servicioId+ "]";
 	}
 }

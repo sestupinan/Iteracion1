@@ -889,6 +889,86 @@ public class EPSAndes
 					controller.adicionarServSalud(idServicio, tipoServico, capacidadServico, pServSalud);
 
 					break;
+					
+				case 19:
+
+					System.out.println("Ingrese 0 en los campos que no quiere que sean tomados en cuenta");
+					System.out.println("Inserte servicios utilizados");
+					String servUtili = sc.next();
+					System.out.println("Inserte tipos de servicios");
+					String tipoServ = sc.next();
+					System.out.println("Inserte fecha de inicio");
+					long fechInicio = sc.nextLong();
+					System.out.println("Inserte fecha de fin");
+					long fechaFin = sc.nextLong();
+					System.out.println("Inserte las IPS");
+					String ips = sc.next();
+					System.out.println("Agrupamiento");
+					System.out.println("Mostrar datos por 1. agrupamiento u 2. ordenamiento");
+					int agruOrd = sc.nextInt();
+					System.out.println("Inserte rango de fechas de nacimiento");
+					System.out.println("Inserte fecha de inicio");
+					long fechInicioNa = sc.nextLong();
+					System.out.println("Inserte fecha de fin");
+					long fechaFinNa = sc.nextLong();
+					System.out.println("Inserte fecha del servicio");
+					long fechaServ = sc.nextLong();
+					System.out.println("Numero de veces de uso del servicio");
+					int numVe = sc.nextInt();
+					System.out.println("Inserte tipos de servicios");
+					String tipoServOrd = sc.next();
+					System.out.println("Inserte las IPS");
+					String ipsOrd = sc.next();
+
+					//controller.consultarLaPrestacionServiciosEPSandes(servUtili, tipoServ, fechaInicio, fechaFin, ips, agruOrd, fechInicioNa, fechaFinNa, fechaServ, numVe, tipoServOrd, ipsOrd);
+
+					break;
+					
+				case 20:
+
+					System.out.println("Ingrese 0 en los campos que no quiere que sean tomados en cuenta");
+					System.out.println("Inserte servicios utilizados");
+					String servUtili2 = sc.next();
+					System.out.println("Inserte tipos de servicios");
+					String tipoServ2 = sc.next();
+					System.out.println("Inserte fecha de inicio");
+					long fechInicio2 = sc.nextLong();
+					System.out.println("Inserte fecha de fin");
+					long fechaFin2 = sc.nextLong();
+					System.out.println("Inserte las IPS");
+					String ips2 = sc.next();
+					System.out.println("Agrupamiento");
+					System.out.println("Mostrar datos por 1. agrupamiento u 2. ordenamiento");
+					int agruOrd2 = sc.nextInt();
+					System.out.println("Inserte rango de fechas de nacimiento");
+					System.out.println("Inserte fecha de inicio");
+					long fechInicioNa2 = sc.nextLong();
+					System.out.println("Inserte fecha de fin");
+					long fechaFinNa2 = sc.nextLong();
+					System.out.println("Inserte fecha del servicio");
+					long fechaServ2 = sc.nextLong();
+					System.out.println("Numero de veces de uso del servicio");
+					int numVe2 = sc.nextInt();
+					System.out.println("Inserte tipos de servicios");
+					String tipoServOrd2 = sc.next();
+					System.out.println("Inserte las IPS");
+					String ipsOrd2 = sc.next();
+
+					//controller.consultarLaPrestacionServiciosEPSandes(servUtili2, tipoServ2, fechaInicio2, fechaFin2, ips2, agruOrd2, fechInicioNa2, fechaFinNa2, fechaServ2, numVe2, tipoServOrd2, ipsOrd2);
+
+					break;
+					
+				case 21:
+					
+					//controller.consultarFuncionamiento();
+
+					break;
+					
+				case 22:
+
+					//controller.consultarLosAfiliadosCostosos();
+
+					break;
 
 				}
 				break;

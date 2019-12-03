@@ -8,13 +8,11 @@ public class Administrador extends Empleado implements VOAdministrador
 	* 			Atributos
 	 *****************************************************************/
 
-	private String caracteristicas;
+	public String caracteristicas;
 	
-	private String tipo;
-	
-	private String nombre;
+	public Long idAdmin;
 
-	private Long idEmpleado;
+	public Long idEmpleado;
 
 
 	/* ****************************************************************
@@ -22,10 +20,9 @@ public class Administrador extends Empleado implements VOAdministrador
 	 *****************************************************************/
 
 	
-	public Administrador(String caracteristicas, String tipo, String nombre, Long idEmpleado) {
+	public Administrador(String caracteristicas, Long idEmpleado, Long idAdmin) {
 		this.caracteristicas = caracteristicas;
-		this.tipo = tipo;
-		this.nombre = nombre;
+		this.idAdmin = idAdmin;
 		this.idEmpleado = idEmpleado;
 	}
 
@@ -37,22 +34,6 @@ public class Administrador extends Empleado implements VOAdministrador
 		this.caracteristicas = caracteristicas;
 	}
 
-	public String getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
 	public Long getIdEmpleado() {
 		return idEmpleado;
 	}
@@ -61,11 +42,21 @@ public class Administrador extends Empleado implements VOAdministrador
 		this.idEmpleado = idEmpleado;
 	}
 
+	
+	public Long getIdAdmin() {
+		return idAdmin;
+	}
+
+	public void setIdAdmin(Long idAdmin) {
+		this.idAdmin = idAdmin;
+	}
+
 	@Override
 	public String toString() {
-		return "Administrador [caracteristicas=" + caracteristicas + ", tipo=" + tipo + ", nombre=" + nombre
-				+ ", idEmpleado=" + idEmpleado + "]";
+		return "Administrador [caracteristicas=" + caracteristicas + ", idAdmin=" + idAdmin + ", idEmpleado="
+				+ idEmpleado + "]";
 	}
+
 	
 	
 }

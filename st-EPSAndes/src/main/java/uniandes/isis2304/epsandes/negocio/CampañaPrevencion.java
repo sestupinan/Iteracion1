@@ -8,13 +8,16 @@ public class CampañaPrevencion implements VOCampañaPrevencion {
 
 	public Date fechaInicio;
 	
-	public Date column1;
+	public Date fechaFin;
 	
-	public CampañaPrevencion(long id, Date fechaInicio, Date column1) {
+	public String nombreCampania;
+	
+	public CampañaPrevencion(long id, Date fechaInicio, Date fechaFin, String nomCamp) {
 	
 		this.id = id;
 		this.fechaInicio = fechaInicio;
-		this.column1 = column1;
+		this.fechaFin = fechaFin;
+		this.nombreCampania = nomCamp;
 	}
 
 	public long getId() {
@@ -33,18 +36,29 @@ public class CampañaPrevencion implements VOCampañaPrevencion {
 		this.fechaInicio = fechaInicio;
 	}
 
-	public Date getColumn1() {
-		return column1;
+
+	public Date getFechaFin() {
+		return fechaFin;
 	}
 
-	public void setColumn1(Date column1) {
-		this.column1 = column1;
+	public void setFechaFin(Date fechaFin) {
+		this.fechaFin = fechaFin;
+	}
+
+	public String getNombreCampania() {
+		return nombreCampania;
+	}
+
+	public void setNombreCampania(String nombreCampania) {
+		this.nombreCampania = nombreCampania;
 	}
 
 	@Override
 	public String toString() {
-		return "CampañaPrevencion [id=" + id + ", fechaInicio=" + fechaInicio + ", column1=" + column1 + "]";
+		return "CampañaPrevencion [id=" + id + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin
+				+ ", nombreCampania=" + nombreCampania + "]";
 	}
 
+	
 	
 }

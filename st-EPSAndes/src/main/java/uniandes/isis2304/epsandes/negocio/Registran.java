@@ -4,12 +4,12 @@ public class Registran implements VORegistran{
 
 	public long idUsuario;
 	
-	public long campañaPreventiva;
+	public long campañaPrev;
 
-	public Registran(long idUsuario, long campañaPreventiva) {
+	public Registran(long idUsuario, long campañaPrev) {
 	
 		this.idUsuario = idUsuario;
-		this.campañaPreventiva = campañaPreventiva;
+		this.campañaPrev = campañaPrev;
 	}
 
 	public long getIdUsuario() {
@@ -21,16 +21,16 @@ public class Registran implements VORegistran{
 	}
 
 	public long getCampañaPreventiva() {
-		return campañaPreventiva;
+		return campañaPrev;
 	}
 
-	public void setCampañaPreventiva(long campañaPreventiva) {
-		this.campañaPreventiva = campañaPreventiva;
+	public void setCampañaPreventiva(long campañaPrev) {
+		this.campañaPrev = campañaPrev;
 	}
 
 	@Override
 	public String toString() {
-		return "Registran [idUsuario=" + idUsuario + ", campañaPreventiva=" + campañaPreventiva + "]";
+		return "Registran [idUsuario=" + idUsuario + ", campañaPrev=" + campañaPrev + "]";
 	}
 	
 	

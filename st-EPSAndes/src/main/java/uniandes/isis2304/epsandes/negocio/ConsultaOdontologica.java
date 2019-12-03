@@ -4,11 +4,11 @@ public class ConsultaOdontologica implements VOConsultaOdontologica{
 	
 	public long id;
 	
-	public long idServicioSalud;
+	public long idServSalud;
 
-	public ConsultaOdontologica(long id, long idServicioSalud) {
+	public ConsultaOdontologica(long id, long idServSalud) {
 		this.id = id;
-		this.idServicioSalud = idServicioSalud;
+		this.idServSalud = idServSalud;
 	}
 
 	public long getId() {
@@ -20,16 +20,16 @@ public class ConsultaOdontologica implements VOConsultaOdontologica{
 	}
 
 	public long getIdServicioSalud() {
-		return idServicioSalud;
+		return idServSalud;
 	}
 
-	public void setIdServicioSalud(long idServicioSalud) {
-		this.idServicioSalud = idServicioSalud;
+	public void setIdServicioSalud(long idServSalud) {
+		this.idServSalud = idServSalud;
 	}
 
 	@Override
 	public String toString() {
-		return "ConsultaOdontologica [id=" + id + ", idServicioSalud=" + idServicioSalud + "]";
+		return "ConsultaOdontologica [id=" + id + ", idServSalud=" + idServSalud + "]";
 	}
 	
 	

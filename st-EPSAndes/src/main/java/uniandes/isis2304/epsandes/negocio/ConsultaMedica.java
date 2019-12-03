@@ -28,7 +28,7 @@ public class ConsultaMedica implements VOConsultaMedica
 	/**
 	 * El identificador ÚNICO de los consulta medicas
 	 */
-	private long id;
+	private long idConsMedica;
 	
 	/**
 	 * El tipo de la consulta medica
@@ -53,7 +53,7 @@ public class ConsultaMedica implements VOConsultaMedica
      */
 	public ConsultaMedica() 
     {
-    	this.id = 0;
+    	this.idConsMedica = 0;
 		this.tipo = "";
 		this.dolencia = "";
 		this.idServicioSalud = 0;
@@ -68,7 +68,7 @@ public class ConsultaMedica implements VOConsultaMedica
 	 * @param cantSedes - Las sedes de la consulta medica (Mayor que 0)
 	 */
     public ConsultaMedica(long id, String tipo, String dolencia, long servSalud) {
-    	this.id = id;
+    	this.idConsMedica = id;
 		this.tipo = tipo;
 		this.dolencia = dolencia;
 		this.idServicioSalud = servSalud;
@@ -79,7 +79,7 @@ public class ConsultaMedica implements VOConsultaMedica
 	 */
 	public long getId() 
 	{
-		return id;
+		return idConsMedica;
 	}
 	
 	/**
@@ -87,7 +87,7 @@ public class ConsultaMedica implements VOConsultaMedica
 	 */
 	public void setId(long id) 
 	{
-		this.id = id;
+		this.idConsMedica = id;
 	}
 	
 	/**
@@ -138,7 +138,7 @@ public class ConsultaMedica implements VOConsultaMedica
 	 */
 	public String toString() 
 	{
-		return "consulta medica [id=" + id + ", tipo=" + tipo + ", dolencia=" + dolencia + ", receta=" + idServicioSalud
+		return "consulta medica [id=" + idConsMedica + ", tipo=" + tipo + ", dolencia=" + dolencia + ", receta=" + idServicioSalud
 				+ "]";
 	}
 	

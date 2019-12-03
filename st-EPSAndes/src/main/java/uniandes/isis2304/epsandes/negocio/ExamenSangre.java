@@ -2,13 +2,13 @@ package uniandes.isis2304.epsandes.negocio;
 
 public class ExamenSangre implements VOExamenSangre{
 
-	private long id;
+	public long id;
 	
-	private long idServicioSalud;
+	public long idServSalud;
 
-	public ExamenSangre(long id, long idServicioSalud) {
+	public ExamenSangre(long id, long idServSalud) {
 		this.id = id;
-		this.idServicioSalud = idServicioSalud;
+		this.idServSalud = idServSalud;
 	}
 
 	public long getId() {
@@ -20,16 +20,16 @@ public class ExamenSangre implements VOExamenSangre{
 	}
 
 	public long getIdServicioSalud() {
-		return idServicioSalud;
+		return idServSalud;
 	}
 
-	public void setIdServicioSalud(long idServicioSalud) {
-		this.idServicioSalud = idServicioSalud;
+	public void setIdServicioSalud(long idServSalud) {
+		this.idServSalud = idServSalud;
 	}
 
 	@Override
 	public String toString() {
-		return "ExamenSangre [id=" + id + ", idServicioSalud=" + idServicioSalud + "]";
+		return "ExamenSangre [id=" + id + ", idServSalud=" + idServSalud + "]";
 	}
 	
 	

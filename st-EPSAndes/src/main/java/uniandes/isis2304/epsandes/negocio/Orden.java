@@ -28,7 +28,7 @@ import java.sql.Timestamp;
  * 
  * @author Germán Bravo
  */
-public class Orden 
+public class Orden implements VOOrden 
 {
 	/* ****************************************************************
 	 * 			Atributos
@@ -36,20 +36,20 @@ public class Orden
 	/**
 	 * El identificador del bebedor que realiza la visita
 	 */
-	private long idOrden;
+	public long idOrden;
 	
-	private String recetaMedica;
+	public String rMedica;
 	
-	private Date fecha;
+	public Date fecha;
 	
-	private long idMedico;
+	public long idMedico;
 	
-	private long idUsuario;
+	public long idUsuario;
 
-	public Orden(long idOrden, String recetaMedica, Date fecha, long idMedico, long idUsuario) {
+	public Orden(long idOrden, String rMedica, Date fecha, long idMedico, long idUsuario) {
 		
 		this.idOrden = idOrden;
-		this.recetaMedica = recetaMedica;
+		this.rMedica = rMedica;
 		this.fecha = fecha;
 		this.idMedico = idMedico;
 		this.idUsuario = idUsuario;
@@ -64,11 +64,11 @@ public class Orden
 	}
 
 	public String getRecetaMedica() {
-		return recetaMedica;
+		return rMedica;
 	}
 
-	public void setRecetaMedica(String recetaMedica) {
-		this.recetaMedica = recetaMedica;
+	public void setRecetaMedica(String rMedica) {
+		this.rMedica = rMedica;
 	}
 
 	public Date getFecha() {
@@ -97,7 +97,7 @@ public class Orden
 
 	@Override
 	public String toString() {
-		return "Orden [idOrden=" + idOrden + ", recetaMedica=" + recetaMedica + ", fecha=" + fecha + ", idMedico="
+		return "Orden [idOrden=" + idOrden + ", rMedica=" + rMedica + ", fecha=" + fecha + ", idMedico="
 				+ idMedico + ", idUsuario=" + idUsuario + "]";
 	}
 	

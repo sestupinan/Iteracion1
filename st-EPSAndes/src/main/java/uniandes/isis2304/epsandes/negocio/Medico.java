@@ -6,20 +6,20 @@ public class Medico extends Empleado
 	* 			Atributos
 	 *****************************************************************/
 
-	private String especialidad;
+	public String especialidad;
 	
-	private long nRegistroMedico;
+	public long nRegMedico;
 	
-	private long idEmpleado;
+	public long idEmpleado;
 	
-	private String tipoid;
+	public String tipoid;
 	
-	private String nombre;
+	public String nombre;
 
-	public Medico(String especialidad, long nRegistroMedico, long idEmpleado, String tipoid, String nombre) {
+	public Medico(String especialidad, long nRegMedico, long idEmpleado, String tipoid, String nombre) {
 		super();
 		this.especialidad = especialidad;
-		this.nRegistroMedico = nRegistroMedico;
+		this.nRegMedico = nRegMedico;
 		this.idEmpleado = idEmpleado;
 		this.tipoid = tipoid;
 		this.nombre = nombre;
@@ -33,12 +33,12 @@ public class Medico extends Empleado
 		this.especialidad = especialidad;
 	}
 
-	public long getnRegistroMedico() {
-		return nRegistroMedico;
+	public long getnRegMedico() {
+		return nRegMedico;
 	}
 
-	public void setnRegistroMedico(long nRegistroMedico) {
-		this.nRegistroMedico = nRegistroMedico;
+	public void setnRegMedico(long nRegMedico) {
+		this.nRegMedico = nRegMedico;
 	}
 
 	public long getIdEmpleado() {
@@ -67,7 +67,7 @@ public class Medico extends Empleado
 
 	@Override
 	public String toString() {
-		return "Medico [especialidad=" + especialidad + ", nRegistroMedico=" + nRegistroMedico + ", idEmpleado="
+		return "Medico [especialidad=" + especialidad + ", nRegMedico=" + nRegMedico + ", idEmpleado="
 				+ idEmpleado + ", tipoid=" + tipoid + ", nombre=" + nombre + "]";
 	}
 		

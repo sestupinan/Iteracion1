@@ -6,9 +6,9 @@ public class Empleado implements VOEmpleado
 	* 			Atributos
 	 *****************************************************************/
 
-	private long id;
+	private long idEmpleado;
 
-	private String tipoId;
+	private String tipo;
 	
 	private String nombre;
 	
@@ -21,8 +21,8 @@ public class Empleado implements VOEmpleado
 	 */
 	public Empleado() 
 	{
-		this.id = 0;
-		this.tipoId = "";
+		this.idEmpleado = 0;
+		this.tipo = "";
 		this.nombre = "";
 	}
 
@@ -31,28 +31,28 @@ public class Empleado implements VOEmpleado
 	 */
 	public Empleado(long id, String pTipoId, String pNombre) 
 	{
-		this.id = id;
-		this.tipoId = pTipoId;
+		this.idEmpleado = id;
+		this.tipo = pTipoId;
 		this.nombre = pNombre;
 	}
 
 
 	public long getId() 
 	{
-		return id;
+		return idEmpleado;
 	}
 
 	public void setId(long id) 
 	{
-		this.id = id;
+		this.idEmpleado = id;
 	}
 
 	public String getTipo() {
-		return tipoId;
+		return tipo;
 	}
 
 	public void setTipo(String tipo) {
-		this.tipoId = tipo;
+		this.tipo = tipo;
 	}
 	
 
@@ -73,7 +73,7 @@ public class Empleado implements VOEmpleado
 	@Override
 	public String toString() 
 	{
-		return "ProcedimientoEspecializado [id=" + id + ", tipoId=" + tipoId+ ", nombre=" + nombre + "]";
+		return "ProcedimientoEspecializado [id=" + idEmpleado + ", tipo=" + tipo+ ", nombre=" + nombre + "]";
 	}
 
 }

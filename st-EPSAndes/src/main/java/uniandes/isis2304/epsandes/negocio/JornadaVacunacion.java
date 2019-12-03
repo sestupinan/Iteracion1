@@ -2,13 +2,13 @@ package uniandes.isis2304.epsandes.negocio;
 
 public class JornadaVacunacion implements VOJornadaVacunacion{
 
-	private long id;
+	public long id;
 	
-	private long idServicioSalud;
+	public long idServSalud;
 
-	public JornadaVacunacion(long id, long idServicioSalud) {
+	public JornadaVacunacion(long id, long idServSalud) {
 		this.id = id;
-		this.idServicioSalud = idServicioSalud;
+		this.idServSalud = idServSalud;
 	}
 
 	public long getId() {
@@ -20,16 +20,16 @@ public class JornadaVacunacion implements VOJornadaVacunacion{
 	}
 
 	public long getIdServicioSalud() {
-		return idServicioSalud;
+		return idServSalud;
 	}
 
-	public void setIdServicioSalud(long idServicioSalud) {
-		this.idServicioSalud = idServicioSalud;
+	public void setIdServicioSalud(long idServSalud) {
+		this.idServSalud = idServSalud;
 	}
 
 	@Override
 	public String toString() {
-		return "JornadaVacunacion [id=" + id + ", idServicioSalud=" + idServicioSalud + "]";
+		return "JornadaVacunacion [id=" + id + ", idServSalud=" + idServSalud + "]";
 	}
 	
 }

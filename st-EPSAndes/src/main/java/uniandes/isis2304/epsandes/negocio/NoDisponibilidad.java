@@ -4,18 +4,18 @@ import java.sql.Date;
 
 public class NoDisponibilidad implements VONoDisponibilidad {
 
-	private long idServicioSalud;
+	public long idServSalud;
 	
-	private Date fechaInicio;
+	public Date fechaInicio;
 	
-	private long idIPS;
+	public long idIPS;
 	
-	private String causa;
+	public String causa;
 	
-	private Date fechaFin;
+	public Date fechaFin;
 
-	public NoDisponibilidad(long idServicioSalud, Date fechaInicio, long idIPS, String causa, Date fechaFin) {
-		this.idServicioSalud = idServicioSalud;
+	public NoDisponibilidad(long idServSalud, Date fechaInicio, long idIPS, String causa, Date fechaFin) {
+		this.idServSalud = idServSalud;
 		this.fechaInicio = fechaInicio;
 		this.idIPS = idIPS;
 		this.causa = causa;
@@ -23,11 +23,11 @@ public class NoDisponibilidad implements VONoDisponibilidad {
 	}
 
 	public long getIdServicioSalud() {
-		return idServicioSalud;
+		return idServSalud;
 	}
 
-	public void setIdServicioSalud(long idServicioSalud) {
-		this.idServicioSalud = idServicioSalud;
+	public void setIdServicioSalud(long idServSalud) {
+		this.idServSalud = idServSalud;
 	}
 
 	public Date getFechaInicio() {
@@ -64,7 +64,7 @@ public class NoDisponibilidad implements VONoDisponibilidad {
 
 	@Override
 	public String toString() {
-		return "NoDisponibilidad [idServicioSalud=" + idServicioSalud + ", fechaInicio=" + fechaInicio + ", idIPS="
+		return "NoDisponibilidad [idServSalud=" + idServSalud + ", fechaInicio=" + fechaInicio + ", idIPS="
 				+ idIPS + ", causa=" + causa + ", fechaFin=" + fechaFin + "]";
 	}
 	

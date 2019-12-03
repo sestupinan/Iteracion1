@@ -90,6 +90,10 @@ public class EPSAndesview {
 		System.out.println("16. REGISTRAR USUARIOS");
 		System.out.println("17. REGISTRAR IPS");
 		System.out.println("18. REGISTRAR UN SERVICIO DE SALUD PRESTADO POR UNA IPS");
+		System.out.println("19. CONSULTAR LA PRESTACIÓN DE SERVICIOS EN EPSANDES");
+		System.out.println("20. CONSULTAR LA PRESTACIÓN DE SERVICIOS EN EPSANDES – NEGACION");
+		System.out.println("21. CONSULTAR FUNCIONAMIENTO");
+		System.out.println("22. CONSULTAR LOS AFILIADOS COSTOSOS");
 		System.out.println("");
 		System.out.println("Digite el número de opción para ejecutar la tarea, luego presione enter: (Ej., 1):");
 

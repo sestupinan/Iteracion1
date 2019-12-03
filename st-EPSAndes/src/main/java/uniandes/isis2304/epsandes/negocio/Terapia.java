@@ -6,13 +6,13 @@ public class Terapia implements VOTerapia
 	* 			Atributos
 	 *****************************************************************/
 
-	private long id;
+	public long idTerapia;
 
-	private String tipo;
+	public String tipo;
 	
-	private int nSesiones;
+	public int nSesiones;
 	
-	private long idServSalud;
+	public long idServSalud;
 	
 	/* ****************************************************************
 	 * 			Métodos
@@ -22,7 +22,7 @@ public class Terapia implements VOTerapia
 	 */
 	public Terapia() 
 	{
-		this.id = 0;
+		this.idTerapia = 0;
 		this.tipo = "";
 		this.nSesiones = 0;
 		this.idServSalud = 0;
@@ -33,7 +33,7 @@ public class Terapia implements VOTerapia
 	 */
 	public Terapia(long id, String tipo, int pNSesiones, long pServSalud) 
 	{
-		this.id = id;
+		this.idTerapia = id;
 		this.tipo = tipo;
 		this.nSesiones = pNSesiones;
 		this.idServSalud = pServSalud;
@@ -42,12 +42,12 @@ public class Terapia implements VOTerapia
 
 	public long getId() 
 	{
-		return id;
+		return idTerapia;
 	}
 
 	public void setId(long id) 
 	{
-		this.id = id;
+		this.idTerapia = id;
 	}
 
 	public String getTipo() {
@@ -82,7 +82,7 @@ public class Terapia implements VOTerapia
 	@Override
 	public String toString() 
 	{
-		return "ProcedimientoEspecializado [id=" + id + ", tipo=" + tipo+ ", nSesiones=" + nSesiones+ ", idServSalud=" + idServSalud + "]";
+		return "ProcedimientoEspecializado [id=" + idTerapia + ", tipo=" + tipo+ ", nSesiones=" + nSesiones+ ", idServSalud=" + idServSalud + "]";
 	}
 
 	

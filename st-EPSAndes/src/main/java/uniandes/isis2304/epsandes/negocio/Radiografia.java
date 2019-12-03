@@ -1,14 +1,14 @@
 package uniandes.isis2304.epsandes.negocio;
 
-public class Radiografia {
+public class Radiografia implements VORadiografia{
 
-	private long id;
+	public long id;
 	
-	private long idServicioSalud;
+	public long idServSalud;
 
-	public Radiografia(long id, long idServicioSalud) {
+	public Radiografia(long id, long idServSalud) {
 		this.id = id;
-		this.idServicioSalud = idServicioSalud;
+		this.idServSalud = idServSalud;
 	}
 
 	public long getId() {
@@ -20,15 +20,15 @@ public class Radiografia {
 	}
 
 	public long getIdServicioSalud() {
-		return idServicioSalud;
+		return idServSalud;
 	}
 
-	public void setIdServicioSalud(long idServicioSalud) {
-		this.idServicioSalud = idServicioSalud;
+	public void setIdServicioSalud(long idServSalud) {
+		this.idServSalud = idServSalud;
 	}
 
 	@Override
 	public String toString() {
-		return "Radiografia [id=" + id + ", idServicioSalud=" + idServicioSalud + "]";
+		return "Radiografia [id=" + id + ", idServSalud=" + idServSalud + "]";
 	}
 }

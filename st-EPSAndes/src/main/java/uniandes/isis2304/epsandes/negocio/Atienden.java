@@ -5,9 +5,9 @@ public class Atienden implements VOAtienden{
 	* 			Atributos
 	 *****************************************************************/
 
-	private long idMedico;
+	public long idMedico;
 
-	private long idUsuario;
+	public long idUsuario;
 	
 
 	
