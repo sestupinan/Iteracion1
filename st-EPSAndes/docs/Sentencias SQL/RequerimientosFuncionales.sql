@@ -29,33 +29,37 @@ WHERE
 --RFC1 (Estado en 1 significa que ya fue atendido)
 SELECT COUNT(*)
 FROM usan
-WHERE (fechaatencion BETWEEN pFechaInicial AND pFechaFinal) AND estado = 1;
+WHERE (fechaatencion BETWEEN '16/01/18' AND '15/09/18') AND estado = 1
+;
 
 --RFC2
 SELECT *
 FROM(
 SELECT idservsalud, COUNT(idServSalud) c
 FROM usan 
-WHERE (fechaatencion BETWEEN pFechaInicial AND pFechaFinal) AND estado = 1
+WHERE (fechaatencion BETWEEN '16/01/18' AND '15/09/18') AND estado = 1
 group by idservsalud
 ORDER BY c)
-WHERE ROWNUM <=20;
+WHERE ROWNUM <=20
+;
 
 --RFC3
-SELECT serviciosalud.idservsalud, COUNT(*)*100/serviciosalud.capacidad
+SELECT serviciosalud.idservsalud, COUNT(*)--*100/serviciosalud.capacidad
 FROM usan JOIN serviciosalud ON usan.idservsalud = serviciosalud.idservsalud
-WHERE (fechaatencion BETWEEN pFechaInicial AND pFechaFinal) AND estado = 1 
-group by serviciosalud.idservsalud;
+WHERE (fechaatencion BETWEEN '04/04/18' AND '16/11/18') AND usan.estado = 1 
+group by serviciosalud.idservsalud
+;
 
 --RFC4
 SELECT usan.idservsalud, usan.idusuario, usan.fechaatencion, usan.fechareserva, usan.estado
 FROM usan, serviciosalud
-WHERE usan.idrecepcionista = pIdRecepcionista OR idservsalud = pIdServSalud OR fechaatencion BETWEEN pFechaInicial AND pFechaFinal
+WHERE usan.idrecepcionista = 4 AND serviciosalud.idservsalud = 4 AND fechaatencion BETWEEN '04/04/18' AND '05/05/18'
 ;
 
 
 --RFC5
 SELECT usuario.nombre
 FROM usuario, usan
-WHERE pUsuarioId = usuario.nidentificacion AND usan.idusuario = pIdUsuario AND fechaatencion BETWEEN pFechaInicial AND pFechaFinal;
+WHERE usuario.nidentificacion = 125121 AND usan.idusuario = 125121 AND fechaatencion BETWEEN '04/04/18' AND '16/11/18'
+;
 

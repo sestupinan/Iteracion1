@@ -57,7 +57,7 @@ update serviciosalud
 set estado=1
 where idservsalud = pIdServSalud;
 
---RFC6 FALTA INCLUIR FACTOR DE FECHAS
+--RFC6
 SELECT usan.idservsalud,  TO_CHAR(usan.fechareserva, 'WW') unidadtiempo, serviciosalud.nombre, COUNT(*)cuenta
 FROM usan JOIN serviciosalud on serviciosalud.idservsalud=usan.idservsalud
 WHERE usan.estado=0
