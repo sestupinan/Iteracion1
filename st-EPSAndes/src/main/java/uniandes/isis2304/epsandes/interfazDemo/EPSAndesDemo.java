@@ -224,11 +224,10 @@ public class EPSAndesDemo {
 
 			Long idAdministrador = (long) 123456789;
 			String caracteristicasAdmin = "Principal";
-			String tipoAdministrador = "Todo el gerente";
-			String nombreAdministrador = "Andres";
+			Long idEmp = (long) 65238779;
 			boolean errorAdministrador= false;
 
-			Administrador administrador = epsAndes.registrarAdmin(caracteristicasAdmin, idAdministrador, tipoAdministrador, nombreAdministrador);
+			Administrador administrador = epsAndes.registrarAdmin(caracteristicasAdmin, idAdministrador, idEmp);
 			if (administrador == null)
 			{
 				errorAdministrador = true;

@@ -16,7 +16,11 @@
 
 package uniandes.isis2304.epsandes.negocio;
 
+import java.sql.Date;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
@@ -88,7 +92,7 @@ public class EPSAndes
 		pp.cerrarUnidadPersistencia ();
 	}
 
-	public void run() {
+	public void run() throws ParseException {
 		Scanner sc = new Scanner(System.in);
 		boolean fin=false;
 		EPSAndes controller = new EPSAndes();
@@ -110,10 +114,13 @@ public class EPSAndes
 				case 1:
 
 					System.out.println("Inserte la fecha inicial");
-					Timestamp pFechaInicial = new Timestamp(sc.nextLong());
+					DateFormat sdf1 = new SimpleDateFormat("dd-MM-yyyy");
+					 
+					Timestamp pFechaInicial = new Timestamp(sdf1.parse(sc.next()).getTime());
 					System.out.println("Inserte la fecha final");
-					Timestamp pFechaFinal = new Timestamp(sc.nextLong());
-
+					DateFormat sdf2 = new SimpleDateFormat("dd-MM-yyyy");
+					
+					Timestamp pFechaFinal = new Timestamp(sdf2.parse(sc.next()).getTime());
 					controller.servPrestadosPorIPSEnFechas(pFechaInicial, pFechaFinal);
 
 					break;
@@ -121,9 +128,11 @@ public class EPSAndes
 				case 2:
 
 					System.out.println("Inserte la fecha inicial");
-					Timestamp pFechaInicial1 = new Timestamp(sc.nextLong());
+					DateFormat sdf11 = new SimpleDateFormat("dd-MM-yyyy");
+					Timestamp pFechaInicial1 = new Timestamp(sdf11.parse(sc.next()).getTime());
 					System.out.println("Inserte la fecha final");
-					Timestamp pFechaFinal1 = new Timestamp(sc.nextLong());
+					DateFormat sdf21 = new SimpleDateFormat("dd-MM-yyyy");
+					Timestamp pFechaFinal1 = new Timestamp(sdf21.parse(sc.next()).getTime());
 
 					controller.mostrar20ServMasSolicitados(pFechaInicial1, pFechaFinal1);
 
@@ -132,9 +141,13 @@ public class EPSAndes
 				case 3:
 
 					System.out.println("Inserte la fecha inicial");
-					Timestamp pFechaInicial2 = new Timestamp(sc.nextLong());
+					DateFormat sdf12 = new SimpleDateFormat("dd-MM-yyyy");
+					
+					Timestamp pFechaInicial2 = new Timestamp(sdf12.parse(sc.next()).getTime());
 					System.out.println("Inserte la fecha final");
-					Timestamp pFechaFinal2 = new Timestamp(sc.nextLong());
+					DateFormat sdf22 = new SimpleDateFormat("dd-MM-yyyy");
+					
+					Timestamp pFechaFinal2 = new Timestamp(sdf22.parse(sc.next()).getTime());
 
 					controller.mostrarIndiceUso(pFechaInicial2, pFechaFinal2);
 
@@ -142,21 +155,31 @@ public class EPSAndes
 
 				case 4:
 
+					System.out.println("Inserte el id del recepcionista");
+					long idrep = sc.nextLong();
+					System.out.println("Inserte el id del servicio de salud");
+					long idserv = sc.nextLong();
 					System.out.println("Inserte la fecha inicial");
-					Timestamp pFechaInicial3 = new Timestamp(sc.nextLong());
+					DateFormat sdf7 = new SimpleDateFormat("dd-MM-yyyy");
+					Timestamp pFechaInicial3 = new Timestamp(sdf7.parse(sc.next()).getTime());
 					System.out.println("Inserte la fecha final");
-					Timestamp pFechaFinal3 = new Timestamp(sc.nextLong());
+					DateFormat sdf8 = new SimpleDateFormat("dd-MM-yyyy");
+					Timestamp pFechaFinal3= new Timestamp(sdf8.parse(sc.next()).getTime());
 
-					controller.mostrarServiciosConCaracteristica(pFechaInicial3, pFechaFinal3);
+					controller.mostrarServiciosConCaracteristica(idrep, idserv, pFechaInicial3, pFechaFinal3);
 
 					break;
 
 				case 5:
 
 					System.out.println("Inserte la fecha inicial");
-					long pFechaInicial4 = sc.nextLong();
+					DateFormat sdf14 = new SimpleDateFormat("dd-MM-yyyy");
+					
+					long pFechaInicial4 = sdf14.parse(sc.next()).getTime();
 					System.out.println("Inserte la fecha final");
-					Timestamp pFechaFinal4 = new Timestamp(sc.nextLong());
+					DateFormat sdf24 = new SimpleDateFormat("dd-MM-yyyy");
+					
+					Timestamp pFechaFinal4 = new Timestamp(sdf24.parse(sc.next()).getTime());
 					System.out.println("Inserte el id de usuario");
 					long pUsuarioId = sc.nextLong();
 
@@ -237,7 +260,9 @@ public class EPSAndes
 						System.out.println("Inserte el nombre");
 						String nombreUsuario = sc.next();
 						System.out.println("Inserte la fecha de nacimiento");
-						Timestamp fechaUsuario = new Timestamp(sc.nextLong());
+						DateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+
+						Timestamp fechaUsuario = new Timestamp(sdf.parse(sc.next()).getTime());
 
 						controller.registrarUsuario(idUsuario, tipoUsuario, nombreUsuario, fechaUsuario);
 
@@ -284,9 +309,13 @@ public class EPSAndes
 					System.out.println("Inserte el id de la campaña");
 					long pidCampania = sc.nextLong();
 					System.out.println("Inserte la fecha de inicio");
-					Timestamp pfechainicio = new Timestamp(sc.nextLong());
+					DateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+					
+					Timestamp pfechainicio = new Timestamp(sdf.parse(sc.next()).getTime());
 					System.out.println("Inserte la fecha de fin");
-					Timestamp pfechafin = new Timestamp(sc.nextLong());
+					DateFormat sdfa = new SimpleDateFormat("dd-MM-yyyy");
+					
+					Timestamp pfechafin = new Timestamp(sdfa.parse(sc.next()).getTime());
 					System.out.println("Inserte el nombre de la campaña");
 					String pnombrecampania = sc.next();
 
@@ -361,9 +390,11 @@ public class EPSAndes
 						System.out.println("Inserte el id de servico a cancelar numero " + (j+1) );
 						idsServCance[j] = sc.nextLong();
 						System.out.println("Inserte la fecha de inicio numero " + (j+1) );
-						fechasInicio[j] = new Timestamp(sc.nextLong());
+						DateFormat sdfb = new SimpleDateFormat("dd-MM-yyyy");
+						fechasInicio[j] =  new Timestamp(sdfb.parse(sc.next()).getTime());
 						System.out.println("Inserte la fecha de fin numero " + (j+1));
-						fechasFin[j] = new Timestamp(sc.nextLong());
+						DateFormat sdfb1 = new SimpleDateFormat("dd-MM-yyyy");
+						fechasFin[j] =  new Timestamp(sdfb1.parse(sc.next()).getTime());
 						System.out.println("Inserte el id de IPS numero " + (j+1) );
 						idsIPS[j] = sc.nextLong();
 						System.out.println("Inserte la causa numero " + (j+1));
@@ -444,7 +475,8 @@ public class EPSAndes
 				case 1:
 
 					System.out.println("Inserte la fecha");
-					Timestamp fechaReserva = new Timestamp(sc.nextLong());
+					DateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+					Timestamp fechaReserva = new Timestamp(sdf.parse(sc.next()).getTime());
 					System.out.println("Ingrese el id del servicio de salud");
 					long pIdServSalud = sc.nextLong();
 					System.out.println("Ingrese el id de la IPS");
@@ -472,7 +504,8 @@ public class EPSAndes
 
 
 					System.out.println("Inserte la fecha");
-					Timestamp fechaReserva = new Timestamp(sc.nextLong());
+					DateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+					Timestamp fechaReserva = new Timestamp(sdf.parse(sc.next()).getTime());
 					System.out.println("Ingrese el id del servicio de salud");
 					long pIdServSalud = sc.nextLong();
 					System.out.println("Ingrese el id de la IPS");
@@ -499,9 +532,11 @@ public class EPSAndes
 				case 1:
 
 					System.out.println("Inserte la fecha inicial");
-					Timestamp pFechaInicial = new Timestamp(sc.nextLong());
+					DateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+					Timestamp pFechaInicial = new Timestamp(sdf.parse(sc.next()).getTime());
 					System.out.println("Inserte la fecha final");
-					Timestamp pFechaFinal = new Timestamp(sc.nextLong());
+					DateFormat sdf2 = new SimpleDateFormat("dd-MM-yyyy");
+					Timestamp pFechaFinal= new Timestamp(sdf2.parse(sc.next()).getTime());
 
 					controller.servPrestadosPorIPSEnFechas(pFechaInicial, pFechaFinal);
 
@@ -510,9 +545,11 @@ public class EPSAndes
 				case 2:
 
 					System.out.println("Inserte la fecha inicial");
-					Timestamp pFechaInicial1 = new Timestamp(sc.nextLong());
+					DateFormat sdf3 = new SimpleDateFormat("dd-MM-yyyy");
+					Timestamp pFechaInicial1 = new Timestamp(sdf3.parse(sc.next()).getTime());
 					System.out.println("Inserte la fecha final");
-					Timestamp pFechaFinal1 = new Timestamp(sc.nextLong());
+					DateFormat sdf4 = new SimpleDateFormat("dd-MM-yyyy");
+					Timestamp pFechaFinal1= new Timestamp(sdf4.parse(sc.next()).getTime());
 
 					controller.mostrar20ServMasSolicitados(pFechaInicial1, pFechaFinal1);
 
@@ -521,9 +558,11 @@ public class EPSAndes
 				case 3:
 
 					System.out.println("Inserte la fecha inicial");
-					Timestamp pFechaInicial2 = new Timestamp(sc.nextLong());
+					DateFormat sdf5 = new SimpleDateFormat("dd-MM-yyyy");
+					Timestamp pFechaInicial2 = new Timestamp(sdf5.parse(sc.next()).getTime());
 					System.out.println("Inserte la fecha final");
-					Timestamp pFechaFinal2 = new Timestamp(sc.nextLong());
+					DateFormat sdf6 = new SimpleDateFormat("dd-MM-yyyy");
+					Timestamp pFechaFinal2= new Timestamp(sdf6.parse(sc.next()).getTime());
 
 					controller.mostrarIndiceUso(pFechaInicial2, pFechaFinal2);
 
@@ -531,21 +570,29 @@ public class EPSAndes
 
 				case 4:
 
+					System.out.println("Inserte el id del recepcionista");
+					long idrep = sc.nextLong();
+					System.out.println("Inserte el id del servicio de salud");
+					long idserv = sc.nextLong();
 					System.out.println("Inserte la fecha inicial");
-					Timestamp pFechaInicial3 = new Timestamp(sc.nextLong());
+					DateFormat sdf7 = new SimpleDateFormat("dd-MM-yyyy");
+					Timestamp pFechaInicial3 = new Timestamp(sdf7.parse(sc.next()).getTime());
 					System.out.println("Inserte la fecha final");
-					Timestamp pFechaFinal3 = new Timestamp(sc.nextLong());
+					DateFormat sdf8 = new SimpleDateFormat("dd-MM-yyyy");
+					Timestamp pFechaFinal3= new Timestamp(sdf8.parse(sc.next()).getTime());
 
-					controller.mostrarServiciosConCaracteristica(pFechaInicial3, pFechaFinal3);
+					controller.mostrarServiciosConCaracteristica(idrep, idserv, pFechaInicial3, pFechaFinal3);
 
 					break;
 
 				case 5:
 
 					System.out.println("Inserte la fecha inicial");
-					long pFechaInicial4 = sc.nextLong();
+					DateFormat sdf9 = new SimpleDateFormat("dd-MM-yyyy");
+					long pFechaInicial4 = sdf9.parse(sc.next()).getTime();
 					System.out.println("Inserte la fecha final");
-					Timestamp pFechaFinal4 = new Timestamp(sc.nextLong());
+					DateFormat sdf10 = new SimpleDateFormat("dd-MM-yyyy");
+					Timestamp pFechaFinal4= new Timestamp(sdf10.parse(sc.next()).getTime());
 					System.out.println("Inserte el id de usuario");
 					long pUsuarioId = sc.nextLong();
 
@@ -584,7 +631,8 @@ public class EPSAndes
 				case 7:
 
 					System.out.println("Inserte la fecha");
-					Timestamp fechaReserva = new Timestamp(sc.nextLong());
+					DateFormat sdf11 = new SimpleDateFormat("dd-MM-yyyy");
+					Timestamp fechaReserva = new Timestamp(sdf11.parse(sc.next()).getTime());
 					System.out.println("Ingrese el id del servicio de salud");
 					long pIdServSalud = sc.nextLong();
 					System.out.println("Ingrese el id de la IPS");
@@ -601,7 +649,8 @@ public class EPSAndes
 				case 8:
 
 					System.out.println("Inserte la fecha");
-					Timestamp fechaReserva7 = new Timestamp(sc.nextLong());
+					DateFormat sdf12 = new SimpleDateFormat("dd-MM-yyyy");
+					Timestamp fechaReserva7 = new Timestamp(sdf12.parse(sc.next()).getTime());
 					System.out.println("Ingrese el id del servicio de salud");
 					long pIdServSalud7 = sc.nextLong();
 					System.out.println("Ingrese el id de la IPS");
@@ -621,9 +670,11 @@ public class EPSAndes
 					System.out.println("Inserte el id de la campaña");
 					long pidCampania = sc.nextLong();
 					System.out.println("Inserte la fecha de inicio");
-					Timestamp pfechainicio = new Timestamp(sc.nextLong());
+					DateFormat sdf13 = new SimpleDateFormat("dd-MM-yyyy");
+					Timestamp pfechainicio = new Timestamp(sdf13.parse(sc.next()).getTime());
 					System.out.println("Inserte la fecha de fin");
-					Timestamp pfechafin = new Timestamp(sc.nextLong());
+					DateFormat sdf14 = new SimpleDateFormat("dd-MM-yyyy");
+					Timestamp pfechafin = new Timestamp(sdf14.parse(sc.next()).getTime());
 					System.out.println("Inserte el nombre de la campaña");
 					String pnombrecampania = sc.next();
 
@@ -698,9 +749,11 @@ public class EPSAndes
 						System.out.println("Inserte el id de servico a cancelar numero " + (j+1) );
 						idsServCance[j] = sc.nextLong();
 						System.out.println("Inserte la fecha de inicio numero " + (j+1) );
-						fechasInicio[j] = new Timestamp(sc.nextLong());
+						DateFormat sdf15 = new SimpleDateFormat("dd-MM-yyyy");	
+						fechasInicio[j] = new Timestamp(sdf15.parse(sc.next()).getTime());
 						System.out.println("Inserte la fecha de fin numero " + (j+1));
-						fechasFin[j] = new Timestamp(sc.nextLong());
+						DateFormat sdf16 = new SimpleDateFormat("dd-MM-yyyy");	
+						fechasFin[j] =  new Timestamp(sdf16.parse(sc.next()).getTime());
 						System.out.println("Inserte el id de IPS numero " + (j+1) );
 						idsIPS[j] = sc.nextLong();
 						System.out.println("Inserte la causa numero " + (j+1));
@@ -844,8 +897,9 @@ public class EPSAndes
 						System.out.println("Inserte el nombre");
 						String nombreUsuario = sc.next();
 						System.out.println("Inserte la fecha de nacimiento");
-						Timestamp fechaUsuario = new Timestamp(sc.nextLong());
-
+						DateFormat sdf15 = new SimpleDateFormat("dd-MM-yyyy");
+						Timestamp fechaUsuario = new Timestamp(sdf15.parse(sc.next()).getTime());
+						
 						controller.registrarUsuario(idUsuario, tipoUsuario, nombreUsuario, fechaUsuario);
 
 						break;
@@ -887,81 +941,137 @@ public class EPSAndes
 					
 				case 19:
 
-					System.out.println("Ingrese 0 en los campos que no quiere que sean tomados en cuenta");
-					System.out.println("Inserte servicios utilizados");
-					String servUtili = sc.next();
-					System.out.println("Inserte tipos de servicios");
-					String tipoServ = sc.next();
+					System.out.println("Inserte el id del servicio utilizado");
+					long servUtili = sc.nextLong();
+					//System.out.println("Inserte tipos de servicios");
+					//String tipoServ = sc.next();
 					System.out.println("Inserte fecha de inicio");
-					long fechInicio = sc.nextLong();
+					DateFormat sdf15 = new SimpleDateFormat("dd-MM-yyyy");
+					Timestamp fechaInicio = new Timestamp(sdf15.parse(sc.next()).getTime());
 					System.out.println("Inserte fecha de fin");
-					long fechaFin = sc.nextLong();
-					System.out.println("Inserte las IPS");
-					String ips = sc.next();
-					System.out.println("Agrupamiento");
-					System.out.println("Mostrar datos por 1. agrupamiento, 2. ordenamiento, 3. Los dos");
-					int agruOrd = sc.nextInt();
-					System.out.println("Inserte rango de fechas de nacimiento");
-					System.out.println("Inserte fecha de inicio");
-					long fechInicioNa = sc.nextLong();
-					System.out.println("Inserte fecha de fin");
-					long fechaFinNa = sc.nextLong();
-					System.out.println("Inserte fecha del servicio");
-					long fechaServ = sc.nextLong();
-					System.out.println("Numero de veces de uso del servicio");
-					int numVe = sc.nextInt();
-					System.out.println("Inserte tipos de servicios");
-					String tipoServOrd = sc.next();
-					System.out.println("Inserte las IPS");
-					String ipsOrd = sc.next();
+					DateFormat sdf16 = new SimpleDateFormat("dd-MM-yyyy");
+					Timestamp fechaFin = new Timestamp(sdf16.parse(sc.next()).getTime());
+					System.out.println("Inserte el id de la IPS");
+					long ips = sc.nextLong();
+					System.out.println("Agrupamiento y Ordenamiento");
+					System.out.println("Agrupar y ordenar por: 1.fecha de nacimiento, 2.fecha y número de veces que se utilizó un\r\n" + 
+							"servicio, 3.Tipo de servicio, 4.Id IPS");
+					int agru = sc.nextInt();
+					String agruOrd = "";
+					if(agru == 1)
+					{
+						System.out.println("Inserte rango de fechas de nacimiento");
+						System.out.println("Inserte fecha de inicio");
+						DateFormat sdf17 = new SimpleDateFormat("dd-MM-yyyy");
+						Timestamp fechaInicioNa = new Timestamp(sdf17.parse(sc.next()).getTime());
+						System.out.println("Inserte fecha de fin");
+						DateFormat sdf18 = new SimpleDateFormat("dd-MM-yyyy");
+						Timestamp fechaFinNa = new Timestamp(sdf18.parse(sc.next()).getTime());
+						
+						agruOrd = "(usuario.fechanacimiento BETWEEN"  + fechaInicioNa + "AND" + fechaFinNa + ")";
+					}
+					if(agru == 2)
+					{
+						agruOrd = "usan.fechaatencion";
+					}
+					if(agru == 3)
+					{
+						agruOrd = "usan.idservsalud";
+					}
+					if(agru == 4)
+					{
+						agruOrd = "serviciosalud.ips";
+					}
+					
+//					System.out.println("Inserte fecha del servicio");
+//					DateFormat sdf19 = new SimpleDateFormat("dd-MM-yyyy");
+//					Timestamp fechaServ = new Timestamp(sdf19.parse(sc.next()).getTime());
+//					System.out.println("Numero de veces de uso del servicio");
+//					int numVe = sc.nextInt();
+//					System.out.println("Inserte tipos de servicios");
+//					String tipoServOrd = sc.next();
+//					System.out.println("Inserte las IPS");
+//					String ipsOrd = sc.next();
 
-					//controller.consultarLaPrestacionServiciosEPSandes(servUtili, tipoServ, fechaInicio, fechaFin, ips, agruOrd, fechInicioNa, fechaFinNa, fechaServ, numVe, tipoServOrd, ipsOrd);
-
+					controller.consultarPresatacionServicios(servUtili, fechaInicio, fechaFin, ips, agruOrd);
+					
 					break;
 					
 				case 20:
 
-					System.out.println("Ingrese 0 en los campos que no quiere que sean tomados en cuenta");
-					System.out.println("Inserte servicios utilizados");
-					String servUtili2 = sc.next();
-					System.out.println("Inserte tipos de servicios");
-					String tipoServ2 = sc.next();
-					System.out.println("Inserte fecha de inicio");
-					long fechInicio2 = sc.nextLong();
-					System.out.println("Inserte fecha de fin");
-					long fechaFin2 = sc.nextLong();
-					System.out.println("Inserte las IPS");
-					String ips2 = sc.next();
-					System.out.println("Agrupamiento");
-					System.out.println("Mostrar datos por 1. agrupamiento, 2. ordenamiento, 3. Los dos");
-					int agruOrd2 = sc.nextInt();
-					System.out.println("Inserte rango de fechas de nacimiento");
-					System.out.println("Inserte fecha de inicio");
-					long fechInicioNa2 = sc.nextLong();
-					System.out.println("Inserte fecha de fin");
-					long fechaFinNa2 = sc.nextLong();
-					System.out.println("Inserte fecha del servicio");
-					long fechaServ2 = sc.nextLong();
-					System.out.println("Numero de veces de uso del servicio");
-					int numVe2 = sc.nextInt();
-					System.out.println("Inserte tipos de servicios");
-					String tipoServOrd2 = sc.next();
-					System.out.println("Inserte las IPS");
-					String ipsOrd2 = sc.next();
-
-					//controller.consultarLaPrestacionServiciosEPSandes(servUtili2, tipoServ2, fechaInicio2, fechaFin2, ips2, agruOrd2, fechInicioNa2, fechaFinNa2, fechaServ2, numVe2, tipoServOrd2, ipsOrd2);
-
+					System.out.println("Seleccione: 1.Usuarios que no usan ningun servicio\r\n" + 
+							"2.Servicios de salud que no son usados\r\n" + 
+							"3.IPS que no son usadas en ningun servicio de salud");
+					int op = sc.nextInt();
+					if(op == 1)
+					{
+						controller.consultarPresatacionServiciosSinServicioPorUsuario();
+					}
+					if(op == 2)
+					{
+						controller.consultarPresatacionServiciosServSaludNoUsados();
+					}
+					if(op == 3)
+					{
+						controller.consultarPresatacionServiciosIPSNoUsadas();	
+					}
+					
 					break;
 					
 				case 21:
 					
-					//controller.consultarFuncionamiento();
+					System.out.println("Seleccione: 1.El servicio mas usado por semana\r\n" + 
+							"2.El servicio menos usado por semana\r\n" + 
+							"3.El usuario que mas usa servicios por semana\r\n" +
+						    "4. El usuario que menos usa servicios por semana\r\n" +
+							"5. El ips menos usado por semana\r\n" +
+						    "6. El ips mas usado por semana");
+					int op1 = sc.nextInt();
+					if(op1 == 1)
+					{
+						controller.consultarFuncionamientoServMasUsado();
+					}
+					if(op1 == 2)
+					{
+						controller.consultarFuncionamientoServMenosUsado();
+					}
+					if(op1 == 3)
+					{
+						controller.consultarFuncionamientoUsuarioMasServicioSemana();	
+					}
+					if(op1 == 4)
+					{
+						controller.consultarFuncionamientoUsuarioMenosServicioSemana();
+					}
+					if(op1 == 5)
+					{
+						controller.consultarFuncionamientoIpsMenosUsadoSemana();
+					}
+					if(op1 == 6)
+					{
+						controller.consultarFuncionamientoIpsMasUsadoSemana();	
+					}
 
 					break;
 					
 				case 22:
 
-					//controller.consultarLosAfiliadosCostosos();
+					System.out.println("Seleccione: 1.Verifica que haya usado 1 al menos 1 vez en el mes\r\n" + 
+							"2.Verifica si siempre requieren un serv medico especializado \r\n" + 
+							"3.IPS que no son usadas en ningun servicio de salud");
+					int op2 = sc.nextInt();
+					if(op2 == 1)
+					{
+						controller.consultarLosAfiliadosCostosos1almes();;
+					}
+					if(op2 == 2)
+					{
+						controller.consultarLosAfiliadosCostososServMedicoEspecializado();;
+					}
+					if(op2 == 3)
+					{
+						controller.consultarLosAfiliadosCostosos();	
+					}
 
 					break;
 
@@ -1091,9 +1201,9 @@ public class EPSAndes
 		pp.mostrarIndiceUso(pFechaInicial, pFechaFinal);
 	}
 
-	public void mostrarServiciosConCaracteristica(Timestamp pFechaInicial, Timestamp pFechaFinal)
+	public void mostrarServiciosConCaracteristica(long idre, long idser, Timestamp pFechaInicial, Timestamp pFechaFinal)
 	{
-		pp.mostrarServiciosConCaracteristica(pFechaInicial, pFechaFinal);
+		pp.mostrarServiciosConCaracteristica(idre, idser, pFechaInicial, pFechaFinal);
 	}
 
 	public void mostrarUsoServiciosAfiliadoDado(long pFechaInicial, Timestamp pFechaFinal, long pUsuarioId)
@@ -1156,7 +1266,72 @@ public class EPSAndes
 		return pp.adicionarServSalud(id, tipo, capacidad, pServSalud);
 
 	}
+	
+	public void consultarPresatacionServicios(long idServSalud, Timestamp finicio, Timestamp ffin, long idIPS, String agruOrd)
+	{
+		pp.consultarPresatacionServicios(idServSalud, finicio, ffin, idIPS, agruOrd);
+	}
+	
+	public void consultarPresatacionServiciosSinServicioPorUsuario()
+	{
+		pp.consultarPresatacionServiciosSinServicioPorUsuario();
+	}
+	
+	public void consultarPresatacionServiciosServSaludNoUsados()
+	{
+		pp.consultarPresatacionServiciosServSaludNoUsados();
+	}
+	
+	public void consultarPresatacionServiciosIPSNoUsadas()
+	{
+		pp.consultarPresatacionServiciosIPSNoUsadas();
+	}
+	
+	public void consultarFuncionamientoServMasUsado()
+	{
+		pp.consultarFuncionamientoServMasUsado();
+	}
+	
+	public void consultarFuncionamientoServMenosUsado()
+	{
+		pp.consultarFuncionamientoServMenosUsado();
+	}
+	
+	public void consultarFuncionamientoUsuarioMasServicioSemana()
+	{
+		pp.consultarFuncionamientoUsuarioMasServicioSemana();
+	}
+	
+	public void consultarFuncionamientoUsuarioMenosServicioSemana()
+	{
+		pp.consultarFuncionamientoUsuarioMenosServicioSemana();
+	}
+	
+	public void consultarFuncionamientoIpsMenosUsadoSemana()
+	{
+		pp.consultarFuncionamientoIpsMenosUsadoSemana();
+	}
+	
+	public void consultarFuncionamientoIpsMasUsadoSemana()
+	{
+		pp.consultarFuncionamientoIpsMasUsadoSemana();
+	}
 
+	public void consultarLosAfiliadosCostosos1almes()
+	{
+		pp.consultarLosAfiliadosCostosos1almes();
+	}
+	
+	public void consultarLosAfiliadosCostososServMedicoEspecializado()
+	{
+		pp.consultarLosAfiliadosCostososServMedicoEspecializado();
+	}
+	
+	public void consultarLosAfiliadosCostosos()
+	{
+		pp.consultarLosAfiliadosCostosos();
+	}
+	
 	public void demoAdministrador()
 	{
 		demo.demoAdministrador();
